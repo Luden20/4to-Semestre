@@ -11,9 +11,9 @@ class Piramide {
     }
     
     public void Visualizar(Graphics g) {
-        g.drawString("Lado: " + Lado, 200, 10);
-        g.drawString("Altura: " + Altura, 200, 30);
-        g.drawString("Area: " + CalcularArea(), 200, 50);
+        g.drawString("Lado: " + Lado, 800, 10);
+        g.drawString("Altura: " + Altura, 800, 30);
+        g.drawString("Area: " + CalcularArea(), 800, 50);
     }
     
     public double  CalcularArea() {
@@ -25,7 +25,7 @@ class Piramide {
     }
     public void Graficar(Graphics g)
     {
-    	int A1x=10,A1y=30+(int)Apotema()*10;
+    	int A1x=10,A1y=50+(int)Apotema()*10;
     	int A2x=10+(int)Lado*10,A2y=A1y;
     	int A3x=A1x+(int)Lado*10/2,A3y=A1y-(int)Lado*10/2;
     	int A4x=A3x+(int)Lado*10,A4y=A3y;
@@ -41,12 +41,7 @@ class Piramide {
     	g.drawLine(A1x,A1y,A6x,A6y);
     	g.drawLine(A2x,A2y,A6x,A6y);
     	g.drawLine(A3x,A3y,A6x,A6y);
-    	g.drawLine(A4x,A4y,A6x,A6y);
-    	
-    	
-
-    	
-    	
+    	g.drawLine(A4x,A4y,A6x,A6y);  	
     }
 }
 
@@ -55,7 +50,7 @@ public class Trabajo1 extends Applet {
     
     public void init() {
         x = new Piramide(); 
-        x.Seteo(10,10);
+        x.Seteo(15,7);
     }
     
     public void paint(Graphics g) {

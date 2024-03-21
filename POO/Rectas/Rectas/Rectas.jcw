@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>Rectas</label>
+	</settings>
+	<users>
+		<user>
+			<path>Rectas.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>Rectas.jcp</path>
+		</project>
+	</projects>
+</workspace>
