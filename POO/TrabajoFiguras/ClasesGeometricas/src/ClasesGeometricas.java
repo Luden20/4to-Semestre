@@ -132,7 +132,7 @@ class Piramide {
 }
 class Circulo {
     private double Radio;
-    public void Seteo(double r) {
+    public void Setear(double r) {
         this.Radio = r;
     }   
     
@@ -182,14 +182,11 @@ class Cilindro {
 }
 
 public class ClasesGeometricas extends Applet {
-	private Rectangulo x;
-	public void init() {
-		x=new Rectangulo();
-		x.Setear(100,200);
-	}
 
 	public void paint(Graphics g) {
 		
+		Cuadrado x=new Cuadrado();
+		x.Setear(25);
 		x.Graficar(g);
 		x.Ver_datos(g);
 		

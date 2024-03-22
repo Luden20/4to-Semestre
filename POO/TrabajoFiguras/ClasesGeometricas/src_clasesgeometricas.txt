@@ -1,1 +1,1 @@
-"D:\\Universidad\\4to Sync\\4to-Semestre\\POO\\TrabajoFiguras\\ClasesGeometricas\\src\\ClasesGeometricas.java"
+D:\Universidad\4to-Semestre\POO\TrabajoFiguras\ClasesGeometricas\src\ClasesGeometricas.java
