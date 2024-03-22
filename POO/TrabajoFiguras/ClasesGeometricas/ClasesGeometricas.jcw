@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>ClasesGeometricas</label>
+	</settings>
+	<users>
+		<user>
+			<path>ClasesGeometricas.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>ClasesGeometricas.jcp</path>
+		</project>
+	</projects>
+</workspace>
