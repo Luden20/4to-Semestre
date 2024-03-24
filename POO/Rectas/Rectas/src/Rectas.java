@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.swing.*;
 import java.applet.*;
 
 class Ecuaciones
@@ -25,41 +26,145 @@ class Ecuaciones
 	{
 		return (-b-Math.sqrt((b*b)-4*a*c))/2*a;
 	}
-	public void Ver()
+	
+	public double CalcularY(double X)
 	{
-		System.out.println(a+"x2+"+b+"x+"+c+"=y");
-		System.out.println(CalculoRaiz1()+"  "+CalculoRaiz2());
+		return a*(X*X)+b*X+c;
+	}
+	public double CalcularX(double Y)
+	{
+		return (Y-c)/b;
 	}
 	public void CalculoRaiz(Graphics g)
 	{
 		if(a!=0)
 		{
-			g.drawString("Raiz1:"+CalculoRaiz1(),10,10);
-			g.drawString("Raiz2:"+CalculoRaiz2(),10,20);
+			if(!Double.isNaN(CalculoRaiz1()))
+			{
+				g.drawString("Raiz1:"+CalculoRaiz1(),10,10);
+			}
+			else
+			{
+				g.drawString("No hay raiz 1",10,10);
+			}
+			
+			if(!Double.isNaN(CalculoRaiz2()))
+			{
+				g.drawString("Raiz2:"+CalculoRaiz2(),10,20);
+			}
+			else
+			{
+				g.drawString("No hay raiz 2",10,20);
+			}
 		}
 		else
 		{
-			g.drawString("Raiz:"+CalculoRaiz3(),10,10);
+			if(!Double.isNaN(CalculoRaiz3()))
+			{
+				g.drawString("Raiz:"+CalculoRaiz3(),10,10);
+			}
+			else
+			{
+				g.drawString("No hay raiz 1",10,10);
+			}
 		}
 	}
+	public void VerDatos(Graphics g)
+	{
+		CalculoRaiz(g);
+		if(a==0)
+		{
+			if(b!=0)
+			{
+				if(c!=0)
+				{
+					g.drawString(b+"x + "+c+" = y",100,10);
+				}
+				else
+				{
+					g.drawString(b+"x = y ",100,10);
+				}
+				
+			}
+			else
+			{
+				g.drawString(c+" = y",100,10);
+			}
+			 
+		}
+		else
+		{
+			if(b!=0)
+			{
+				if(c!=0)
+				{
+					g.drawString(a+"x^2 +"+b+"x+"+c+"=y",100,10);
+				}
+				else
+				{
+					g.drawString(a+"x^2 +"+b+"x=y",100,10);
+				}
+				
+			}
+			else
+			{
+				g.drawString(a+"x^2 +"+c+"=y",100,10);
+			}
+		}
+		
+		
+	}
+	//Esta es mas una utilidad para poner las cordenadas x y en el aplet de mejor manera
+	private  double[] transformarCoordenadas(double x, double y) {
+        double[] resultado = {10 * x + 500, -10 * y + 390};
+        return resultado;
+    }
 	public void Graficar(Graphics g)
 	{
-		g.drawLine(500,30,500,750);
-		g.drawLine(10,390,1000,390);
+
+        Graphics2D g2 = (Graphics2D) g;
+        
+        g2.setColor(Color.BLUE);
+		g2.drawRect(10,30,1000,750);
+		g2.setColor(Color.BLACK);
+		g2.drawLine(500,30,500,775);//Vertical -390 a 390
+		g2.drawLine(10,390,1000,390);//Horizontal -495 a 495
+		//POS X +10 y POS Y -10 equivalen a un 1
+		// centro es 500,390
+		g2.setColor(Color.red);
+		if(a==0)
+		{
+			if(b!=0)
+			{
+				double[] P1=transformarCoordenadas(CalcularX(-39),-39);
+				double[] P2=transformarCoordenadas(CalcularX(39),39);
+				g2.drawLine((int)P1[0],(int)P1[1],(int)P2[0],(int)P2[1]);
+			}
+			else
+			{
+				double[] P1=transformarCoordenadas(-50,c);
+				double[] P2=transformarCoordenadas(50,c);
+				g2.drawLine((int)P1[0],(int)P1[1],(int)P2[0],(int)P2[1]);
+			}
+			 
+		}
+		else
+		{
+			for (double x = -39; x <= 30; x+=0.01)
+			{
+	            double y =CalcularY(x);
+	            double[] P = transformarCoordenadas(x, y);
+	            g2.fillOval((int)P[0],(int)P[1], 2, 2);
+        	}	
+		}
+		g2.setColor(Color.BLACK);
 	}
 }
 public class Rectas extends Applet {
-	private Ecuaciones Eq;
-	
-	public void init() {
-		Eq=new Ecuaciones();
-		Eq.Seteo(10,-2,-3);
-		Eq.Ver();
-		
-	}
-
 	public void paint(Graphics g) {
-		Eq.CalculoRaiz(g);
-		Eq.Graficar(g);
+		Ecuaciones Eq=new Ecuaciones();
+		Eq.Seteo(1,1,1);
+		Eq.Graficar(g);;		
+		Eq.VerDatos(g);
 	}
 }
