@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>busqueda_estudiantes</label>
+	</settings>
+	<users>
+		<user>
+			<path>busqueda_estudiantes.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>busqueda_estudiantes.jcp</path>
+		</project>
+	</projects>
+</workspace>

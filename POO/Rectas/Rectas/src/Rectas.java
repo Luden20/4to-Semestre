@@ -20,11 +20,11 @@ class Ecuaciones
 	}
 	public double CalculoRaiz1()
 	{
-		return (-b+Math.sqrt((b*b)-4*a*c))/2*a;
+		return (-b+Math.sqrt((b*b)-4*a*c))/(2*a);
 	}
 	public double CalculoRaiz2()
 	{
-		return (-b-Math.sqrt((b*b)-4*a*c))/2*a;
+		return (-b-Math.sqrt((b*b)-4*a*c))/(2*a);
 	}
 	
 	public double CalcularY(double X)
@@ -78,17 +78,17 @@ class Ecuaciones
 			{
 				if(c!=0)
 				{
-					g.drawString(b+"x + "+c+" = y",100,10);
+					g.drawString(b+"x + "+c+" = y",100,50);
 				}
 				else
 				{
-					g.drawString(b+"x = y ",100,10);
+					g.drawString(b+"x = y ",100,50);
 				}
 				
 			}
 			else
 			{
-				g.drawString(c+" = y",100,10);
+				g.drawString(c+" = y",100,50);
 			}
 			 
 		}
@@ -98,17 +98,17 @@ class Ecuaciones
 			{
 				if(c!=0)
 				{
-					g.drawString(a+"x^2 +"+b+"x+"+c+"=y",100,10);
+					g.drawString(a+"x^2 +"+b+"x+"+c+"=y",100,50);
 				}
 				else
 				{
-					g.drawString(a+"x^2 +"+b+"x=y",100,10);
+					g.drawString(a+"x^2 +"+b+"x=y",100,50);
 				}
 				
 			}
 			else
 			{
-				g.drawString(a+"x^2 +"+c+"=y",100,10);
+				g.drawString(a+"x^2 +"+c+"=y",100,50);
 			}
 		}
 		
@@ -163,7 +163,7 @@ class Ecuaciones
 public class Rectas extends Applet {
 	public void paint(Graphics g) {
 		Ecuaciones Eq=new Ecuaciones();
-		Eq.Seteo(1,1,-2);
+		Eq.Seteo(4,6,2);
 		Eq.Graficar(g);;		
 		Eq.VerDatos(g);
 	}
