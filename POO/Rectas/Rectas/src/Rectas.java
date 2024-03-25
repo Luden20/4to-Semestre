@@ -163,7 +163,7 @@ class Ecuaciones
 public class Rectas extends Applet {
 	public void paint(Graphics g) {
 		Ecuaciones Eq=new Ecuaciones();
-		Eq.Seteo(1,1,1);
+		Eq.Seteo(1,1,-2);
 		Eq.Graficar(g);;		
 		Eq.VerDatos(g);
 	}
