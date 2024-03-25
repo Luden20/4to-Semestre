@@ -1,1 +1,1 @@
-"D:\\Universidad\\4to Sync\\4to-Semestre\\POO\\Rectas\\Rectas\\src\\Rectas.java"
+D:\Universidad\4to-Semestre\POO\Rectas\Rectas\src\Rectas.java
