@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>Trabajo_Biblioteca</label>
+	</settings>
+	<users>
+		<user>
+			<path>Trabajo_Biblioteca.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>Trabajo_Biblioteca.jcp</path>
+		</project>
+	</projects>
+</workspace>
