@@ -1,1 +1,1 @@
-"D:\\Universidad\\4to Sync\\4to-Semestre\\POO\\Proyecto_Estudiante\\src\\Proyecto_Estudiante.java"
+"C:\\Users\\USUARIO\\OneDrive\\Documents\\JCreator Pro\\MyProjects\\Proyecto_Estudiante\\src\\Proyecto_Estudiante.java"
