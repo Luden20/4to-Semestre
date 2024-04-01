@@ -23,11 +23,5 @@
 			<index>0</index>
 			<active>true</active>
 		</docitem>
-		<docitem>
-			<path>..\..\..\..\..\..\..\Program Files (x86)\Java\jdk1.6.0_16\src.zip!java\awt\EventDispatchThread.java</path>
-			<source>true</source>
-			<index>1</index>
-			<active>false</active>
-		</docitem>
 	</open_files>
 </workspace_user>
