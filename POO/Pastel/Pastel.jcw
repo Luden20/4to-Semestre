@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>Pastel</label>
+	</settings>
+	<users>
+		<user>
+			<path>Pastel.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>Pastel.jcp</path>
+		</project>
+	</projects>
+</workspace>
