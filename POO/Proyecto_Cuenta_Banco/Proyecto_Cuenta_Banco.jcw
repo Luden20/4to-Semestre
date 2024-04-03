@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>Proyecto_Cuenta_Banco</label>
+	</settings>
+	<users>
+		<user>
+			<path>Proyecto_Cuenta_Banco.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>Proyecto_Cuenta_Banco.jcp</path>
+		</project>
+	</projects>
+</workspace>
