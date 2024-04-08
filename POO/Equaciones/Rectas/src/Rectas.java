@@ -7,7 +7,7 @@ class Ecuaciones
 	private double b;
 	private double c;
 	
-	public void Seteo(double A,double B,double C)
+	public void Setear(double A,double B,double C)
 	{
 		this.a=A;
 		this.b=B;
@@ -34,7 +34,7 @@ class Ecuaciones
 	{
 		return (Y-c)/b;
 	}
-	public void CalculoRaiz(Graphics g)
+	public void MostrarRaiz(Graphics g)
 	{
 		if(a!=0)
 		{
@@ -70,7 +70,7 @@ class Ecuaciones
 	}
 	public void VerDatos(Graphics g)
 	{
-		CalculoRaiz(g);
+		MostrarRaiz(g);
 		if(a==0)
 		{
 			if(b!=0)
@@ -160,7 +160,7 @@ class Ecuaciones
 public class Rectas extends Applet {
 	public void paint(Graphics g) {
 		Ecuaciones Eq=new Ecuaciones();
-		Eq.Seteo(4,6,2);
+		Eq.Setear(4,6,2);
 		Eq.Graficar(g);;		
 		Eq.VerDatos(g);
 	}
