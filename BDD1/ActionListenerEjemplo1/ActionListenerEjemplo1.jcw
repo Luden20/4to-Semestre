@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>ActionListenerEjemplo1</label>
+	</settings>
+	<users>
+		<user>
+			<path>ActionListenerEjemplo1.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>ActionListenerEjemplo1.jcp</path>
+		</project>
+		<project>
+			<path>x\x.jcp</path>
+		</project>
+	</projects>
+</workspace>
