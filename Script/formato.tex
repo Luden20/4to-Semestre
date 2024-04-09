@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Paquetes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[spanish,es-nolayout,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{ifthen}
+\usepackage[font={small},labelfont={bf,small},
+    justification=centerlast,tablename=Tabla]{caption}
+% -- Tipo de letra
+\usepackage[defaultfam,tabular,lining]{montserrat} 
+    \renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+% -- Geometría de página
+\usepackage[a4paper,vmargin=4cm,hmargin=3cm]{geometry}
+% -- Silenciar alerta de everypage
+\usepackage{silence}
+    \WarningsOff[everypage]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fondo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pages=all]{background}
+\backgroundsetup{
+    scale=1,color=black,opacity=1,angle=0,
+    hshift=0mm,
+    vshift=0mm,
+    contents={\includegraphics[width=210mm]{HojaMembretadaECFM.pdf}}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formato
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -- Interlineado
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\labelitemi}{$\bullet$}
+% -- Columnas para tablas
+\newcolumntype{C}[1]{>{\hspace{0pt}\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\hspace{0pt}\arraybackslash}m{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Datos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\vspace{-2cm}\textbf{Reporte de seguimiento de aulas virtuales}}
+\author{Mario Cueva - Coordinador de Aulas Virtuales ECFM}
+\date{Fecha y hora de revisión: <<Fecha>>, <<Hora>>}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+Luego de realizar el seguimiento al aula virtual:
+\begin{itemize}
+\item 
+    \textbf{NRC:} <<NRC>>
+\item 
+    \textbf{Facultad - Carrera}: <<Facultad>> - <<Carrera>>
+\item 
+    \textbf{Docente}: <<Docente>>
+\end{itemize}
+\noindent
+se presenta el siguiente reporte de cumplimiento de los parámetros revisados:
+\begin{center} \small
+\begin{tabular}{@{}L{11cm}c@{}}
+\toprule
+    \textbf{Criterio} & \textbf{Valoración}\\
+\midrule
+    Sílabo cargado conforme lo indicado por la DGA.  & \textbf{<<Sílabo>>} \\[5mm]
+    Bloque informativo editado.  & \textbf{<<Información>>} \\[5mm]
+    En qué nivel se evidencia la utilización de herramientas y plataforma MOODLE.  & \textbf{<<Herramientas>>} \\[5mm]
+    Se evidencia organización de los contenidos en base a los parámetros establecidos para el aula virtual.  & \textbf{<<Organización>>} \\[5mm]
+    Se evidencia el uso de diversos recursos didácticos en el aula virtual a través de herramientas externas.  & \textbf{<<Recursos>>} \\[5mm]
+    Se evidencia instrucciones y rúbricas claras en las actividades planteadas en el aula virtual. & \textbf{<<Rubricas>>} \\[5mm]
+    Se evidencia en el aula virtual la correcta configuración de actividades y evaluaciones en relación al periodo académico. & \textbf{<<Evaluación>>} \\[5mm]
+    Se evidencia una adecuada y oportuna configuración de la libreta de calificaciones. & \textbf{<<Calificador>>} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\end{document} 
