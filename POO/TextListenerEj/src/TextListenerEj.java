@@ -2,9 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
 
-public class ActionListenerEjemplo1 extends Applet implements TextListener {
-    TextField textField;
-    //Dos String para guardar dos mensajes
+public class TextListenerEj extends Applet implements TextListener{
+	//TextField para probar el textListener
+	TextField textField;
+    //String para mostrar lo que haya de texto
     String S1;
     public void init() {
         textField = new TextField(30);
@@ -12,8 +13,9 @@ public class ActionListenerEjemplo1 extends Applet implements TextListener {
         add(textField);    
         S1="TEXTO";
     }
-    //El ActionPerformed que acuta en base a que se haya usado
+    //El TextListener se llama cuando cambie el valor de texto del TF
 	public void textValueChanged(TextEvent e) {
+		//Redefino S1
 	    S1=textField.getText();
 	    repaint();
 	}
@@ -21,5 +23,4 @@ public class ActionListenerEjemplo1 extends Applet implements TextListener {
 	public void paint(Graphics g) {
         g.drawString(S1, 20, 20);
     }
-    
 }

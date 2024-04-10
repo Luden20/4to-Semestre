@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>TextListenerEj</label>
+	</settings>
+	<users>
+		<user>
+			<path>TextListenerEj.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>TextListenerEj.jcp</path>
+		</project>
+	</projects>
+</workspace>
