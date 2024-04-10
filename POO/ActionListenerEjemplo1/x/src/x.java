@@ -1,12 +1,4 @@
-/**
- * @(#)x.java
- *
- * x Applet application
- *
- * @author 
- * @version 1.00 2024/4/9
- */
- 
+
 import java.awt.*;
 import java.applet.*;
 

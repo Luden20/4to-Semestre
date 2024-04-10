@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>KeyListenerEjemplo</label>
+	</settings>
+	<users>
+		<user>
+			<path>KeyListenerEjemplo.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>KeyListenerEjemplo.jcp</path>
+		</project>
+	</projects>
+</workspace>

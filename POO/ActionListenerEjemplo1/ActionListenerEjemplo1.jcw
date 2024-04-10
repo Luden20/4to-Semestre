@@ -13,8 +13,5 @@
 		<project>
 			<path>ActionListenerEjemplo1.jcp</path>
 		</project>
-		<project>
-			<path>x\x.jcp</path>
-		</project>
 	</projects>
 </workspace>

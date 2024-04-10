@@ -2,7 +2,7 @@
 
 <workspace_user>
 	<active_project>
-		<label>x</label>
+		<label>ActionListenerEjemplo1</label>
 	</active_project>
 	<projects>
 		<project>
@@ -15,30 +15,12 @@
 				<path>src</path>
 			</folderitem>
 		</project>
-		<project>
-			<label>x</label>
-			<showfiles>false</showfiles>
-			<folderitem>
-				<path>x\classes</path>
-				<dir>classes</dir>
-			</folderitem>
-			<folderitem>
-				<path>x\src</path>
-				<dir>src</dir>
-			</folderitem>
-		</project>
 	</projects>
 	<open_files>
 		<docitem>
 			<path>src\ActionListenerEjemplo1.java</path>
 			<source>true</source>
 			<index>0</index>
-			<active>false</active>
-		</docitem>
-		<docitem>
-			<path>x\src\x.java</path>
-			<source>true</source>
-			<index>1</index>
 			<active>true</active>
 		</docitem>
 	</open_files>
