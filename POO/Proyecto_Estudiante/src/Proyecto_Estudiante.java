@@ -83,8 +83,6 @@ public class Proyecto_Estudiante extends Applet {
 		g.fillRect(320, 300, 50, Filo * 100);
 		
 	}
-	public void init() {	
-	}
 	public void paint(Graphics g)  
 	{
 		//* Se crea el arreglo con los los objetos definidos*/
