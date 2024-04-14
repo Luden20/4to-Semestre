@@ -1,12 +1,3 @@
-/**
- * @(#)TreeSetEj.java
- *
- * TreeSetEj Applet application
- *
- * @author 
- * @version 1.00 2024/4/14
- */
- 
 import java.awt.*;
 import java.applet.*;
 import java.util.*;

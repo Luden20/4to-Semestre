@@ -1,12 +1,3 @@
-/**
- * @(#)TreeMapEj.java
- *
- * TreeMapEj Applet application
- *
- * @author 
- * @version 1.00 2024/4/14
- */
- 
 import java.awt.*;
 import java.applet.*;
 import java.util.*;
@@ -57,4 +48,4 @@ public class TreeMapEj extends Applet {
 		g.drawString("Esta TM2 vacio luego de aplicarle un clear() "+TM2.isEmpty(),50,500);
 		
 	}
-}
+} 
