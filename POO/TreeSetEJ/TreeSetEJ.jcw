@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>TreeSetEJ</label>
+	</settings>
+	<users>
+		<user>
+			<path>TreeSetEJ.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>TreeSetEJ.jcp</path>
+		</project>
+	</projects>
+</workspace>
