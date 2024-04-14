@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>VectorEj</label>
+	</settings>
+	<users>
+		<user>
+			<path>VectorEj.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>VectorEj.jcp</path>
+		</project>
+	</projects>
+</workspace>
