@@ -15,9 +15,9 @@ public class Estudiante
 	private String Cedula;
 	private String Nombre;
 	private String Carrera;
-	private String Semestre;
+	private int Semestre;
 	/**Creacion del Constructor*/
-	public  Estudiante (String Cedula, String Carrera,String Nombre, String Semestre )
+	public  Estudiante (String Cedula, String Carrera,String Nombre, int Semestre )
 	{
 		this.Cedula = Cedula;
 		this.Carrera = Carrera;

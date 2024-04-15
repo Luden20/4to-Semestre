@@ -15,7 +15,18 @@ public class Ingreso_Datos extends javax.swing.JFrame {
      */
     public Ingreso_Datos() {
         initComponents();
-        Lista=new LinkedList<Estudiante>();       
+        Lista=new LinkedList<Estudiante>();
+        IS=0;
+        IC=0;
+        P=0;
+        D=0;
+        M=0;
+        DG=0;
+        O=0;
+        F=0;
+        FL=0;
+        NI=0;
+        AD=0;
     }
 
     /**
@@ -34,15 +45,15 @@ public class Ingreso_Datos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         NombreTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        CarreraTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        SemestreTF = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         CBuscada = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         BuscarPBT = new javax.swing.JButton();
         BuscarEBT = new javax.swing.JButton();
         ResultadoLB = new javax.swing.JLabel();
+        SemestreCB = new javax.swing.JComboBox<>();
+        CarreraCB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,19 +75,7 @@ public class Ingreso_Datos extends javax.swing.JFrame {
 
         jLabel3.setText("Carrera");
 
-        CarreraTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CarreraTFActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Semestre");
-
-        SemestreTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SemestreTFActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Ingresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +108,15 @@ public class Ingreso_Datos extends javax.swing.JFrame {
 
         ResultadoLB.setText("RESULTADO");
 
+        SemestreCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", " " }));
+        SemestreCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SemestreCBActionPerformed(evt);
+            }
+        });
+
+        CarreraCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingeniera en Sistemas", "Ingenieria Civl", "Psicologia", "Derecho", "Medicina", "Diseño Grafico", "Odontologia", "Fisioterapia", "Filosofia", "Negocios Internacionales", "Administracion" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,28 +132,32 @@ public class Ingreso_Datos extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SemestreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(NombreTF)
-                                .addComponent(CarreraTF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ResultadoLB, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(NombreTF))
+                                    .addComponent(SemestreCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(69, 69, 69))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(CarreraCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ResultadoLB, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel5)
                                     .addGap(18, 18, 18)
-                                    .addComponent(CBuscada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(BuscarPBT)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(BuscarEBT, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(CBuscada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BuscarPBT, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addComponent(BuscarEBT, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(jButton1)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,14 +185,14 @@ public class Ingreso_Datos extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(CarreraTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CarreraCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(SemestreTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SemestreCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,17 +206,10 @@ public class Ingreso_Datos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreTFActionPerformed
 
-    private void CarreraTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarreraTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CarreraTFActionPerformed
-
-    private void SemestreTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SemestreTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SemestreTFActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("Se ingreso "+new Estudiante(CedulaTF.getText(),CarreraTF.getText(),NombreTF.getText(),SemestreTF.getText()).toString());
-        Lista.add(new Estudiante(CedulaTF.getText(),CarreraTF.getText(),NombreTF.getText(),SemestreTF.getText()));
+        System.out.println("Se ingreso "+new Estudiante(CedulaTF.getText(),CarreraCB.getSelectedItem().toString(),NombreTF.getText(),Integer.parseInt(SemestreCB.getSelectedItem().toString())).toString());
+        Lista.add(new Estudiante(CedulaTF.getText(),CarreraCB.getSelectedItem().toString(),NombreTF.getText(),Integer.parseInt(SemestreCB.getSelectedItem().toString())));
+        LlevarCuenta(CarreraCB.getSelectedItem().toString());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CBuscadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBuscadaActionPerformed
@@ -222,6 +227,27 @@ public class Ingreso_Datos extends javax.swing.JFrame {
         ResultadoLB.setText(Buscar_Estudiante(CBuscada.getText()).toString());
     }//GEN-LAST:event_BuscarEBTActionPerformed
 
+    private void SemestreCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SemestreCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SemestreCBActionPerformed
+    private void LlevarCuenta(String Carrera)
+    {
+        switch(Carrera)
+        {
+            case "Ingenieria en Sistemas" -> IS++;
+            case "Ingenieria Civil" -> IC++;
+            case "Psicologia" -> P++;
+            case "Derecho" -> D++;
+            case "Medicina" -> M++;
+            case "Diseño Grafico" -> DG++;
+            case "Odontologia" -> O++;
+            case "Fisioterapia" -> F++;
+            case "Filosofia" -> FL++;
+            case "Negocios Internacionales" -> NI++;
+            case "Administracion" -> AD++;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -264,11 +290,11 @@ public class Ingreso_Datos extends javax.swing.JFrame {
     private javax.swing.JButton BuscarEBT;
     private javax.swing.JButton BuscarPBT;
     private javax.swing.JTextField CBuscada;
-    private javax.swing.JTextField CarreraTF;
+    private javax.swing.JComboBox<String> CarreraCB;
     private javax.swing.JTextField CedulaTF;
     private javax.swing.JTextField NombreTF;
     private javax.swing.JLabel ResultadoLB;
-    private javax.swing.JTextField SemestreTF;
+    private javax.swing.JComboBox<String> SemestreCB;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -280,4 +306,7 @@ public class Ingreso_Datos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     //Mis propias variables
      private LinkedList<Estudiante> Lista;
+     //Contadores
+     private int IS,IC,P,D,M,DG,O,F,FL,NI,AD;
+     
 }
