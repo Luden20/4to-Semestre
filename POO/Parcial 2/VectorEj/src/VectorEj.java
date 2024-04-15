@@ -9,8 +9,8 @@ public class VectorEj extends Applet {
 
 	public void paint(Graphics g) {
 		//Declaro los vectores
-		Vector<Integer> v1=new Vector<Integer>();
-		Vector<Integer> v2=new Vector<Integer>();
+		Vector<int> v1=new Vector<int>();
+		Vector<int> v2=new Vector<int>();
 		//Agrego elementos
 		v1.add(2);
 		v1.add(1);
