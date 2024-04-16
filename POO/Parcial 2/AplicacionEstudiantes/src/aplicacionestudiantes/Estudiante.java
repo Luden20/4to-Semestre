@@ -37,6 +37,10 @@ public class Estudiante
         {
             return this.Nombre;
         }
+        public String[] getAll()
+        {
+            return new String[]{this.Cedula,this.Nombre,this.Carrera,this.Semestre+""};
+        }
         //Es un override y le pego al que no sepa que es un override 
         @Override
 	public String toString()
