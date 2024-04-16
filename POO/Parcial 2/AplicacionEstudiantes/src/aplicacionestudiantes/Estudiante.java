@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package aplicacionestudiantes;
-
-/**
- *
- * @author polip
- */
-
+//Codigo Reciclado con algunas modificaciones
+//Semestre esta como INT porque segun yo el profe habia dicho que tenia mas sentido asi
+//Pero puedo estar mal asi que si es asi y deberia ser String avisenme
 public class Estudiante
 {
 	/**Definicion de Datos miembros en la clase*/
@@ -24,6 +17,11 @@ public class Estudiante
 		this.Semestre = Semestre;
 		this.Nombre = Nombre;
 	}
+        public Estudiante()
+        {
+            this.Cedula=this.Carrera=this.Nombre="N/A";
+            Semestre=-1;
+        }
 	/**Creacion funciones miembros que nos permiten consultar los datos miembros sin tener que romper la encapsulacion*/
 	public String getCedula(){
 		return this.Cedula;
@@ -31,6 +29,15 @@ public class Estudiante
 	public String getCarrera(){
 		return this.Carrera;
 	}
+        public String getSemestre()
+        {
+            return this.Semestre+"";        
+        }
+        public String getNombre()
+        {
+            return this.Nombre;
+        }
+        //Es un override y le pego al que no sepa que es un override 
         @Override
 	public String toString()
 	{

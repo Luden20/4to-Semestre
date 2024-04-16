@@ -1,1 +1,1 @@
-D:\Universidad\4to-Semestre\POO\busqueda_estudiantes\src\busqueda_estudiantes.java
+"D:\\Universidad\\4to Sync\\4to copia\\4to-Semestre\\POO\\Parcial 1\\busqueda_estudiantes\\src\\busqueda_estudiantes.java"
