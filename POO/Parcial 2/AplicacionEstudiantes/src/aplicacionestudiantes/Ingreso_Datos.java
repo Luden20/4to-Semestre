@@ -463,7 +463,7 @@ public class Ingreso_Datos extends javax.swing.JFrame {
                 break;
         }
     }
-    public String Buscar_Posicion( String Cedula) 
+    public int Buscar_Posicion_int( String Cedula) 
 	{
             //Como es un linked hashmap voy por cada entrada sumando 1 al contador, si encuetro lo que quiero devuevlo la pos
             int i =0;
@@ -471,12 +471,20 @@ public class Ingreso_Datos extends javax.swing.JFrame {
             {
                 if(Cedula.equals(Llave))
                 {
-                    return "Esta en la "+i+" posicion";
+                    return i;
                 }
                 i++;
             }
-            return "No existe";
+            return -1;
 	}
+    public String Buscar_Posicion(String Cedula)
+    {
+        if(Buscar_Posicion_int(Cedula)==-1)
+        {
+            return Cedula+" no existe en el registro";
+        }
+        return Cedula+" esta en la posicion "+Buscar_Posicion_int(Cedula);
+    }
 	/**Creacion de funcion no miembro que nos permite Buscar un estudiante y retorna el objeto estudiante*/
 	public Estudiante Buscar_Estudiante ( String Cedula)
 	{

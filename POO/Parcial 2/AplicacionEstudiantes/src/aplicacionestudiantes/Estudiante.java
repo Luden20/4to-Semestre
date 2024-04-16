@@ -19,7 +19,7 @@ public class Estudiante
 	}
         public Estudiante()
         {
-            this.Cedula=this.Carrera=this.Nombre="N/A";
+            this.Cedula=this.Carrera=this.Nombre="No Existe";
             Semestre=-1;
         }
 	/**Creacion funciones miembros que nos permiten consultar los datos miembros sin tener que romper la encapsulacion*/
