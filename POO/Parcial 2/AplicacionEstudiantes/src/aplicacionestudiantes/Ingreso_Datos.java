@@ -522,17 +522,17 @@ public class Ingreso_Datos extends javax.swing.JFrame {
         public void GraficarBarras() {
             //Misma logica que el graficar pastel pero con barras
             DefaultCategoryDataset datos = new DefaultCategoryDataset();
-            datos.addValue(IS, "Estudiantes", "Ingeniera en Sistemas");
-            datos.addValue(IC, "Estudiantes", "Ingenieria Civil");
-            datos.addValue(P, "Estudiantes", "Psicologia");
-            datos.addValue(D, "Estudiantes", "Derecho");
-            datos.addValue(M, "Estudiantes", "Medicina");
-            datos.addValue(DG, "Estudiantes", "Diseño Grafico");
-            datos.addValue(O, "Estudiantes", "Odontologia");
-            datos.addValue(F, "Estudiantes", "Fisioterapia");
-            datos.addValue(FL, "Estudiantes", "Filosofia");
-            datos.addValue(NI, "Estudiantes", "Negocios Internacionales");
-            datos.addValue(AD, "Estudiantes", "Administracion");
+            datos.addValue(IS,"Ingeniera en Sistemas" , "Ingeniera en Sistemas");
+            datos.addValue(IC, "Ingenieria Civil", "Ingenieria Civil");
+            datos.addValue(P, "Psicologia", "Psicologia");
+            datos.addValue(D, "Derecho", "Derecho");
+            datos.addValue(M, "Medicina", "Medicina");
+            datos.addValue(DG, "Diseño Grafico", "Diseño Grafico");
+            datos.addValue(O, "Odontologia", "Odontologia");
+            datos.addValue(F, "Fisioterapia", "Fisioterapia");
+            datos.addValue(FL, "Filosofia", "Filosofia");
+            datos.addValue(NI, "Negocios Internacionales", "Negocios Internacionales");
+            datos.addValue(AD, "Administracion", "Administracion");
             JFreeChart grafico = ChartFactory.createBarChart("Estudiantes por Carrera", "Carrera", "Cantidad", datos);
             ChartFrame frame = new ChartFrame("Grafico de barras", grafico);
             frame.setVisible(true);
