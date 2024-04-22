@@ -115,7 +115,7 @@ public class Interfaz_Consulta_Tipo extends javax.swing.JFrame {
         // Recorrer el HashMap para encontrar todas las personas con el nombre buscado
         for (Productos producto : Inventario.values()) {
             if (producto.getTipo().equals(Tipo)) {
-                BXP.addRow(new Object[]{producto.getCantidad(),producto.getNombre(),producto.getTipo(),producto.getPrecio(),producto.getCantidad()});
+                BXP.addRow(new Object[]{producto.getCodigo(),producto.getNombre(),producto.getTipo(),producto.getPrecio(),producto.getCantidad()});
             }
         }
     }//GEN-LAST:event_BT_BUSCARActionPerformed

@@ -43,7 +43,7 @@ public class SalidaGrafica extends javax.swing.JFrame
         InventarioBiblioteca.put("016", new Libro("016", "Las Aventuras de Sherlock Holmes", "Arthur Conan Doyle", "1892", "Salamandra", "Misterio"));
         InventarioBiblioteca.put("017", new Libro("017", "El Conde de Montecristo", "Alexandre Dumas", "1844", "Impedimenta", "Accion"));
         
-        /**Obtener las cantidades de los libros ya ingresados*/
+        /*Obtener las cantidades de los libros ya ingresados*/
         for (Libro libro : InventarioBiblioteca.values()) 
         {
             cantidades(libro.getGenero());
@@ -445,13 +445,13 @@ public class SalidaGrafica extends javax.swing.JFrame
     {
         /**Creacion del conjunto de datos*/
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
-        datos.addValue(Accion, "Libros", "Accion");
-        datos.addValue(CienciaFiccion, "Libros", "Ciencia Ficcion");
-        datos.addValue(Romance, "Libros", "Romance");
-        datos.addValue(Fantasia, "Libros", "Fantasia");
-        datos.addValue(Terror, "Libros", "Terror");
-        datos.addValue(Poesia, "Libros", "Poesia");
-        datos.addValue(Misterio, "Libros", "Misterio");
+        datos.addValue(Accion, "Accion", "Accion");
+        datos.addValue(CienciaFiccion, "Ciencia Ficcion", "Ciencia Ficcion");
+        datos.addValue(Romance, "Romance", "Romance");
+        datos.addValue(Fantasia, "Fantasia", "Fantasia");
+        datos.addValue(Terror, "Terror", "Terror");
+        datos.addValue(Poesia, "Poesia", "Poesia");
+        datos.addValue(Misterio, "Misterio", "Misterio");
         /**Creacion del grafico*/
         JFreeChart grafico = ChartFactory.createBarChart("Libros por Genero", "Genero", "Cantidad", datos);
         ChartFrame frame = new ChartFrame("Grafico de barras", grafico);
