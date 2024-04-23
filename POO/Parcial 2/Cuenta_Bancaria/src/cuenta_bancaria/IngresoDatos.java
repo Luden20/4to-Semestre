@@ -25,8 +25,7 @@ public class IngresoDatos extends javax.swing.JFrame {
         initComponents();
         ListaCuentas = new LinkedList<>();
     }
-    public Cuenta BuscarNCuenta() {
-    ParametroBuscar = TextBuscado.getText();
+    public Cuenta BuscarNCuenta(String ParametroBuscar) {
     for (Cuenta cuenta : ListaCuentas) {
         if (cuenta.GetNCuenta().equals(ParametroBuscar)) {
             return cuenta;
@@ -34,8 +33,7 @@ public class IngresoDatos extends javax.swing.JFrame {
     }
     return null;
     }
-    public Cuenta BuscarCICliente() {
-    ParametroBuscar = TextBuscado.getText();
+    public Cuenta BuscarCICliente(String ParametroBuscar) {
     for (Cuenta cuenta : ListaCuentas) {
         if (cuenta.GetCedula().equals(ParametroBuscar)) {
             return cuenta;
@@ -102,6 +100,18 @@ public class IngresoDatos extends javax.swing.JFrame {
         TextCIClienteB = new javax.swing.JTextField();
         TextNombreB = new javax.swing.JTextField();
         BotonPastel = new javax.swing.JButton();
+        LabelValorDeposito = new javax.swing.JLabel();
+        LabelCuentaDestino = new javax.swing.JLabel();
+        BotonDepositar = new javax.swing.JButton();
+        LabelValorRetirar = new javax.swing.JLabel();
+        LabelRetirarCuenta = new javax.swing.JLabel();
+        BotonRetirar = new javax.swing.JButton();
+        TextValorDepositar = new javax.swing.JTextField();
+        TextCuentaDestino = new javax.swing.JTextField();
+        TextValorRetiro = new javax.swing.JTextField();
+        TextCuentaRetiro = new javax.swing.JTextField();
+        LabelEstadoDeposito = new javax.swing.JLabel();
+        LabelEstadoRetiro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,6 +231,57 @@ public class IngresoDatos extends javax.swing.JFrame {
             }
         });
 
+        LabelValorDeposito.setText("Valor a Depositar:");
+
+        LabelCuentaDestino.setText("Cuenta Destino:");
+
+        BotonDepositar.setBackground(new java.awt.Color(204, 255, 204));
+        BotonDepositar.setText("Depositar");
+        BotonDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonDepositarActionPerformed(evt);
+            }
+        });
+
+        LabelValorRetirar.setText("Valor a Retirar:");
+
+        LabelRetirarCuenta.setText("Cuenta:");
+
+        BotonRetirar.setBackground(new java.awt.Color(255, 204, 204));
+        BotonRetirar.setText("Retirar");
+        BotonRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonRetirarActionPerformed(evt);
+            }
+        });
+
+        TextValorDepositar.setBackground(new java.awt.Color(204, 204, 255));
+
+        TextCuentaDestino.setBackground(new java.awt.Color(204, 204, 255));
+        TextCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextCuentaDestinoActionPerformed(evt);
+            }
+        });
+
+        TextValorRetiro.setBackground(new java.awt.Color(204, 204, 255));
+        TextValorRetiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextValorRetiroActionPerformed(evt);
+            }
+        });
+
+        TextCuentaRetiro.setBackground(new java.awt.Color(204, 204, 255));
+        TextCuentaRetiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextCuentaRetiroActionPerformed(evt);
+            }
+        });
+
+        LabelEstadoDeposito.setText("Depósito:");
+
+        LabelEstadoRetiro.setText("Retiro: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,65 +289,91 @@ public class IngresoDatos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LabelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TextSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LabelApellido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LabelNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LabelCICliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TextCICliente, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LabelNCuenta)
+                                .addGap(30, 30, 30)
+                                .addComponent(TextNCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(BotonIngresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(BotonPastel)))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelNCuenta1)
+                            .addComponent(LabelCICliente1)
+                            .addComponent(LabelNombre1)
+                            .addComponent(LabelApellido1)
+                            .addComponent(LabelSaldo1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TextApellidoB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(TextNombreB, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextCIClienteB, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextNCuentaB, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextSaldoB))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(LabelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(LabelApellido)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(LabelNombre)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(LabelCICliente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextCICliente, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(LabelNCuenta)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(TextNCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(LabelEstadoRetiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotonRetirar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(BotonIngresar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(BotonPastel)))
-                        .addGap(47, 47, 47)
+                                .addComponent(LabelRetirarCuenta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TextCuentaRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelBuscar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelParametro)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(BotonBuscarCuenta)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(LabelTitulo)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(LabelParametro)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(TextBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(BotonBuscarCI))
+                            .addComponent(BotonBuscarCuenta))
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(LabelEstadoDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotonDepositar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelNCuenta1)
-                                    .addComponent(LabelCICliente1)
-                                    .addComponent(LabelNombre1)
-                                    .addComponent(LabelApellido1)
-                                    .addComponent(LabelSaldo1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(TextApellidoB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(TextNombreB, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextCIClienteB, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextNCuentaB, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextSaldoB)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(LabelTitulo)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(LabelValorDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelCuentaDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelValorRetirar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TextValorDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TextCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(TextValorRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,24 +383,32 @@ public class IngresoDatos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelNCuenta)
                     .addComponent(TextNCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelBuscar))
+                    .addComponent(LabelBuscar)
+                    .addComponent(LabelValorDeposito)
+                    .addComponent(TextValorDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelCICliente)
                     .addComponent(TextCICliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelParametro)
-                    .addComponent(TextBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelCuentaDestino)
+                    .addComponent(TextCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelNombre)
                     .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonBuscarCuenta))
+                    .addComponent(BotonBuscarCuenta)
+                    .addComponent(BotonDepositar)
+                    .addComponent(LabelEstadoDeposito))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelApellido)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BotonBuscarCI)))
+                        .addComponent(BotonBuscarCI)
+                        .addComponent(LabelValorRetirar)
+                        .addComponent(TextValorRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -325,13 +420,18 @@ public class IngresoDatos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BotonPastel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelNCuenta1)
-                            .addComponent(TextNCuentaB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LabelNCuenta1)
+                                .addComponent(TextNCuentaB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelRetirarCuenta)
+                            .addComponent(TextCuentaRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelCICliente1)
-                            .addComponent(TextCIClienteB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TextCIClienteB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonRetirar)
+                            .addComponent(LabelEstadoRetiro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelNombre1)
@@ -344,7 +444,7 @@ public class IngresoDatos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelSaldo1)
                             .addComponent(TextSaldoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
 
         pack();
@@ -360,7 +460,8 @@ public class IngresoDatos extends javax.swing.JFrame {
 
     private void BotonBuscarCIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarCIActionPerformed
         // TODO add your handling code here:
-        Cuenta Buscado = BuscarCICliente();
+        ParametroBuscar = TextBuscado.getText();
+        Cuenta Buscado = BuscarCICliente(ParametroBuscar);
         if (Buscado != null){
             TextNCuentaB.setText(Buscado.GetNCuenta());
             TextCIClienteB.setText(Buscado.GetCedula());
@@ -412,7 +513,8 @@ public class IngresoDatos extends javax.swing.JFrame {
 
     private void BotonBuscarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarCuentaActionPerformed
         // TODO add your handling code here:
-        Cuenta Buscado = BuscarNCuenta();
+        ParametroBuscar = TextBuscado.getText();
+        Cuenta Buscado = BuscarNCuenta(ParametroBuscar);
         if (Buscado != null){
             TextNCuentaB.setText(Buscado.GetNCuenta());
             TextCIClienteB.setText(Buscado.GetCedula());
@@ -433,6 +535,50 @@ public class IngresoDatos extends javax.swing.JFrame {
         // TODO add your handling code here:
         GraficarPastel();
     }//GEN-LAST:event_BotonPastelActionPerformed
+
+    private void BotonDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDepositarActionPerformed
+        // TODO add your handling code here:
+        ParametroBuscar = TextCuentaDestino.getText();
+        Cuenta Buscado = BuscarNCuenta(ParametroBuscar);
+        if (Buscado != null){
+            Buscado.Depositar(Double.parseDouble(TextValorDepositar.getText()));
+            LabelEstadoDeposito.setText("Depósito: Exitoso");
+            Clear();
+        }
+        else{
+            LabelEstadoRetiro.setText("Depósito: Fallido");
+        }
+    }//GEN-LAST:event_BotonDepositarActionPerformed
+
+    private void BotonRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRetirarActionPerformed
+        // TODO add your handling code here:
+        ParametroBuscar = TextCuentaRetiro.getText();
+        Cuenta Buscado = BuscarNCuenta(ParametroBuscar);
+        if (Buscado != null){
+           if (Buscado.Retirar(Double.parseDouble(TextValorRetiro.getText())) == true){
+            LabelEstadoRetiro.setText("Retiro: Exitoso");
+            Clear();            
+            } 
+           else{
+            LabelEstadoRetiro.setText("Retiro: Fallido");
+            }
+        }
+        else{
+            LabelEstadoRetiro.setText("Retiro: Fallido");
+        }
+    }//GEN-LAST:event_BotonRetirarActionPerformed
+
+    private void TextCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCuentaDestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextCuentaDestinoActionPerformed
+
+    private void TextValorRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextValorRetiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextValorRetiroActionPerformed
+
+    private void TextCuentaRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCuentaRetiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextCuentaRetiroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,32 +618,44 @@ public class IngresoDatos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarCI;
     private javax.swing.JButton BotonBuscarCuenta;
+    private javax.swing.JButton BotonDepositar;
     private javax.swing.JButton BotonIngresar;
     private javax.swing.JButton BotonPastel;
+    private javax.swing.JButton BotonRetirar;
     private javax.swing.JLabel LabelApellido;
     private javax.swing.JLabel LabelApellido1;
     private javax.swing.JLabel LabelBuscar;
     private javax.swing.JLabel LabelCICliente;
     private javax.swing.JLabel LabelCICliente1;
+    private javax.swing.JLabel LabelCuentaDestino;
+    private javax.swing.JLabel LabelEstadoDeposito;
+    private javax.swing.JLabel LabelEstadoRetiro;
     private javax.swing.JLabel LabelNCuenta;
     private javax.swing.JLabel LabelNCuenta1;
     private javax.swing.JLabel LabelNombre;
     private javax.swing.JLabel LabelNombre1;
     private javax.swing.JLabel LabelParametro;
+    private javax.swing.JLabel LabelRetirarCuenta;
     private javax.swing.JLabel LabelSaldo;
     private javax.swing.JLabel LabelSaldo1;
     private javax.swing.JLabel LabelTitulo;
+    private javax.swing.JLabel LabelValorDeposito;
+    private javax.swing.JLabel LabelValorRetirar;
     private javax.swing.JTextField TextApellido;
     private javax.swing.JTextField TextApellidoB;
     private javax.swing.JTextField TextBuscado;
     private javax.swing.JTextField TextCICliente;
     private javax.swing.JTextField TextCIClienteB;
+    private javax.swing.JTextField TextCuentaDestino;
+    private javax.swing.JTextField TextCuentaRetiro;
     private javax.swing.JTextField TextNCuenta;
     private javax.swing.JTextField TextNCuentaB;
     private javax.swing.JTextField TextNombre;
     private javax.swing.JTextField TextNombreB;
     private javax.swing.JTextField TextSaldo;
     private javax.swing.JTextField TextSaldoB;
+    private javax.swing.JTextField TextValorDepositar;
+    private javax.swing.JTextField TextValorRetiro;
     // End of variables declaration//GEN-END:variables
      private List<Cuenta> ListaCuentas;
      private String ParametroBuscar;

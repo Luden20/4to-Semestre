@@ -16,7 +16,7 @@ public class Cuenta_Bancaria {
     public static void main(String[] args) {
         // TODO code application logic here
         IngresoDatos IG=new IngresoDatos();
-        IG.setSize(475,310);
+        IG.setSize(675,310);
         IG.setVisible(true);
         IG.setTitle("Aplicativo Cuenta Bancaria");
         IG.getContentPane().setBackground(new Color(255, 248, 220));

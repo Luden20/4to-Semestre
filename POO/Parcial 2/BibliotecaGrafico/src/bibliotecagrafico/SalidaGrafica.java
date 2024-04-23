@@ -24,30 +24,7 @@ public class SalidaGrafica extends javax.swing.JFrame
         Poesia = 0;
         Misterio = 0;
         
-        /**Libros por defecto*/
-        InventarioBiblioteca.put("001", new Libro("001", "Alicia en el País de las Maravillas", "Lewis Carroll", "1865", "Alfaguara", "Fantasia"));
-        InventarioBiblioteca.put("002", new Libro("002", "El Retorno del Rey", "J. R. R. Tolkien", "1955", "Corimbo", "Fantasia"));
-        InventarioBiblioteca.put("003", new Libro("003", "Mistborn", "Brandon Sanderson", "2006", "Salamandra", "Fantasia"));
-        InventarioBiblioteca.put("004", new Libro("004", "La llamada de Cthulhu", "H.P. Lovecraft", "1928", "Impedimenta", "Terror"));
-        InventarioBiblioteca.put("005", new Libro("005", "Percy Jackson y el ladrón del rayo", "Rick Riordan", "2005", "Narcea", "Accion"));
-        InventarioBiblioteca.put("006", new Libro("006", "La saga del brujo Geralt de Rivia", "Andrzej Sapkowski", "1993", "Siruela", "Fantasia"));
-        InventarioBiblioteca.put("007", new Libro("007", "Fuego y sangre", "George R.R. Martin", "2018", "Alfaguara", "Fantasia"));
-        InventarioBiblioteca.put("008", new Libro("008", "Don Quijote de la Mancha", "Miguel de Cervantes", "1605", "Anagrama", "Romance"));
-        InventarioBiblioteca.put("009", new Libro("009", "El Cantar del Mio Cid", "Anónimo", "1200", "Salamandra", "Misterio"));
-        InventarioBiblioteca.put("010", new Libro("010", "La Divina Comedia", "Dante Alighieri", "1320", "Impedimenta", "Poesia"));
-        InventarioBiblioteca.put("011", new Libro("011", "Dune", "Frank Herbert", "1965", "Siruela", "Ciencia Ficcion"));
-        InventarioBiblioteca.put("012", new Libro("012", "Orgullo y Prejuicio", "Jane Austen", "1813", "Anagrama", "Romance"));
-        InventarioBiblioteca.put("013", new Libro("013", "Harry Potter y las Reliquias de la Muerte", "J.K. Rowling", "2007", "Alfaguara", "Fantasia"));
-        InventarioBiblioteca.put("014", new Libro("014", "The Mist", "Stephen King", "1980", "Narcea", "Terror"));
-        InventarioBiblioteca.put("015", new Libro("015", "El Cuervo", "Edgar Allan Poe", "1845", "Bubok", "Poesia"));
-        InventarioBiblioteca.put("016", new Libro("016", "Las Aventuras de Sherlock Holmes", "Arthur Conan Doyle", "1892", "Salamandra", "Misterio"));
-        InventarioBiblioteca.put("017", new Libro("017", "El Conde de Montecristo", "Alexandre Dumas", "1844", "Impedimenta", "Accion"));
-        
-        /*Obtener las cantidades de los libros ya ingresados*/
-        for (Libro libro : InventarioBiblioteca.values()) 
-        {
-            cantidades(libro.getGenero());
-        }
+      
 
     }
 
@@ -68,7 +45,6 @@ public class SalidaGrafica extends javax.swing.JFrame
         TFAutor = new javax.swing.JTextField();
         TFPublicacion = new javax.swing.JTextField();
         TFEditorial = new javax.swing.JTextField();
-        BotonIngreso = new javax.swing.JToggleButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         TFBuscar = new javax.swing.JTextField();
@@ -82,6 +58,7 @@ public class SalidaGrafica extends javax.swing.JFrame
         BotonPastel = new javax.swing.JButton();
         BotonBarras = new javax.swing.JButton();
         BotonDatos = new javax.swing.JButton();
+        BotonIngresoo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,15 +97,6 @@ public class SalidaGrafica extends javax.swing.JFrame
         TFPublicacion.setBackground(new java.awt.Color(75, 208, 149));
 
         TFEditorial.setBackground(new java.awt.Color(75, 208, 149));
-
-        BotonIngreso.setBackground(new java.awt.Color(7, 50, 66));
-        BotonIngreso.setForeground(new java.awt.Color(255, 255, 255));
-        BotonIngreso.setText("Ingresar");
-        BotonIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonIngresoActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Busqueda de Libro");
@@ -197,6 +165,15 @@ public class SalidaGrafica extends javax.swing.JFrame
             }
         });
 
+        BotonIngresoo.setBackground(new java.awt.Color(7, 50, 66));
+        BotonIngresoo.setForeground(new java.awt.Color(255, 255, 255));
+        BotonIngresoo.setText("Ingreso");
+        BotonIngresoo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIngresooActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,6 +181,7 @@ public class SalidaGrafica extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -220,8 +198,7 @@ public class SalidaGrafica extends javax.swing.JFrame
                             .addComponent(TFPublicacion)
                             .addComponent(TFEditorial)
                             .addComponent(CBGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1)
-                    .addComponent(BotonIngreso))
+                    .addComponent(BotonIngresoo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonBusqueda)
@@ -283,10 +260,10 @@ public class SalidaGrafica extends javax.swing.JFrame
                     .addComponent(jLabel7)
                     .addComponent(CBGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LRGenero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonIngreso)
-                    .addComponent(BotonBusqueda))
+                    .addComponent(BotonBusqueda)
+                    .addComponent(BotonIngresoo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonPastel)
@@ -301,35 +278,6 @@ public class SalidaGrafica extends javax.swing.JFrame
     private void TFCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TFCodigoActionPerformed
-
-    private void BotonIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresoActionPerformed
-        // TODO add your handling code here:
-        /**Verificacion si los campos son validos*/
-        if(validar())
-        {
-            /**Verificacion si el libro existe*/
-            if (existe(TFCodigo.getText()))
-            {
-                /**Error en caso de existir*/
-                JOptionPane.showMessageDialog(this,"El libro ya Esta Registado", "Error", JOptionPane.ERROR_MESSAGE);
-                reset();
-            }
-            else
-            {   
-                /**Se crea y añade un nuevo libro*/
-                System.out.println("Se ingresó " + new Libro(TFCodigo.getText(), CBGenero.getSelectedItem().toString(), TFTitulo.getText(), TFAutor.getText(), TFPublicacion.getText(), TFEditorial.getText()).toString());
-                InventarioBiblioteca.put(TFCodigo.getText(), new Libro(TFCodigo.getText(), TFTitulo.getText(), TFAutor.getText(), TFPublicacion.getText(), TFEditorial.getText(), CBGenero.getSelectedItem().toString()));
-                /**Actualizacion de cantidades y limpieza de campos*/
-                cantidades(CBGenero.getSelectedItem().toString());
-                reset();  
-            }
-        }
-        else
-        {
-            /**Error si los campos no estan completos*/
-            JOptionPane.showMessageDialog(this,"Ingrese los datos correctamente", "Error",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_BotonIngresoActionPerformed
 
     private void BotonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBusquedaActionPerformed
         // TODO add your handling code here:
@@ -385,6 +333,35 @@ public class SalidaGrafica extends javax.swing.JFrame
         // TODO add your handling code here:
         verDatos();
     }//GEN-LAST:event_BotonDatosActionPerformed
+
+    private void BotonIngresooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresooActionPerformed
+        // TODO add your handling code here:
+                /**Verificacion si los campos son validos*/
+        if(validar())
+        {
+            /**Verificacion si el libro existe*/
+            if (existe(TFCodigo.getText()))
+            {
+                /**Error en caso de existir*/
+                JOptionPane.showMessageDialog(this,"El libro ya Esta Registado", "Error", JOptionPane.ERROR_MESSAGE);
+                reset();
+            }
+            else
+            {   
+                /**Se crea y añade un nuevo libro*/
+                System.out.println("Se ingresó " + new Libro(TFCodigo.getText(), CBGenero.getSelectedItem().toString(), TFTitulo.getText(), TFAutor.getText(), TFPublicacion.getText(), TFEditorial.getText()).toString());
+                InventarioBiblioteca.put(TFCodigo.getText(), new Libro(TFCodigo.getText(), TFTitulo.getText(), TFAutor.getText(), TFPublicacion.getText(), TFEditorial.getText(), CBGenero.getSelectedItem().toString()));
+                /**Actualizacion de cantidades y limpieza de campos*/
+                cantidades(CBGenero.getSelectedItem().toString());
+                reset();  
+            }
+        }
+        else
+        {
+            /**Error si los campos no estan completos*/
+            JOptionPane.showMessageDialog(this,"Ingrese los datos correctamente", "Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BotonIngresooActionPerformed
 
 
     // Funciones adicionales
@@ -445,7 +422,7 @@ public class SalidaGrafica extends javax.swing.JFrame
     {
         /**Creacion del conjunto de datos*/
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
-        datos.addValue(Accion, "Accion", "Accion");
+        datos.addValue(Accion, "Accio", "Accion");
         datos.addValue(CienciaFiccion, "Ciencia Ficcion", "Ciencia Ficcion");
         datos.addValue(Romance, "Romance", "Romance");
         datos.addValue(Fantasia, "Fantasia", "Fantasia");
@@ -509,7 +486,7 @@ public class SalidaGrafica extends javax.swing.JFrame
     private javax.swing.JButton BotonBarras;
     private javax.swing.JButton BotonBusqueda;
     private javax.swing.JButton BotonDatos;
-    private javax.swing.JToggleButton BotonIngreso;
+    private javax.swing.JButton BotonIngresoo;
     private javax.swing.JButton BotonPastel;
     private javax.swing.JComboBox<String> CBGenero;
     private javax.swing.JLabel LRAutor;
