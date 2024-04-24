@@ -244,7 +244,7 @@ public class Interface_Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private HashMap<String,Productos>  Inventario = new HashMap<String,Productos>();
     private void BT_INGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_INGActionPerformed
         Interface_Ingreso a = new Interface_Ingreso(Inventario);
         a.setVisible(true);
@@ -339,6 +339,4 @@ public class Interface_Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
-    /**Declaro la lista que voy a usar en todo el programa*/
-    private HashMap<String,Productos>  Inventario;
 }

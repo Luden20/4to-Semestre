@@ -2,7 +2,8 @@ package proyecto_mecado;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 public class Interface_Ingreso extends javax.swing.JFrame {
-
+    /**Declaro la lista que voy a usar en todo el programa*/
+    HashMap<String,Productos>  Inventario;
 
     public Interface_Ingreso(HashMap Inventario) {
         this.Inventario = Inventario;
@@ -48,7 +49,6 @@ public class Interface_Ingreso extends javax.swing.JFrame {
 
         BT_COD.setFont(new java.awt.Font("Tw Cen MT", 2, 12)); // NOI18N
         BT_COD.setForeground(new java.awt.Color(102, 0, 102));
-        BT_COD.setToolTipText("");
         BT_COD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BT_CODActionPerformed(evt);
@@ -225,6 +225,4 @@ public class Interface_Ingreso extends javax.swing.JFrame {
     private javax.swing.JLabel TEXT_TIPO;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-        /**Declaro la lista que voy a usar en todo el programa*/
-    private HashMap<String,Productos>  Inventario;
 }
