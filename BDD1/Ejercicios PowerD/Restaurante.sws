@@ -7,8 +7,10 @@
 		<Model Expanded="Yes" ID="{9629AE86-06D5-4A62-90AF-4EAE67ED4FC1}" Loaded="No" Name="Conceptual Data_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Conceptual_Restaurante.cdm"/>
 		<Model Expanded="Yes" ID="{9218FC19-41C8-4C63-AE76-3CB67B782332}" Loaded="No" Name="Conceptual Data_1" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="Logico_Restaurante.ldm"/>
 		<Model Expanded="Yes" ID="{77E0E362-09AA-4632-A750-F0A075FAC910}" Loaded="No" Name="Logico_Restaurante" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="Fisico_Restaurante.pdm"/>
-		<Model ID="{99CD6F56-8C42-42AC-8ECA-EB437CF287FD}" Name="Conceptual Data_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="../Factura/Factura_cONCEPTUAL.cdm"/>
-		<Model Expanded="Yes" ID="{D7B83A74-6A01-4E99-8958-ED4DC1AD9F1B}" Name="Factura_LogicaDM" Selected="Yes" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../Factura/Factura_LogicaDM.ldm"/>
+		<Model ID="{99CD6F56-8C42-42AC-8ECA-EB437CF287FD}" Loaded="No" Name="Conceptual Data_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="../Factura/Factura_cONCEPTUAL.cdm"/>
+		<Model Expanded="Yes" ID="{D7B83A74-6A01-4E99-8958-ED4DC1AD9F1B}" Loaded="No" Name="Factura_LogicaDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../Factura/Factura_LogicaDM.ldm"/>
+		<Model ID="{D7B83A74-6A01-4E99-8958-ED4DC1AD9F1B}" Name="Factura_LogicaDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../Factura/Factura_LogicaDM.ldm"/>
+		<Model Expanded="Yes" ID="{70FF7793-00BE-43B5-AB2E-39FEBCD943E1}" Name="Factura_LogicaDM" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="../Factura/Factura_Fisica.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

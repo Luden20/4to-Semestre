@@ -1,0 +1,1630 @@
+-- Type package declaration
+create or replace package PDTypes  
+as
+    TYPE ref_cursor IS REF CURSOR;
+end;
+
+-- Integrity package declaration
+create or replace package IntegrityPackage AS
+ procedure InitNestLevel;
+ function GetNestLevel return number;
+ procedure NextNestLevel;
+ procedure PreviousNestLevel;
+ end IntegrityPackage;
+/
+
+-- Integrity package definition
+create or replace package body IntegrityPackage AS
+ NestLevel number;
+
+-- Procedure to initialize the trigger nest level
+ procedure InitNestLevel is
+ begin
+ NestLevel := 0;
+ end;
+
+
+-- Function to return the trigger nest level
+ function GetNestLevel return number is
+ begin
+ if NestLevel is null then
+     NestLevel := 0;
+ end if;
+ return(NestLevel);
+ end;
+
+-- Procedure to increase the trigger nest level
+ procedure NextNestLevel is
+ begin
+ if NestLevel is null then
+     NestLevel := 0;
+ end if;
+ NestLevel := NestLevel + 1;
+ end;
+
+-- Procedure to decrease the trigger nest level
+ procedure PreviousNestLevel is
+ begin
+ NestLevel := NestLevel - 1;
+ end;
+
+ end IntegrityPackage;
+/
+
+
+drop trigger COMPOUNDDELETETRIGGER_FACTURA
+/
+
+drop trigger COMPOUNDINSERTTRIGGER_FACTURA
+/
+
+drop trigger COMPOUNDUPDATETRIGGER_FACTURA
+/
+
+drop trigger TIB_FACTURA
+/
+
+drop trigger TUB_FACTURA
+/
+
+drop trigger COMPOUNDDELETETRIGGER_TRANSACC
+/
+
+drop trigger COMPOUNDINSERTTRIGGER_TRANSACC
+/
+
+drop trigger COMPOUNDUPDATETRIGGER_TRANSACC
+/
+
+drop trigger TDB_TRANSACCION
+/
+
+drop trigger TUB_TRANSACCION
+/
+
+alter table BODEGA
+   drop constraint FK_BODEGA_SUCURSAL__SUCURSAL
+/
+
+alter table CIUDAD
+   drop constraint FK_CIUDAD_PROVINCIA_PROVINCI
+/
+
+alter table CLIENTE
+   drop constraint FK_CLIENTE_CLIENTE_C_CIUDAD
+/
+
+alter table COMISION
+   drop constraint FK_COMISION_VENDEDOR__VENDEDOR
+/
+
+alter table DETALLE_FACTURA
+   drop constraint FK_DETALLE__FAC_DFAC_FACTURA
+/
+
+alter table DETALLE_FACTURA
+   drop constraint FK_DETALLE__PRODUCTO__PRODUCTO
+/
+
+alter table DETALLE_ORDEN_COMPRA
+   drop constraint FK_DETALLE__OC_DOC_ORDEN_CO
+/
+
+alter table DETALLE_ORDEN_COMPRA
+   drop constraint FK_DETALLE__PRODUCTO__PRODUCTO
+/
+
+alter table FACTURA
+   drop constraint FK_FACTURA_CLIENTE_F_CLIENTE
+/
+
+alter table FACTURA
+   drop constraint FK_FACTURA_SUCURSAL__SUCURSAL
+/
+
+alter table FACTURA
+   drop constraint FK_FACTURA_VENDEDOR__VENDEDOR
+/
+
+alter table FORMA_PAGO_ELEGIDA
+   drop constraint FK_FORMA_PA_FP_FPE_FORMA_PA
+/
+
+alter table FORMA_PAGO_ELEGIDA
+   drop constraint FK_FORMA_PA_RELATIONS_FACTURA
+/
+
+alter table KARDEX
+   drop constraint FK_KARDEX_BODEGA_KA_BODEGA
+/
+
+alter table KARDEX
+   drop constraint FK_KARDEX_PRODUCTO__PRODUCTO
+/
+
+alter table KARDEX
+   drop constraint FK_KARDEX_TRANSACCI_TRANSACC
+/
+
+alter table ORDEN_COMPRA
+   drop constraint FK_ORDEN_CO_BODEGA_OC_BODEGA
+/
+
+alter table ORDEN_COMPRA
+   drop constraint FK_ORDEN_CO_PROOVEDOR_PROOVEDO
+/
+
+alter table PRODUCTO
+   drop constraint FK_PRODUCTO_CAT_PROD_CATEGORI
+/
+
+alter table PRODUCTO_BODEGA
+   drop constraint FK_PRODUCTO_BODEGA_PB_BODEGA
+/
+
+alter table PRODUCTO_BODEGA
+   drop constraint FK_PRODUCTO_PRODUCTO__PRODUCTO
+/
+
+alter table PRODUCTO_PROOVEDOR
+   drop constraint FK_PRODUCTO_PRODUCTO__PRODUCTO
+/
+
+alter table PRODUCTO_PROOVEDOR
+   drop constraint FK_PRODUCTO_PROOVEDOR_PROOVEDO
+/
+
+alter table SUCURSAL
+   drop constraint FK_SUCURSAL_CIUDES_SU_CIUDAD
+/
+
+alter table UNID_MED_ALTERNA
+   drop constraint FK_UNID_MED_PRD_UMALT_PRODUCTO
+/
+
+alter table UNID_MED_ALTERNA
+   drop constraint FK_UNID_MED_UM_UMA_UNIDAD_M
+/
+
+alter table VENDEDOR
+   drop constraint FK_VENDEDOR_SUCURSAL__SUCURSAL
+/
+
+drop index SUCURSAL_BODEGA_FK
+/
+
+drop table BODEGA cascade constraints
+/
+
+drop table CATEGORIAS cascade constraints
+/
+
+drop index PROVINCIA_CIUDAD_FK
+/
+
+drop table CIUDAD cascade constraints
+/
+
+drop index CLIENTE_CIUDAD_FK
+/
+
+drop table CLIENTE cascade constraints
+/
+
+drop index VENDEDOR_COMISION_FK
+/
+
+drop table COMISION cascade constraints
+/
+
+drop index PRODUCTO_DFAC_FK
+/
+
+drop index FAC_DFAC_FK
+/
+
+drop table DETALLE_FACTURA cascade constraints
+/
+
+drop index PRODUCTO_DOC_FK
+/
+
+drop index OC_DOC_FK
+/
+
+drop table DETALLE_ORDEN_COMPRA cascade constraints
+/
+
+drop table EMPRESA cascade constraints
+/
+
+drop index VENDEDOR_FACTURA_FK
+/
+
+drop index CLIENTE_FACTURA_FK
+/
+
+drop index TRANSACCION_FACTURA_FK
+/
+
+drop index SUCURSAL_FACTURAS_FK
+/
+
+drop table FACTURA cascade constraints
+/
+
+drop table FORMA_PAGO cascade constraints
+/
+
+drop index RELATIONSHIP_35_FK
+/
+
+drop index FP_FPE_FK
+/
+
+drop table FORMA_PAGO_ELEGIDA cascade constraints
+/
+
+drop index BODEGA_KARDEX_FK
+/
+
+drop index TRANSACCION_KARDEX_FK
+/
+
+drop index PRODUCTO_KARDEX_FK
+/
+
+drop table KARDEX cascade constraints
+/
+
+drop index PROOVEDOR_OC_FK
+/
+
+drop index BODEGA_OC_FK
+/
+
+drop table ORDEN_COMPRA cascade constraints
+/
+
+drop index CAT_PROD_FK
+/
+
+drop table PRODUCTO cascade constraints
+/
+
+drop index PRODUCTO_PB_FK
+/
+
+drop index BODEGA_PB_FK
+/
+
+drop table PRODUCTO_BODEGA cascade constraints
+/
+
+drop index PRODUCTO_PP_FK
+/
+
+drop index PROOVEDOR_PP_FK
+/
+
+drop table PRODUCTO_PROOVEDOR cascade constraints
+/
+
+drop table PROOVEDOR cascade constraints
+/
+
+drop table PROVINCIA cascade constraints
+/
+
+drop index CIUDES_SUCURSAL_FK
+/
+
+drop table SUCURSAL cascade constraints
+/
+
+drop table TRANSACCION cascade constraints
+/
+
+drop table UNIDAD_MEDIDA cascade constraints
+/
+
+drop index UM_UMA_FK
+/
+
+drop index PRD_UMALT_FK
+/
+
+drop table UNID_MED_ALTERNA cascade constraints
+/
+
+drop index SUCURSAL_VENDEDOR_FK
+/
+
+drop table VENDEDOR cascade constraints
+/
+
+drop tablespace DATOS_2024_01 including contents cascade constraints
+/
+
+drop tablespace INDICE_2024_01 including contents cascade constraints
+/
+
+create tablespace DATOS_2024_01
+datafile '/u01/app/oracle/oradata/CDB1/DATOS_2024_1.dbf'
+size 1G
+ autoextend on next 1G
+/
+
+create tablespace INDICE_2024_01
+datafile '/u01/app/oracle/oradata/CDB1/INDICE_2024_1.dbf'
+size 1G
+ autoextend on next 500M
+/
+
+/*==============================================================*/
+/* Table: BODEGA                                                */
+/*==============================================================*/
+create table BODEGA (
+   BOD_CODIGO           VARCHAR2(20)          not null,
+   SUC_CODIGO           VARCHAR2(20)          not null,
+   BOD_RESPONSABLE      VARCHAR2(20),
+   BOD_DESCRIPCION      VARCHAR2(100),
+   constraint PK_BODEGA primary key (BOD_CODIGO)
+)
+/
+
+comment on column BODEGA.BOD_RESPONSABLE is
+'Encargado de la bodega
+'
+/
+
+comment on column BODEGA.BOD_DESCRIPCION is
+'Descripcion de las caracteristicas de la bodega
+'
+/
+
+/*==============================================================*/
+/* Index: SUCURSAL_BODEGA_FK                                    */
+/*==============================================================*/
+create index SUCURSAL_BODEGA_FK on BODEGA (
+   SUC_CODIGO ASC
+)
+/
+
+/*==============================================================*/
+/* Table: CATEGORIAS                                            */
+/*==============================================================*/
+create table CATEGORIAS (
+   CAT_CODIGO__         VARCHAR2(20)          not null,
+   CAT_DESCRIPCION__    VARCHAR2(50),
+   constraint PK_CATEGORIAS primary key (CAT_CODIGO__)
+)
+/
+
+comment on column CATEGORIAS.CAT_DESCRIPCION__ is
+'Descripcion de la categoria
+'
+/
+
+/*==============================================================*/
+/* Table: CIUDAD                                                */
+/*==============================================================*/
+create table CIUDAD (
+   CIU_CODIGO__         VARCHAR2(20)          not null,
+   POV_CODIGO__         VARCHAR2(20)          not null,
+   CIU_NOMBRE           VARCHAR2(20),
+   constraint PK_CIUDAD primary key (CIU_CODIGO__)
+)
+/
+
+comment on column CIUDAD.CIU_NOMBRE is
+'Nombre de la ciudad
+'
+/
+
+/*==============================================================*/
+/* Index: PROVINCIA_CIUDAD_FK                                   */
+/*==============================================================*/
+create index PROVINCIA_CIUDAD_FK on CIUDAD (
+   POV_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: CLIENTE                                               */
+/*==============================================================*/
+create table CLIENTE (
+   CLI_CEDULA_RUC__     VARCHAR2(20)          not null,
+   CIU_CODIGO__         VARCHAR2(20)          not null,
+   CLI_NOMBRE__         VARCHAR2(20),
+   CLI_APELLIDO__       VARCHAR2(20),
+   CLI_CORREO           VARCHAR2(20),
+   CLI_TELEFONO         VARCHAR2(13),
+   CLI_DIRECCION__      VARCHAR2(50),
+   CLI_SECTOR           VARCHAR2(20),
+   constraint PK_CLIENTE primary key (CLI_CEDULA_RUC__)
+)
+/
+
+comment on column CLIENTE.CIU_CODIGO__ is
+'Nombre del cliente
+'
+/
+
+comment on column CLIENTE.CLI_NOMBRE__ is
+'Apellido del cliente
+'
+/
+
+comment on column CLIENTE.CLI_APELLIDO__ is
+'Correo del cliente
+'
+/
+
+comment on column CLIENTE.CLI_CORREO is
+'Correo del cliente
+'
+/
+
+comment on column CLIENTE.CLI_TELEFONO is
+'Telefono del cliente
+'
+/
+
+comment on column CLIENTE.CLI_DIRECCION__ is
+'Direccion del cliente
+'
+/
+
+comment on column CLIENTE.CLI_SECTOR is
+'Sector del cliente
+'
+/
+
+/*==============================================================*/
+/* Index: CLIENTE_CIUDAD_FK                                     */
+/*==============================================================*/
+create index CLIENTE_CIUDAD_FK on CLIENTE (
+   CIU_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: COMISION                                              */
+/*==============================================================*/
+create table COMISION (
+   COM_NUMERO__         VARCHAR2(20)          not null,
+   VEN_CEDULA__         VARCHAR2(20)          not null,
+   COM_FECHA_PAGO__     DATE,
+   COM_FECHA_INI        DATE,
+   COM_FECHA_FIN__      DATE,
+   COM_CANTIDAD__       NUMBER,
+   constraint PK_COMISION primary key (COM_NUMERO__)
+)
+/
+
+comment on column COMISION.COM_FECHA_PAGO__ is
+'Fecha de pago de la comision
+'
+/
+
+comment on column COMISION.COM_FECHA_INI is
+'Fecha de inicio 
+'
+/
+
+comment on column COMISION.COM_FECHA_FIN__ is
+'Fecha de fin
+'
+/
+
+comment on column COMISION.COM_CANTIDAD__ is
+'Cantidad total
+'
+/
+
+/*==============================================================*/
+/* Index: VENDEDOR_COMISION_FK                                  */
+/*==============================================================*/
+create index VENDEDOR_COMISION_FK on COMISION (
+   VEN_CEDULA__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: DETALLE_FACTURA                                       */
+/*==============================================================*/
+create table DETALLE_FACTURA (
+   FAC_NUMERO__         VARCHAR2(20)          not null,
+   PRD_CODIGO__         VARCHAR2(20)          not null
+)
+/
+
+comment on table DETALLE_FACTURA is
+'Tabla interseccion qu contiene los productos de una factura
+'
+/
+
+/*==============================================================*/
+/* Index: FAC_DFAC_FK                                           */
+/*==============================================================*/
+create index FAC_DFAC_FK on DETALLE_FACTURA (
+   FAC_NUMERO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_DFAC_FK                                      */
+/*==============================================================*/
+create index PRODUCTO_DFAC_FK on DETALLE_FACTURA (
+   PRD_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: DETALLE_ORDEN_COMPRA                                  */
+/*==============================================================*/
+create table DETALLE_ORDEN_COMPRA (
+   ORD_NUMERO__         VARCHAR2(20)          not null,
+   PRD_CODIGO__         VARCHAR2(20)          not null
+)
+/
+
+/*==============================================================*/
+/* Index: OC_DOC_FK                                             */
+/*==============================================================*/
+create index OC_DOC_FK on DETALLE_ORDEN_COMPRA (
+   ORD_NUMERO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_DOC_FK                                       */
+/*==============================================================*/
+create index PRODUCTO_DOC_FK on DETALLE_ORDEN_COMPRA (
+   PRD_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: EMPRESA                                               */
+/*==============================================================*/
+create table EMPRESA (
+   EMP_CEDULA_RUC       VARCHAR2(13)          not null,
+   EMP_NOMBRE__         VARCHAR2(100),
+   EMP_DIRECCION__      VARCHAR2(50),
+   EMP_TELEFONO         VARCHAR2(11),
+   EMP_CORREO__         VARCHAR2(25),
+   EMP_NUM_FACTURA      VARCHAR2(2),
+   EMP_CODIGO_SRI       VARCHAR2(13),
+   EMP_REPRENSENTANTE_LEGAL VARCHAR2(20),
+   EMP_PRC_COMISION_B   VARCHAR2(20),
+   EMP_CODIGO           VARCHAR2(10),
+   EMP_IVA              NUMBER,
+   constraint PK_EMPRESA primary key (EMP_CEDULA_RUC)
+)
+   tablespace DATOS_2024_01
+/
+
+comment on table EMPRESA is
+'Tabla o entidad que guarda informacion sobre Empresa
+
+'
+/
+
+comment on column EMPRESA.EMP_NOMBRE__ is
+'Nombre de la Empresa
+'
+/
+
+comment on column EMPRESA.EMP_DIRECCION__ is
+'Direccion donde esta la empresa
+'
+/
+
+comment on column EMPRESA.EMP_TELEFONO is
+'Numero de contacto
+'
+/
+
+comment on column EMPRESA.EMP_CORREO__ is
+'Correo de contacto 
+'
+/
+
+comment on column EMPRESA.EMP_NUM_FACTURA is
+'Num de las facturas asociadas a esta empresa
+'
+/
+
+comment on column EMPRESA.EMP_CODIGO_SRI is
+'Codigo del SRI
+'
+/
+
+comment on column EMPRESA.EMP_REPRENSENTANTE_LEGAL is
+'Nombre del representante
+'
+/
+
+comment on column EMPRESA.EMP_PRC_COMISION_B is
+'Precio por comision
+'
+/
+
+comment on column EMPRESA.EMP_CODIGO is
+'Codigo de la empresa
+'
+/
+
+/*==============================================================*/
+/* Table: FACTURA                                               */
+/*==============================================================*/
+create table FACTURA (
+   FAC_NUMERO__         VARCHAR2(20)          not null,
+   SUC_CODIGO           VARCHAR2(20)          not null,
+   TRN_CODIGO__         VARCHAR2(20)          not null,
+   CLI_CEDULA_RUC__     VARCHAR2(20)          not null,
+   VEN_CEDULA__         VARCHAR2(20)          not null,
+   FAC_FECHA__          DATE,
+   constraint PK_FACTURA primary key (FAC_NUMERO__)
+)
+/
+
+comment on column FACTURA.FAC_FECHA__ is
+'Fecha de emision de la factura
+'
+/
+
+/*==============================================================*/
+/* Index: SUCURSAL_FACTURAS_FK                                  */
+/*==============================================================*/
+create index SUCURSAL_FACTURAS_FK on FACTURA (
+   SUC_CODIGO ASC
+)
+/
+
+/*==============================================================*/
+/* Index: TRANSACCION_FACTURA_FK                                */
+/*==============================================================*/
+create index TRANSACCION_FACTURA_FK on FACTURA (
+   TRN_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: CLIENTE_FACTURA_FK                                    */
+/*==============================================================*/
+create index CLIENTE_FACTURA_FK on FACTURA (
+   CLI_CEDULA_RUC__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: VENDEDOR_FACTURA_FK                                   */
+/*==============================================================*/
+create index VENDEDOR_FACTURA_FK on FACTURA (
+   VEN_CEDULA__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: FORMA_PAGO                                            */
+/*==============================================================*/
+create table FORMA_PAGO (
+   FRP_CODIGO__         VARCHAR2(20)          not null,
+   FRP_DESCRIPCION__    VARCHAR2(50),
+   constraint PK_FORMA_PAGO primary key (FRP_CODIGO__)
+)
+/
+
+/*==============================================================*/
+/* Table: FORMA_PAGO_ELEGIDA                                    */
+/*==============================================================*/
+create table FORMA_PAGO_ELEGIDA (
+   FRP_CODIGO__         VARCHAR2(20)          not null,
+   FAC_NUMERO__         VARCHAR2(20)          not null
+)
+/
+
+comment on table FORMA_PAGO_ELEGIDA is
+'Interseccion entre forma de pago y factura.
+Para mi indicaria que forma de pago se escogio o se escogieron para cada factura
+'
+/
+
+/*==============================================================*/
+/* Index: FP_FPE_FK                                             */
+/*==============================================================*/
+create index FP_FPE_FK on FORMA_PAGO_ELEGIDA (
+   FRP_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_35_FK                                    */
+/*==============================================================*/
+create index RELATIONSHIP_35_FK on FORMA_PAGO_ELEGIDA (
+   FAC_NUMERO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: KARDEX                                                */
+/*==============================================================*/
+create table KARDEX (
+   PRD_CODIGO__         VARCHAR2(20)          not null,
+   TRN_CODIGO__         VARCHAR2(20)          not null,
+   BOD_CODIGO           VARCHAR2(20)          not null
+)
+/
+
+comment on table KARDEX is
+'Tabla interseccion que contiene los movimientos de la bodega'
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_KARDEX_FK                                    */
+/*==============================================================*/
+create index PRODUCTO_KARDEX_FK on KARDEX (
+   PRD_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: TRANSACCION_KARDEX_FK                                 */
+/*==============================================================*/
+create index TRANSACCION_KARDEX_FK on KARDEX (
+   TRN_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: BODEGA_KARDEX_FK                                      */
+/*==============================================================*/
+create index BODEGA_KARDEX_FK on KARDEX (
+   BOD_CODIGO ASC
+)
+/
+
+/*==============================================================*/
+/* Table: ORDEN_COMPRA                                          */
+/*==============================================================*/
+create table ORDEN_COMPRA (
+   ORD_NUMERO__         VARCHAR2(20)          not null,
+   BOD_CODIGO           VARCHAR2(20)          not null,
+   PRV_CODIGO__         VARCHAR2(13)          not null,
+   ORD_FECHA            DATE,
+   ORD_FECHA_LIM        DATE,
+   ORD_ELABORO          DATE,
+   ORD_TOTAL            NUMBER,
+   constraint PK_ORDEN_COMPRA primary key (ORD_NUMERO__)
+)
+/
+
+comment on column ORDEN_COMPRA.ORD_FECHA is
+'Fecha de emision de la orden de compra
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_FECHA_LIM is
+'Fecha limite para recibir lo comprado
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_ELABORO is
+'Fecha de llegada de los productos
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_TOTAL is
+'Precio total
+'
+/
+
+/*==============================================================*/
+/* Index: BODEGA_OC_FK                                          */
+/*==============================================================*/
+create index BODEGA_OC_FK on ORDEN_COMPRA (
+   BOD_CODIGO ASC
+)
+/
+
+/*==============================================================*/
+/* Index: PROOVEDOR_OC_FK                                       */
+/*==============================================================*/
+create index PROOVEDOR_OC_FK on ORDEN_COMPRA (
+   PRV_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: PRODUCTO                                              */
+/*==============================================================*/
+create table PRODUCTO (
+   PRD_CODIGO__         VARCHAR2(20)          not null,
+   CAT_CODIGO__         VARCHAR2(20)          not null,
+   PRD_DESCRIPCION__    VARCHAR2(50),
+   PRD_PRECIO__         NUMBER,
+   PRD_PRECIO_ANTERIOR__ NUMBER,
+   PRD_EXISTENCIA__     NUMBER,
+   PRD_CODIGO_BARRA__   VARCHAR2(15),
+   PRD_PAGA_IVA         CHAR(10),
+   constraint PK_PRODUCTO primary key (PRD_CODIGO__)
+)
+/
+
+comment on column PRODUCTO.PRD_DESCRIPCION__ is
+'Descripcion general del producto
+'
+/
+
+comment on column PRODUCTO.PRD_PRECIO__ is
+'Precio actual del producto
+'
+/
+
+comment on column PRODUCTO.PRD_PRECIO_ANTERIOR__ is
+'Precio anterior del producto
+'
+/
+
+comment on column PRODUCTO.PRD_EXISTENCIA__ is
+'Existencia actual del producto
+'
+/
+
+comment on column PRODUCTO.PRD_CODIGO_BARRA__ is
+'Codigo de barra del producto
+'
+/
+
+/*==============================================================*/
+/* Index: CAT_PROD_FK                                           */
+/*==============================================================*/
+create index CAT_PROD_FK on PRODUCTO (
+   CAT_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: PRODUCTO_BODEGA                                       */
+/*==============================================================*/
+create table PRODUCTO_BODEGA (
+   BOD_CODIGO           VARCHAR2(20)          not null,
+   PRD_CODIGO__         VARCHAR2(20)          not null
+)
+/
+
+comment on table PRODUCTO_BODEGA is
+'Tabla interseccion que contiene los productos de la bodega'
+/
+
+/*==============================================================*/
+/* Index: BODEGA_PB_FK                                          */
+/*==============================================================*/
+create index BODEGA_PB_FK on PRODUCTO_BODEGA (
+   BOD_CODIGO ASC
+)
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_PB_FK                                        */
+/*==============================================================*/
+create index PRODUCTO_PB_FK on PRODUCTO_BODEGA (
+   PRD_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: PRODUCTO_PROOVEDOR                                    */
+/*==============================================================*/
+create table PRODUCTO_PROOVEDOR (
+   PRV_CODIGO__         VARCHAR2(13)          not null,
+   PRD_CODIGO__         VARCHAR2(20)          not null
+)
+/
+
+comment on table PRODUCTO_PROOVEDOR is
+'Tabla interseccion entre productos y proovedor, para saber que productos entrega cada proovedor
+'
+/
+
+/*==============================================================*/
+/* Index: PROOVEDOR_PP_FK                                       */
+/*==============================================================*/
+create index PROOVEDOR_PP_FK on PRODUCTO_PROOVEDOR (
+   PRV_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_PP_FK                                        */
+/*==============================================================*/
+create index PRODUCTO_PP_FK on PRODUCTO_PROOVEDOR (
+   PRD_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: PROOVEDOR                                             */
+/*==============================================================*/
+create table PROOVEDOR (
+   PRV_CODIGO__         VARCHAR2(13)          not null,
+   PVR_DESCRIPCION      VARCHAR2(100),
+   PVR_TELEFONO         VARCHAR2(13),
+   PVR_CONTACTO         VARCHAR2(13),
+   PVR_DIRECCION        VARCHAR2(100),
+   PVR_CORREO           VARCHAR2(20),
+   constraint PK_PROOVEDOR primary key (PRV_CODIGO__)
+)
+/
+
+comment on table PROOVEDOR is
+'Tabla o entidad que guarda informacion sobre Proovedor
+'
+/
+
+comment on column PROOVEDOR.PVR_DESCRIPCION is
+'Descripcion del proovedor
+'
+/
+
+comment on column PROOVEDOR.PVR_TELEFONO is
+'Telefono del proovedor
+'
+/
+
+comment on column PROOVEDOR.PVR_CONTACTO is
+'Contacto del proovedor
+'
+/
+
+comment on column PROOVEDOR.PVR_DIRECCION is
+'Direcion del proovedor
+'
+/
+
+comment on column PROOVEDOR.PVR_CORREO is
+'Correo del proovedor'
+/
+
+/*==============================================================*/
+/* Table: PROVINCIA                                             */
+/*==============================================================*/
+create table PROVINCIA (
+   POV_CODIGO__         VARCHAR2(20)          not null,
+   POV_NOMBRE__         VARCHAR2(20),
+   constraint PK_PROVINCIA primary key (POV_CODIGO__)
+)
+/
+
+comment on column PROVINCIA.POV_NOMBRE__ is
+'Nombre de la provincia
+'
+/
+
+/*==============================================================*/
+/* Table: SUCURSAL                                              */
+/*==============================================================*/
+create table SUCURSAL (
+   SUC_CODIGO           VARCHAR2(20)          not null,
+   CIU_CODIGO__         VARCHAR2(20)          not null,
+   SUC_NOMBRE           VARCHAR2(20),
+   SUC_DIRECCION        VARCHAR2(50),
+   SUC_TELEFONO         VARCHAR2(13),
+   SUC_RESPONSABLE      VARCHAR2(20),
+   constraint PK_SUCURSAL primary key (SUC_CODIGO)
+)
+   tablespace DATOS_2024_01
+/
+
+comment on table SUCURSAL is
+'Tabla o entidad que guarda informacion sobre Sucursal
+'
+/
+
+comment on column SUCURSAL.SUC_NOMBRE is
+'Nombre de la sucursal
+'
+/
+
+comment on column SUCURSAL.SUC_DIRECCION is
+'Direcion de la sucursal
+'
+/
+
+comment on column SUCURSAL.SUC_TELEFONO is
+'Telefono de contacto de la sucursal
+'
+/
+
+comment on column SUCURSAL.SUC_RESPONSABLE is
+'Responsable de la sucursal
+'
+/
+
+/*==============================================================*/
+/* Index: CIUDES_SUCURSAL_FK                                    */
+/*==============================================================*/
+create index CIUDES_SUCURSAL_FK on SUCURSAL (
+   CIU_CODIGO__ ASC
+)
+tablespace INDICE_2024_01
+/
+
+/*==============================================================*/
+/* Table: TRANSACCION                                           */
+/*==============================================================*/
+create table TRANSACCION (
+   TRN_CODIGO__         VARCHAR2(20)          not null,
+   TRN_DESCRIPCION      VARCHAR2(100),
+   constraint PK_TRANSACCION primary key (TRN_CODIGO__)
+)
+   tablespace DATOS_2024_01
+/
+
+comment on column TRANSACCION.TRN_DESCRIPCION is
+'Descripcion de la transaccion
+'
+/
+
+/*==============================================================*/
+/* Table: UNIDAD_MEDIDA                                         */
+/*==============================================================*/
+create table UNIDAD_MEDIDA (
+   UNI_CODIGO__         VARCHAR2(20)          not null,
+   UNI_DESCRIPCION__    VARCHAR2(50),
+   constraint PK_UNIDAD_MEDIDA primary key (UNI_CODIGO__)
+)
+/
+
+comment on column UNIDAD_MEDIDA.UNI_DESCRIPCION__ is
+'Descripcion de la unidad de medida
+'
+/
+
+/*==============================================================*/
+/* Table: UNID_MED_ALTERNA                                      */
+/*==============================================================*/
+create table UNID_MED_ALTERNA (
+   PRD_CODIGO__         VARCHAR2(20)          not null,
+   UNI_CODIGO__         VARCHAR2(20)          not null
+)
+/
+
+comment on table UNID_MED_ALTERNA is
+'Interseccion unidades  de medida y productos
+'
+/
+
+/*==============================================================*/
+/* Index: PRD_UMALT_FK                                          */
+/*==============================================================*/
+create index PRD_UMALT_FK on UNID_MED_ALTERNA (
+   PRD_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Index: UM_UMA_FK                                             */
+/*==============================================================*/
+create index UM_UMA_FK on UNID_MED_ALTERNA (
+   UNI_CODIGO__ ASC
+)
+/
+
+/*==============================================================*/
+/* Table: VENDEDOR                                              */
+/*==============================================================*/
+create table VENDEDOR (
+   VEN_CEDULA__         VARCHAR2(20)          not null,
+   SUC_CODIGO           VARCHAR2(20)          not null,
+   VEN_NOMBRE__         VARCHAR2(20),
+   VEN_APELLIDO__       VARCHAR2(20),
+   VEN_CORREO__         VARCHAR2(20),
+   VEN_TELEFONO__       VARCHAR2(13),
+   VEN_P_COMISION__     NUMBER,
+   VEN_CUENTA_BANCO__   VARCHAR2(20),
+   constraint PK_VENDEDOR primary key (VEN_CEDULA__)
+)
+/
+
+comment on column VENDEDOR.VEN_NOMBRE__ is
+'Nombre del vendedor
+'
+/
+
+comment on column VENDEDOR.VEN_APELLIDO__ is
+'Apellido del vendedor
+'
+/
+
+comment on column VENDEDOR.VEN_CORREO__ is
+'Correo del vendedor
+'
+/
+
+comment on column VENDEDOR.VEN_TELEFONO__ is
+'Telefono del vendedor
+'
+/
+
+comment on column VENDEDOR.VEN_P_COMISION__ is
+'Comisiones totales del vendedor
+'
+/
+
+comment on column VENDEDOR.VEN_CUENTA_BANCO__ is
+'Cuenta del banco
+'
+/
+
+/*==============================================================*/
+/* Index: SUCURSAL_VENDEDOR_FK                                  */
+/*==============================================================*/
+create index SUCURSAL_VENDEDOR_FK on VENDEDOR (
+   SUC_CODIGO ASC
+)
+/
+
+alter table BODEGA
+   add constraint FK_BODEGA_SUCURSAL__SUCURSAL foreign key (SUC_CODIGO)
+      references SUCURSAL (SUC_CODIGO)
+/
+
+alter table CIUDAD
+   add constraint FK_CIUDAD_PROVINCIA_PROVINCI foreign key (POV_CODIGO__)
+      references PROVINCIA (POV_CODIGO__)
+/
+
+alter table CLIENTE
+   add constraint FK_CLIENTE_CLIENTE_C_CIUDAD foreign key (CIU_CODIGO__)
+      references CIUDAD (CIU_CODIGO__)
+/
+
+alter table COMISION
+   add constraint FK_COMISION_VENDEDOR__VENDEDOR foreign key (VEN_CEDULA__)
+      references VENDEDOR (VEN_CEDULA__)
+/
+
+alter table DETALLE_FACTURA
+   add constraint FK_DETALLE__FAC_DFAC_FACTURA foreign key (FAC_NUMERO__)
+      references FACTURA (FAC_NUMERO__)
+/
+
+alter table DETALLE_FACTURA
+   add constraint FK_DETALLE__PRODUCTO__PRODUCTO foreign key (PRD_CODIGO__)
+      references PRODUCTO (PRD_CODIGO__)
+/
+
+alter table DETALLE_ORDEN_COMPRA
+   add constraint FK_DETALLE__OC_DOC_ORDEN_CO foreign key (ORD_NUMERO__)
+      references ORDEN_COMPRA (ORD_NUMERO__)
+/
+
+alter table DETALLE_ORDEN_COMPRA
+   add constraint FK_DETALLE__PRODUCTO__PRODUCTO foreign key (PRD_CODIGO__)
+      references PRODUCTO (PRD_CODIGO__)
+/
+
+alter table FACTURA
+   add constraint FK_FACTURA_CLIENTE_F_CLIENTE foreign key (CLI_CEDULA_RUC__)
+      references CLIENTE (CLI_CEDULA_RUC__)
+/
+
+alter table FACTURA
+   add constraint FK_FACTURA_SUCURSAL__SUCURSAL foreign key (SUC_CODIGO)
+      references SUCURSAL (SUC_CODIGO)
+/
+
+alter table FACTURA
+   add constraint FK_FACTURA_VENDEDOR__VENDEDOR foreign key (VEN_CEDULA__)
+      references VENDEDOR (VEN_CEDULA__)
+/
+
+alter table FORMA_PAGO_ELEGIDA
+   add constraint FK_FORMA_PA_FP_FPE_FORMA_PA foreign key (FRP_CODIGO__)
+      references FORMA_PAGO (FRP_CODIGO__)
+/
+
+alter table FORMA_PAGO_ELEGIDA
+   add constraint FK_FORMA_PA_RELATIONS_FACTURA foreign key (FAC_NUMERO__)
+      references FACTURA (FAC_NUMERO__)
+/
+
+alter table KARDEX
+   add constraint FK_KARDEX_BODEGA_KA_BODEGA foreign key (BOD_CODIGO)
+      references BODEGA (BOD_CODIGO)
+/
+
+alter table KARDEX
+   add constraint FK_KARDEX_PRODUCTO__PRODUCTO foreign key (PRD_CODIGO__)
+      references PRODUCTO (PRD_CODIGO__)
+/
+
+alter table KARDEX
+   add constraint FK_KARDEX_TRANSACCI_TRANSACC foreign key (TRN_CODIGO__)
+      references TRANSACCION (TRN_CODIGO__)
+/
+
+alter table ORDEN_COMPRA
+   add constraint FK_ORDEN_CO_BODEGA_OC_BODEGA foreign key (BOD_CODIGO)
+      references BODEGA (BOD_CODIGO)
+/
+
+alter table ORDEN_COMPRA
+   add constraint FK_ORDEN_CO_PROOVEDOR_PROOVEDO foreign key (PRV_CODIGO__)
+      references PROOVEDOR (PRV_CODIGO__)
+/
+
+alter table PRODUCTO
+   add constraint FK_PRODUCTO_CAT_PROD_CATEGORI foreign key (CAT_CODIGO__)
+      references CATEGORIAS (CAT_CODIGO__)
+/
+
+alter table PRODUCTO_BODEGA
+   add constraint FK_PRODUCTO_BODEGA_PB_BODEGA foreign key (BOD_CODIGO)
+      references BODEGA (BOD_CODIGO)
+/
+
+alter table PRODUCTO_BODEGA
+   add constraint FK_PRODUCTO_PRODUCTO__PRODUCTO foreign key (PRD_CODIGO__)
+      references PRODUCTO (PRD_CODIGO__)
+/
+
+alter table PRODUCTO_PROOVEDOR
+   add constraint FK_PRODUCTO_PRODUCTO__PRODUCTO foreign key (PRD_CODIGO__)
+      references PRODUCTO (PRD_CODIGO__)
+/
+
+alter table PRODUCTO_PROOVEDOR
+   add constraint FK_PRODUCTO_PROOVEDOR_PROOVEDO foreign key (PRV_CODIGO__)
+      references PROOVEDOR (PRV_CODIGO__)
+/
+
+alter table SUCURSAL
+   add constraint FK_SUCURSAL_CIUDES_SU_CIUDAD foreign key (CIU_CODIGO__)
+      references CIUDAD (CIU_CODIGO__)
+/
+
+alter table UNID_MED_ALTERNA
+   add constraint FK_UNID_MED_PRD_UMALT_PRODUCTO foreign key (PRD_CODIGO__)
+      references PRODUCTO (PRD_CODIGO__)
+/
+
+alter table UNID_MED_ALTERNA
+   add constraint FK_UNID_MED_UM_UMA_UNIDAD_M foreign key (UNI_CODIGO__)
+      references UNIDAD_MEDIDA (UNI_CODIGO__)
+/
+
+alter table VENDEDOR
+   add constraint FK_VENDEDOR_SUCURSAL__SUCURSAL foreign key (SUC_CODIGO)
+      references SUCURSAL (SUC_CODIGO)
+/
+
+
+create or replace trigger COMPOUNDDELETETRIGGER_FACTURA
+for delete on FACTURA compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create or replace trigger COMPOUNDINSERTTRIGGER_FACTURA
+for insert on FACTURA compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create or replace trigger COMPOUNDUPDATETRIGGER_FACTURA
+for update on FACTURA compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create trigger TIB_FACTURA before insert
+on FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "TRANSACCION"
+    cursor cpk2_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   TRANSACCION
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+
+begin
+    --  Parent "TRANSACCION" must exist when inserting a child in "FACTURA"
+    if :new.TRN_CODIGO__ is not null then
+       open  cpk2_factura(:new.TRN_CODIGO__);
+       fetch cpk2_factura into dummy;
+       found := cpk2_factura%FOUND;
+       close cpk2_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "TRANSACCION". Cannot create child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_FACTURA before update
+of FAC_NUMERO__,
+   SUC_CODIGO,
+   TRN_CODIGO__,
+   CLI_CEDULA_RUC__,
+   VEN_CEDULA__
+on FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "TRANSACCION"
+    cursor cpk2_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   TRANSACCION
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "TRANSACCION" must exist when updating a child in "FACTURA"
+    if (:new.TRN_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_factura(:new.TRN_CODIGO__);
+       fetch cpk2_factura into dummy;
+       found := cpk2_factura%FOUND;
+       close cpk2_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "TRANSACCION". Cannot update child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger COMPOUNDDELETETRIGGER_TRANSACC
+for delete on TRANSACCION compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create or replace trigger COMPOUNDINSERTTRIGGER_TRANSACC
+for insert on TRANSACCION compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create or replace trigger COMPOUNDUPDATETRIGGER_TRANSACC
+for update on TRANSACCION compound trigger
+// Declaration
+// Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END
+/
+
+
+create trigger TDB_TRANSACCION before delete
+on TRANSACCION for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "FACTURA"
+    cursor cfk2_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   FACTURA
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "TRANSACCION" if children still exist in "FACTURA"
+    open  cfk2_factura(:old.TRN_CODIGO__);
+    fetch cfk2_factura into dummy;
+    found := cfk2_factura%FOUND;
+    close cfk2_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "FACTURA". Cannot delete parent "TRANSACCION".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_TRANSACCION before update
+of TRN_CODIGO__
+on TRANSACCION for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "FACTURA"
+    cursor cfk2_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   FACTURA
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+
+begin
+    --  Cannot modify parent code in "TRANSACCION" if children still exist in "FACTURA"
+    if (updating('TRN_CODIGO__') and :old.TRN_CODIGO__ != :new.TRN_CODIGO__) then
+       open  cfk2_factura(:old.TRN_CODIGO__);
+       fetch cfk2_factura into dummy;
+       found := cfk2_factura%FOUND;
+       close cfk2_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "FACTURA". Cannot modify parent code in "TRANSACCION".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
