@@ -3,7 +3,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 public class Interface_Ingreso extends javax.swing.JFrame {
     /**Declaro la lista que voy a usar en todo el programa*/
-    HashMap<String,Productos>  Inventario;
+    private HashMap<String,Productos>  Inventario;
 
     public Interface_Ingreso(HashMap Inventario) {
         this.Inventario = Inventario;

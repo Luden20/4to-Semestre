@@ -196,8 +196,8 @@ public class Interface_Placa extends javax.swing.JFrame {
     private void BT_CONSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CONSActionPerformed
         if (Vehiculos.containsKey(BT_PLACA.getText())){
             Vehiculo Carro = Vehiculos.get(BT_PLACA.getText());
-            TT_PROP.setText("Propietario: " + Carro.getNombre());
-            TT_CED.setText("Cédula: " + Carro.getCedula());
+            TT_PROP.setText("Propietario: " + Carro.getNombrePropietario());
+            TT_CED.setText("Cédula: " + Carro.getCedulaPropietario());
             TT_PLACA.setText("Placa: " + Carro.getPlaca());
             TT_TIPO.setText("Tipo: " + Carro.getTipoVehiculo());
             TT_MARCA.setText("Marca: " + Carro.getMarca());

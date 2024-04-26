@@ -2,7 +2,7 @@ package proyecto_mecado;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 public class Interfaz_Consulta extends javax.swing.JFrame {
-    HashMap<String,Productos>  Inventario ;
+    private HashMap<String,Productos>  Inventario ;
     public Interfaz_Consulta(HashMap Inventario) {
         this.Inventario = Inventario;
         initComponents();

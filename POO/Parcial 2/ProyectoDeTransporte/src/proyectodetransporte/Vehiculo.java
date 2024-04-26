@@ -1,6 +1,6 @@
 package proyectodetransporte;
 import java.util.LinkedHashMap;
-public class Vehiculo extends Propietario{
+public class Vehiculo {
     /**Declaro datos miembro*/
     private String Placa;
     private String TipoVehiculo;
@@ -10,11 +10,12 @@ public class Vehiculo extends Propietario{
     private String Servicio;
     private String FechaMatricula;
     private String FechaCaducidadMat;
+    private Propietario Propietario;
     private LinkedHashMap<String,Citacion> ListaCitaciones = new LinkedHashMap<String,Citacion>();
     public Vehiculo(String Cedula,String Nombre,String Placa,String TipoVehiculo,String Marca,String Modelo,String Color,String Servicio,String FechaMatricula, String FechaCaducidadMat)
     {
         /**Utilizo supero e ingreso los valores del constructor de la clase padre*/
-        super(Cedula,Nombre);
+        this.Propietario=new Propietario(Cedula,Nombre);
         this.Placa=Placa;
         this.TipoVehiculo=TipoVehiculo;
         this.Marca=Marca;
@@ -58,11 +59,11 @@ public class Vehiculo extends Propietario{
         return this.FechaCaducidadMat;
     }
     /**Uso super para poder consultar los datos de la clase padre*/
-    public String getCedula(){
-        return super.getCedula();
+    public String getCedulaPropietario(){
+        return Propietario.getCedula();
     }
-    public String getNombre(){
-        return super.getNombre();
+    public String getNombrePropietario(){
+        return Propietario.getNombre();
     }
     /**Funciones que me a servir para poder realizar una linkdhashmap de las citaciones del vehiculo*/
     public void IngresarCitacion(String NumDeCitacion,Citacion Citaciones){

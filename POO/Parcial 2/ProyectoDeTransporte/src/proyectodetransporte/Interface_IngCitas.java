@@ -164,7 +164,7 @@ public class Interface_IngCitas extends javax.swing.JFrame {
         String Fecha= TT_FS.getText();
         String Lugar = TT_LS.getText();
         String Estado = TT_ESTADO.getSelectedItem().toString();
-        if ((Vehiculos.containsKey(Placa)==true)&&(Vehiculos.isEmpty()==true)){
+        if ((Vehiculos.containsKey(Placa)==true)){
              Vehiculo J = Vehiculos.get(Placa);
              if (!J.getListaCitaciones().containsKey(Num))
              J.IngresarCitacion( Num, new Citacion(Num,Infraccion,Monto,Fecha,Lugar,Estado));

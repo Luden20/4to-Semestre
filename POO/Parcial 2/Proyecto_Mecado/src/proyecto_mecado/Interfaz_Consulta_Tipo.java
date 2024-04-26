@@ -3,7 +3,7 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 public class Interfaz_Consulta_Tipo extends javax.swing.JFrame {
     DefaultTableModel BXP=new DefaultTableModel();
-    HashMap<String,Productos>  Inventario ;
+    private HashMap<String,Productos>  Inventario ;
     public Interfaz_Consulta_Tipo(HashMap Inventario ) {
         this.Inventario = Inventario;
         initComponents();
