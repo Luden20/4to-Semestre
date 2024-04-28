@@ -91,7 +91,7 @@ public class Ingreso_Productos extends javax.swing.JFrame {
         Panel_Principal.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
 
         Panel_Ingreso_Productos_Nuevos.setBackground(new java.awt.Color(33, 63, 99));
-        Panel_Ingreso_Productos_Nuevos.setLayout(new java.awt.GridLayout(9, 2, 5, 90));
+        Panel_Ingreso_Productos_Nuevos.setLayout(new java.awt.GridLayout(9, 2, 5, 45));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 255, 255));
@@ -181,7 +181,7 @@ public class Ingreso_Productos extends javax.swing.JFrame {
         Panel_Principal.add(Panel_Ingreso_Productos_Nuevos);
 
         Panel_Ingreso_Productos_Existente.setBackground(new java.awt.Color(102, 102, 102));
-        Panel_Ingreso_Productos_Existente.setLayout(new java.awt.GridLayout(6, 2, 10, 150));
+        Panel_Ingreso_Productos_Existente.setLayout(new java.awt.GridLayout(6, 2, 10, 75));
 
         jLabel8.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 255, 255));
