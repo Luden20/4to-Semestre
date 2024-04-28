@@ -6571,8 +6571,9 @@ DAT 1713977179</a:History>
 <a:Code>FACTURA_LOGICADM</a:Code>
 <a:CreationDate>1714141802</a:CreationDate>
 <a:Creator>polip</a:Creator>
-<a:ModificationDate>1714144881</a:ModificationDate>
+<a:ModificationDate>1714146597</a:ModificationDate>
 <a:Modifier>polip</a:Modifier>
+<a:TargetModelURL>file:///D|/Universidad/4to-Semestre/BDD1/Factura/Factura_Fisica.pdm</a:TargetModelURL>
 <a:TargetModelID>70FF7793-00BE-43B5-AB2E-39FEBCD943E1</a:TargetModelID>
 <a:TargetModelClassID>CDE44E21-9669-11D1-9914-006097355D9B</a:TargetModelClassID>
 <a:TargetModelLastModificationDate>1714146513</a:TargetModelLastModificationDate>
