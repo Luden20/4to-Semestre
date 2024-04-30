@@ -56,7 +56,7 @@ public class Ingreso_Cliente extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setLayout(new java.awt.GridLayout(6, 2, 0, 150));
+        jPanel1.setLayout(new java.awt.GridLayout(6, 2, 0, 100));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
@@ -94,7 +94,7 @@ public class Ingreso_Cliente extends javax.swing.JFrame {
         DireccionTF.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
         jPanel1.add(DireccionTF);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Estos datos se usaran para la facturacion");
         jPanel1.add(jLabel6);

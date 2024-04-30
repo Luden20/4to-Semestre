@@ -64,7 +64,7 @@
             <Property name="columns" type="int" value="2"/>
             <Property name="horizontalGap" type="int" value="5"/>
             <Property name="rows" type="int" value="9"/>
-            <Property name="verticalGap" type="int" value="90"/>
+            <Property name="verticalGap" type="int" value="45"/>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -335,7 +335,7 @@
             <Property name="columns" type="int" value="2"/>
             <Property name="horizontalGap" type="int" value="10"/>
             <Property name="rows" type="int" value="6"/>
-            <Property name="verticalGap" type="int" value="150"/>
+            <Property name="verticalGap" type="int" value="75"/>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel8">
