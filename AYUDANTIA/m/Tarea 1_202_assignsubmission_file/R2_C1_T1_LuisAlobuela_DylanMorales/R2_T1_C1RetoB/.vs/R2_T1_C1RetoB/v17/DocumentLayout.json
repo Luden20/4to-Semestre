@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\luisa\\source\\repos\\R2_C1_T1_LuisAlobuela_DylanMorales\\R2_T1_C1RetoB\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5FB47D09-7903-495E-B01D-BA445710DD79}|R2_T1_C1RetoB\\R2_T1_C1RetoB.pyproj|C:\\Users\\luisa\\source\\repos\\R2_C1_T1_LuisAlobuela_DylanMorales\\R2_T1_C1RetoB\\R2_T1_C1RetoB\\R2_T1_C1RetoB.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5FB47D09-7903-495E-B01D-BA445710DD79}|R2_T1_C1RetoB\\R2_T1_C1RetoB.pyproj|solutionrelative:R2_T1_C1RetoB\\R2_T1_C1RetoB.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "R2_T1_C1RetoB.py",
+              "DocumentMoniker": "C:\\Users\\luisa\\source\\repos\\R2_C1_T1_LuisAlobuela_DylanMorales\\R2_T1_C1RetoB\\R2_T1_C1RetoB\\R2_T1_C1RetoB.py",
+              "RelativeDocumentMoniker": "R2_T1_C1RetoB\\R2_T1_C1RetoB.py",
+              "ToolTip": "C:\\Users\\luisa\\source\\repos\\R2_C1_T1_LuisAlobuela_DylanMorales\\R2_T1_C1RetoB\\R2_T1_C1RetoB\\R2_T1_C1RetoB.py",
+              "RelativeToolTip": "R2_T1_C1RetoB\\R2_T1_C1RetoB.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-04-27T15:08:44.196Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

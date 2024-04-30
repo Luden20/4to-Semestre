@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoB.py\\RDA2RetoB.py\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A4EC9EF9-0F29-4C29-A53D-856E367C18DD}|RDA2RetoB.py\\RDA2RetoB.py.pyproj|C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoB.py\\RDA2RetoB.py\\RDA2RetoB.py\\RDA2RetoB.py.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A4EC9EF9-0F29-4C29-A53D-856E367C18DD}|RDA2RetoB.py\\RDA2RetoB.py.pyproj|solutionrelative:RDA2RetoB.py\\RDA2RetoB.py.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RDA2RetoB.py.py",
+              "DocumentMoniker": "C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoB.py\\RDA2RetoB.py\\RDA2RetoB.py\\RDA2RetoB.py.py",
+              "RelativeDocumentMoniker": "RDA2RetoB.py\\RDA2RetoB.py.py",
+              "ToolTip": "C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoB.py\\RDA2RetoB.py\\RDA2RetoB.py\\RDA2RetoB.py.py*",
+              "RelativeToolTip": "RDA2RetoB.py\\RDA2RetoB.py.py*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-04-27T18:03:45.971Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

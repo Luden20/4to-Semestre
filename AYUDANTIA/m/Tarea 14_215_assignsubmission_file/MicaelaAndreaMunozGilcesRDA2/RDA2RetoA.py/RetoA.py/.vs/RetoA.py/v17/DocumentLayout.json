@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoA.py\\RetoA.py\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{23BA60AA-C754-4032-B0E3-0751086F1619}|RetoA.py\\RetoA.py.pyproj|C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoA.py\\RetoA.py\\RetoA.py\\RetoA.py.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{23BA60AA-C754-4032-B0E3-0751086F1619}|RetoA.py\\RetoA.py.pyproj|solutionrelative:RetoA.py\\RetoA.py.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RetoA.py.py",
+              "DocumentMoniker": "C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoA.py\\RetoA.py\\RetoA.py\\RetoA.py.py",
+              "RelativeDocumentMoniker": "RetoA.py\\RetoA.py.py",
+              "ToolTip": "C:\\Users\\Micaela Mu\u00F1oz\\OneDrive\\Escritorio\\MicaelaAndreaMunozGilcesRDA2\\RDA2RetoA.py\\RetoA.py\\RetoA.py\\RetoA.py.py*",
+              "RelativeToolTip": "RetoA.py\\RetoA.py.py*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-04-26T18:22:53.93Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
