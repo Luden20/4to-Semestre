@@ -6,8 +6,11 @@
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{D7B83A74-6A01-4E99-8958-ED4DC1AD9F1B}" Loaded="No" Name="Factura_LogicaDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="4to copia/4to-Semestre/BDD1/Factura/Factura_LogicaDM.ldm"/>
 		<Model Expanded="Yes" ID="{99CD6F56-8C42-42AC-8ECA-EB437CF287FD}" Loaded="No" Name="Conceptual Data_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="4to copia/4to-Semestre/BDD1/Factura/Factura_cONCEPTUAL.cdm"/>
-		<Model ID="{D7B83A74-6A01-4E99-8958-ED4DC1AD9F1B}" Name="Factura_LogicaDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="Factura_LogicaDM.ldm"/>
-		<Model Expanded="Yes" ID="{70FF7793-00BE-43B5-AB2E-39FEBCD943E1}" Name="Factura_LogicaDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="Factura_Fisica.pdm"/>
+		<Model ID="{D7B83A74-6A01-4E99-8958-ED4DC1AD9F1B}" Loaded="No" Name="Factura_LogicaDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="Factura_LogicaDM.ldm"/>
+		<Model Expanded="Yes" ID="{70FF7793-00BE-43B5-AB2E-39FEBCD943E1}" Loaded="No" Name="Factura_LogicaDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="Factura_Fisica.pdm"/>
+		<Model Expanded="Yes" ID="{70FF7793-00BE-43B5-AB2E-39FEBCD943E1}" Loaded="No" Name="Factura_LogicaDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="Factura_Fisica.pdm"/>
+		<Model Expanded="Yes" ID="{70FF7793-00BE-43B5-AB2E-39FEBCD943E1}" Loaded="No" Name="Factura_LogicaDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="Factura_Fisica.pdm"/>
+		<Model Expanded="Yes" ID="{70FF7793-00BE-43B5-AB2E-39FEBCD943E1}" Name="Factura_LogicaDM" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="Factura_Fisica.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
