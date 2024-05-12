@@ -1,0 +1,17 @@
+drop tablespace DATOS_2024_01 including contents cascade constraints
+/
+
+drop tablespace INDICE_2024_01 including contents cascade constraints
+/
+
+create tablespace DATOS_2024_01
+datafile '/u01/app/oracle/oradata/CDB1/DATOS_2024_1.dbf'
+size 1G
+ autoextend on next 1G
+/
+
+create tablespace INDICE_2024_01
+datafile '/u01/app/oracle/oradata/CDB1/INDICE_2024_1.dbf'
+size 1G
+ autoextend on next 500M
+/
