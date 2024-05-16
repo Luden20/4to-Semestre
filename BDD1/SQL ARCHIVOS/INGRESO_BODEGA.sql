@@ -1,0 +1,21 @@
+-- Nombres en italiano para los registros de la tabla BODEGA
+INSERT INTO BODEGA VALUES ('BOD001', 'S_001', 'Giovanni', 'Bodega de la Sucursal S_001');
+INSERT INTO BODEGA VALUES ('BOD002', 'S_002', 'Luca', 'Bodega de la Sucursal S_002');
+INSERT INTO BODEGA VALUES ('BOD003', 'S_003', 'Giulia', 'Bodega de la Sucursal S_003');
+INSERT INTO BODEGA VALUES ('BOD004', 'S_004', 'Marco', 'Bodega de la Sucursal S_004');
+INSERT INTO BODEGA VALUES ('BOD005', 'S_005', 'Francesca', 'Bodega de la Sucursal S_005');
+INSERT INTO BODEGA VALUES ('BOD006', 'S_006', 'Matteo', 'Bodega de la Sucursal S_006');
+INSERT INTO BODEGA VALUES ('BOD007', 'S_007', 'Alessia', 'Bodega de la Sucursal S_007');
+INSERT INTO BODEGA VALUES ('BOD008', 'S_008', 'Giorgio', 'Bodega de la Sucursal S_008');
+INSERT INTO BODEGA VALUES ('BOD009', 'S_009', 'Chiara', 'Bodega de la Sucursal S_009');
+INSERT INTO BODEGA VALUES ('BOD010', 'S_010', 'Lorenzo', 'Bodega de la Sucursal S_010');
+INSERT INTO BODEGA VALUES ('BOD011', 'S_011', 'Simona', 'Bodega de la Sucursal S_011');
+INSERT INTO BODEGA VALUES ('BOD012', 'S_012', 'Gabriele', 'Bodega de la Sucursal S_012');
+INSERT INTO BODEGA VALUES ('BOD013', 'S_013', 'Alessandro', 'Bodega de la Sucursal S_013');
+INSERT INTO BODEGA VALUES ('BOD014', 'S_014', 'Elisa', 'Bodega de la Sucursal S_014');
+INSERT INTO BODEGA VALUES ('BOD015', 'S_015', 'Davide', 'Bodega de la Sucursal S_015');
+INSERT INTO BODEGA VALUES ('BOD016', 'S_016', 'Valentina', 'Bodega de la Sucursal S_016');
+INSERT INTO BODEGA VALUES ('BOD017', 'S_017', 'Roberto', 'Bodega de la Sucursal S_017');
+INSERT INTO BODEGA VALUES ('BOD018', 'S_018', 'Silvia', 'Bodega de la Sucursal S_018');
+INSERT INTO BODEGA VALUES ('BOD019', 'S_019', 'Martina', 'Bodega de la Sucursal S_019');
+INSERT INTO BODEGA VALUES ('BOD020', 'S_020', 'Riccardo', 'Bodega de la Sucursal S_020');

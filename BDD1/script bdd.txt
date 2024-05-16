@@ -1,0 +1,4442 @@
+-- Type package declaration
+create or replace package PDTypes  
+as
+    TYPE ref_cursor IS REF CURSOR;
+end;
+/
+
+-- Integrity package declaration
+create or replace package IntegrityPackage AS
+ procedure InitNestLevel;
+ function GetNestLevel return number;
+ procedure NextNestLevel;
+ procedure PreviousNestLevel;
+ end IntegrityPackage;
+/
+
+-- Integrity package definition
+create or replace package body IntegrityPackage AS
+ NestLevel number;
+
+-- Procedure to initialize the trigger nest level
+ procedure InitNestLevel is
+ begin
+ NestLevel := 0;
+ end;
+
+
+-- Function to return the trigger nest level
+ function GetNestLevel return number is
+ begin
+ if NestLevel is null then
+     NestLevel := 0;
+ end if;
+ return(NestLevel);
+ end;
+
+-- Procedure to increase the trigger nest level
+ procedure NextNestLevel is
+ begin
+ if NestLevel is null then
+     NestLevel := 0;
+ end if;
+ NestLevel := NestLevel + 1;
+ end;
+
+-- Procedure to decrease the trigger nest level
+ procedure PreviousNestLevel is
+ begin
+ NestLevel := NestLevel - 1;
+ end;
+
+ end IntegrityPackage;
+/
+
+
+drop trigger TDB_BODEGA
+/
+
+drop trigger TIB_BODEGA
+/
+
+drop trigger TUB_BODEGA
+/
+
+drop trigger TDB_CATEGORIA
+/
+
+drop trigger TUB_CATEGORIA
+/
+
+drop trigger TDB_CIUDAD
+/
+
+drop trigger TIB_CIUDAD
+/
+
+drop trigger TUB_CIUDAD
+/
+
+drop trigger TDB_CLIENTE
+/
+
+drop trigger TIB_CLIENTE
+/
+
+drop trigger TUB_CLIENTE
+/
+
+drop trigger TIB_DETALLE_FACTURA
+/
+
+drop trigger TUB_DETALLE_FACTURA
+/
+
+drop trigger TIB_DETALLE_ORD_COMP
+/
+
+drop trigger TUB_DETALLE_ORD_COMP
+/
+
+drop trigger TDB_FACTURA
+/
+
+drop trigger TIB_FACTURA
+/
+
+drop trigger TUB_FACTURA
+/
+
+drop trigger TDB_FORMA_PAGO
+/
+
+drop trigger TUB_FORMA_PAGO
+/
+
+drop trigger TIB_KARDEX
+/
+
+drop trigger TUB_KARDEX
+/
+
+drop trigger TDB_ORDEN_COMPRA
+/
+
+drop trigger TIB_ORDEN_COMPRA
+/
+
+drop trigger TUB_ORDEN_COMPRA
+/
+
+drop trigger TIB_PAGO_FACTURA
+/
+
+drop trigger TUB_PAGO_FACTURA
+/
+
+drop trigger TDB_PRODUCTO
+/
+
+drop trigger TIB_PRODUCTO
+/
+
+drop trigger TUB_PRODUCTO
+/
+
+drop trigger TIB_PRODUCTO_BODEGA
+/
+
+drop trigger TUB_PRODUCTO_BODEGA
+/
+
+drop trigger TIB_PRODUCTO_PROVEEDOR
+/
+
+drop trigger TUB_PRODUCTO_PROVEEDOR
+/
+
+drop trigger TDB_PROVEEDOR
+/
+
+drop trigger TUB_PROVEEDOR
+/
+
+drop trigger TDB_PROVINCIA
+/
+
+drop trigger TUB_PROVINCIA
+/
+
+drop trigger TDB_SUCURSAL
+/
+
+drop trigger TIB_SUCURSAL
+/
+
+drop trigger TUB_SUCURSAL
+/
+
+drop trigger TDB_TRANSACCION
+/
+
+drop trigger TUB_TRANSACCION
+/
+
+drop trigger TDB_UNDAD_MEDIDA
+/
+
+drop trigger TUB_UNDAD_MEDIDA
+/
+
+drop trigger TIB_UNIDAD_ALTERNATIVA
+/
+
+drop trigger TUB_UNIDAD_ALTERNATIVA
+/
+
+drop trigger TIB_VENDEDOR
+/
+
+drop trigger TUB_VENDEDOR
+/
+
+drop index SUCURSAL_TIENE_BODEGA_FK
+/
+
+drop table BODEGA cascade constraints
+/
+
+drop table CATEGORIA cascade constraints
+/
+
+drop index PROVINCIA_TIENE_CIUDAD_FK
+/
+
+drop table CIUDAD cascade constraints
+/
+
+drop index CIUDAD_ESTA_CLIENTE_FK
+/
+
+drop table CLIENTE cascade constraints
+/
+
+drop index VENDEDOR_TIENE_COMISION_FK
+/
+
+drop table COMISION cascade constraints
+/
+
+drop index PRODUCTO_ESTA_DETALLE_FAC_FK
+/
+
+drop index FACTURA_ESTA_DET_FAC_FK
+/
+
+drop table DETALLE_FACTURA cascade constraints
+/
+
+drop index PROD_ESTA_DET_O_C_FK
+/
+
+drop index ORD_COM_ESTA_D_O_C_FK
+/
+
+drop table DETALLE_ORD_COMP cascade constraints
+/
+
+drop table EMPRESA cascade constraints
+/
+
+drop index VENDEDOR_ESTA_FACTURA_FK
+/
+
+drop index CLIENTE_TIENE_FACTURA_FK
+/
+
+drop index TRANSACCION_TIENE_FAC_FK
+/
+
+drop index SUCURSAL_GENERA_FACTURA_FK
+/
+
+drop table FACTURA cascade constraints
+/
+
+drop table FORMA_PAGO cascade constraints
+/
+
+drop index BODEGA_ESTA_KARDEX_FK
+/
+
+drop index PRODUCTO_ESTA_KARDEX_FK
+/
+
+drop index TRANSAC_ESTA_KARDEX_FK
+/
+
+drop table KARDEX cascade constraints
+/
+
+drop index PROV_ESTA_ORDEN_COMPRA_FK
+/
+
+drop index BODEGA_GENERA_ORD_COM_FK
+/
+
+drop table ORDEN_COMPRA cascade constraints
+/
+
+drop index FACTURA_TIENE_PAGO_FAC_FK
+/
+
+drop index FORM_PAGO_ESTA_PAGO_FAC_FK
+/
+
+drop table PAGO_FACTURA cascade constraints
+/
+
+drop index CATEGORIA_ESTA_PRODUCTO_FK
+/
+
+drop table PRODUCTO cascade constraints
+/
+
+drop index BODEGA_ESTA_PROD_BODEGA_FK
+/
+
+drop index PRODUCTO_ESTA_PROD_BOD_FK
+/
+
+drop table PRODUCTO_BODEGA cascade constraints
+/
+
+drop index PRODUCTO_TIENE_PROD_PROV_FK
+/
+
+drop index PROVEE_TIENE_PROD_PROV_FK
+/
+
+drop table PRODUCTO_PROVEEDOR cascade constraints
+/
+
+drop table PROVEEDOR cascade constraints
+/
+
+drop table PROVINCIA cascade constraints
+/
+
+drop index CIUDAD_TIENE_SUCURSAL_FK
+/
+
+drop table SUCURSAL cascade constraints
+/
+
+drop table TRANSACCION cascade constraints
+/
+
+drop table UNDAD_MEDIDA cascade constraints
+/
+
+drop index UNI_MED_ESTA_UNI_ALT_FK
+/
+
+drop index PROD_ESTA_UNID_ALTER_FK
+/
+
+drop table UNIDAD_ALTERNATIVA cascade constraints
+/
+
+drop index SUCURSAL_TIENE_VENDEDOR_FK
+/
+
+drop table VENDEDOR cascade constraints
+/
+
+/*==============================================================*/
+/* Table: BODEGA                                                */
+/*==============================================================*/
+create table BODEGA (
+   BOD_CODIGO__         VARCHAR2(5)           not null,
+   SUC_CODIGO__         VARCHAR2(5)           not null,
+   BOD_RESPONSABLE      VARCHAR2(43),
+   BOD_DESCRIPCION      VARCHAR2(60),
+   constraint PK_BODEGA primary key (BOD_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table BODEGA is
+'Tabla que contiene información sobre la bodega de la sucursal de una empresa.
+'
+/
+
+comment on column BODEGA.BOD_CODIGO__ is
+'Es el código de la bodega.
+'
+/
+
+comment on column BODEGA.SUC_CODIGO__ is
+'Es el código de la sucursal.
+'
+/
+
+comment on column BODEGA.BOD_RESPONSABLE is
+'Es el nombre del responsable de la bodega.
+'
+/
+
+comment on column BODEGA.BOD_DESCRIPCION is
+'Es la descripción de la bodega.
+'
+/
+
+/*==============================================================*/
+/* Index: SUCURSAL_TIENE_BODEGA_FK                              */
+/*==============================================================*/
+create index SUCURSAL_TIENE_BODEGA_FK on BODEGA (
+   SUC_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: CATEGORIA                                             */
+/*==============================================================*/
+create table CATEGORIA (
+   CAT_CODIGO__         VARCHAR2(5)           not null,
+   CAT_DESCRIPCION      VARCHAR2(60),
+   constraint PK_CATEGORIA primary key (CAT_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table CATEGORIA is
+'Tabla que contiene información de la categoría de un producto.
+'
+/
+
+comment on column CATEGORIA.CAT_CODIGO__ is
+'Es el códgio de la categoría del producto.
+'
+/
+
+comment on column CATEGORIA.CAT_DESCRIPCION is
+'Es la descripción de la categoría del producto.
+'
+/
+
+/*==============================================================*/
+/* Table: CIUDAD                                                */
+/*==============================================================*/
+create table CIUDAD (
+   CIU_CODIGO__         VARCHAR2(5)           not null,
+   POV_CODIGO__         VARCHAR2(2)           not null,
+   CIU_NOMBRE           VARCHAR2(43),
+   constraint PK_CIUDAD primary key (CIU_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table CIUDAD is
+'Tabla que contiene infomración de la ciudad.
+'
+/
+
+comment on column CIUDAD.CIU_CODIGO__ is
+'Es el códgio de la ciudad.
+'
+/
+
+comment on column CIUDAD.POV_CODIGO__ is
+'Es el códgio de la provincia.
+'
+/
+
+comment on column CIUDAD.CIU_NOMBRE is
+'Es el nombre de la ciudad.
+'
+/
+
+/*==============================================================*/
+/* Index: PROVINCIA_TIENE_CIUDAD_FK                             */
+/*==============================================================*/
+create index PROVINCIA_TIENE_CIUDAD_FK on CIUDAD (
+   POV_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: CLIENTE                                               */
+/*==============================================================*/
+create table CLIENTE (
+   CLI_CEDULA_RUC__     VARCHAR2(13)          not null,
+   CIU_CODIGO__         VARCHAR2(5)           not null,
+   CLI_NOMBRE           VARCHAR2(43),
+   CLI_APELLIDO         VARCHAR2(43),
+   CLI_CORREO           VARCHAR2(50),
+   CLI_TELEFONO         VARCHAR2(13),
+   CLI_DIRECCION        VARCHAR2(60),
+   CLI_SECTOR           VARCHAR2(60),
+   constraint PK_CLIENTE primary key (CLI_CEDULA_RUC__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table CLIENTE is
+'Tabla que contiene información del cliente.
+'
+/
+
+comment on column CLIENTE.CLI_CEDULA_RUC__ is
+'Es el número de cédula o el código único de contribuyente del cliente.
+'
+/
+
+comment on column CLIENTE.CIU_CODIGO__ is
+'Es el códgio de la ciudad.
+'
+/
+
+comment on column CLIENTE.CLI_NOMBRE is
+'Es el nombre del cliente.
+'
+/
+
+comment on column CLIENTE.CLI_APELLIDO is
+'Es el apellido del cliente.
+'
+/
+
+comment on column CLIENTE.CLI_CORREO is
+'Es el correo del cliente.
+'
+/
+
+comment on column CLIENTE.CLI_TELEFONO is
+'Es el teléfono del cliente.
+'
+/
+
+comment on column CLIENTE.CLI_DIRECCION is
+'Es la dirección del cliente.
+'
+/
+
+comment on column CLIENTE.CLI_SECTOR is
+'Es el sector donde vive el cliente.
+
+'
+/
+
+/*==============================================================*/
+/* Index: CIUDAD_ESTA_CLIENTE_FK                                */
+/*==============================================================*/
+create index CIUDAD_ESTA_CLIENTE_FK on CLIENTE (
+   CIU_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: COMISION                                              */
+/*==============================================================*/
+create table COMISION (
+   COM_NUMERO__         VARCHAR2(5)           not null,
+   VEN_CEDULA__         VARCHAR2(13)        
+      constraint CKC_VEN_CEDULA___COMISION check (VEN_CEDULA__ is null or (VEN_CEDULA__ = upper(VEN_CEDULA__))),
+   COM_FECHA_PAG        DATE,
+   COM_FECHA_INI        DATE,
+   COM_FECHA_FIN        DATE,
+   COM_CANTIDAD         NUMBER(4),
+   COM_FACT_PAGADAS     NUMBER(4),
+   constraint PK_COMISION primary key (COM_NUMERO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table COMISION is
+'Tabla que contiene información de la comision a pagar.
+'
+/
+
+comment on column COMISION.COM_NUMERO__ is
+'Es el número de la comisión.
+'
+/
+
+comment on column COMISION.VEN_CEDULA__ is
+'Es la cédula del vendedor.'
+/
+
+comment on column COMISION.COM_FECHA_PAG is
+'Es la fecha de pago de la comisión.
+'
+/
+
+comment on column COMISION.COM_FECHA_INI is
+'Es la fecha de inicio para la comisión.
+'
+/
+
+comment on column COMISION.COM_FECHA_FIN is
+'Es la fecha de fin para la comisión.
+'
+/
+
+comment on column COMISION.COM_CANTIDAD is
+'Es la cantidad de comisiones.
+'
+/
+
+comment on column COMISION.COM_FACT_PAGADAS is
+'Es el numero de facturas de comisiones pagadas.
+'
+/
+
+/*==============================================================*/
+/* Index: VENDEDOR_TIENE_COMISION_FK                            */
+/*==============================================================*/
+create index VENDEDOR_TIENE_COMISION_FK on COMISION (
+   VEN_CEDULA__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: DETALLE_FACTURA                                       */
+/*==============================================================*/
+create table DETALLE_FACTURA (
+   FAC_NUMERO__         NUMBER(20)            not null,
+   PRD_CODIGO__         VARCHAR2(5)           not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table DETALLE_FACTURA is
+'Tabla INTERSECCCIÓN que contiene el detalle de productos de una factura.'
+/
+
+comment on column DETALLE_FACTURA.FAC_NUMERO__ is
+'Es el número de la factura.
+'
+/
+
+comment on column DETALLE_FACTURA.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+/*==============================================================*/
+/* Index: FACTURA_ESTA_DET_FAC_FK                               */
+/*==============================================================*/
+create index FACTURA_ESTA_DET_FAC_FK on DETALLE_FACTURA (
+   FAC_NUMERO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_ESTA_DETALLE_FAC_FK                          */
+/*==============================================================*/
+create index PRODUCTO_ESTA_DETALLE_FAC_FK on DETALLE_FACTURA (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: DETALLE_ORD_COMP                                      */
+/*==============================================================*/
+create table DETALLE_ORD_COMP (
+   ORD_NUMERO__         NUMBER(8)             not null,
+   PRD_CODIGO__         VARCHAR2(5)           not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table DETALLE_ORD_COMP is
+'Tabla INTERSECCIÓN que contiene el detalle de los productos de una orden de compra.'
+/
+
+comment on column DETALLE_ORD_COMP.ORD_NUMERO__ is
+'Es el número de orden de compra.
+'
+/
+
+comment on column DETALLE_ORD_COMP.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+/*==============================================================*/
+/* Index: ORD_COM_ESTA_D_O_C_FK                                 */
+/*==============================================================*/
+create index ORD_COM_ESTA_D_O_C_FK on DETALLE_ORD_COMP (
+   ORD_NUMERO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: PROD_ESTA_DET_O_C_FK                                  */
+/*==============================================================*/
+create index PROD_ESTA_DET_O_C_FK on DETALLE_ORD_COMP (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: EMPRESA                                               */
+/*==============================================================*/
+create table EMPRESA (
+   EMP_CEDULA_RUC__     VARCHAR2(13)          not null
+      constraint CKC_EMP_CEDULA_RUC___EMPRESA check (EMP_CEDULA_RUC__ = upper(EMP_CEDULA_RUC__)),
+   EMP_NOMBRE           VARCHAR2(43),
+   EMP_DIRECCION        VARCHAR2(60),
+   EMP_TELEFONO         VARCHAR2(13),
+   EMP_CORREO           VARCHAR2(50),
+   EMP_IVA              NUMBER(2,2),
+   EMP_NUM_FACTURA      NUMBER(12),
+   EMP_CODIGO_SRI       VARCHAR2(8),
+   EMP_REPRESENTANTE_L  VARCHAR2(60),
+   EMP_PRC_COMISION_BANCO NUMBER(2,2),
+   EMP_CODIGO_BARRAS    VARCHAR2(8),
+   constraint PK_EMPRESA primary key (EMP_CEDULA_RUC__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table EMPRESA is
+'Tabla que contiene información de la empresa.
+'
+/
+
+comment on column EMPRESA.EMP_CEDULA_RUC__ is
+'El la cédula o código único de contribuyente de la empresa
+'
+/
+
+comment on column EMPRESA.EMP_NOMBRE is
+'Es el nombre de la empresa'
+/
+
+comment on column EMPRESA.EMP_DIRECCION is
+'Es la dirección donde se encuentra ubicada la empresa
+'
+/
+
+comment on column EMPRESA.EMP_TELEFONO is
+'Es el teléfono de contacto de la empresa.
+'
+/
+
+comment on column EMPRESA.EMP_CORREO is
+'Es el correo de contacto de la empresa.
+'
+/
+
+comment on column EMPRESA.EMP_IVA is
+'Es el porcentaje de IVA que maneja la empresa.
+'
+/
+
+comment on column EMPRESA.EMP_NUM_FACTURA is
+'Es el número predeterminado desde donde comienzan las facturaciones.
+En la aplicación debe sumar +1'
+/
+
+comment on column EMPRESA.EMP_CODIGO_SRI is
+'Es el código que el SRI le da a la empresa.
+'
+/
+
+comment on column EMPRESA.EMP_REPRESENTANTE_L is
+'Es el nombre del representante legal de la empresa.
+'
+/
+
+comment on column EMPRESA.EMP_PRC_COMISION_BANCO is
+'Es el porcentaje de comisión que maneja la empresa con el banco. 
+'
+/
+
+comment on column EMPRESA.EMP_CODIGO_BARRAS is
+'Es el código de la empresa.
+'
+/
+
+/*==============================================================*/
+/* Table: FACTURA                                               */
+/*==============================================================*/
+create table FACTURA (
+   FAC_NUMERO__         NUMBER(20)            not null,
+   SUC_CODIGO__         VARCHAR2(5)           not null,
+   TRN_CODIGO__         VARCHAR2(5)           not null,
+   CLI_CEDULA_RUC__     VARCHAR2(13)          not null,
+   VEN_CEDULA__         VARCHAR2(13)        
+      constraint CKC_VEN_CEDULA___FACTURA check (VEN_CEDULA__ is null or (VEN_CEDULA__ = upper(VEN_CEDULA__))),
+   FAC_FECHA            DATE,
+   constraint PK_FACTURA primary key (FAC_NUMERO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table FACTURA is
+'Tabla que contiene infomación de la factura.
+'
+/
+
+comment on column FACTURA.FAC_NUMERO__ is
+'Es el número de la factura.
+'
+/
+
+comment on column FACTURA.SUC_CODIGO__ is
+'Es el código de la sucursal.
+'
+/
+
+comment on column FACTURA.TRN_CODIGO__ is
+'El código de la transacción.
+'
+/
+
+comment on column FACTURA.CLI_CEDULA_RUC__ is
+'Es el número de cédula o el código único de contribuyente del cliente.
+'
+/
+
+comment on column FACTURA.VEN_CEDULA__ is
+'Es la cédula del vendedor.'
+/
+
+comment on column FACTURA.FAC_FECHA is
+'Es la fecha en la que se emite la factura.
+'
+/
+
+/*==============================================================*/
+/* Index: SUCURSAL_GENERA_FACTURA_FK                            */
+/*==============================================================*/
+create index SUCURSAL_GENERA_FACTURA_FK on FACTURA (
+   SUC_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: TRANSACCION_TIENE_FAC_FK                              */
+/*==============================================================*/
+create index TRANSACCION_TIENE_FAC_FK on FACTURA (
+   TRN_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: CLIENTE_TIENE_FACTURA_FK                              */
+/*==============================================================*/
+create index CLIENTE_TIENE_FACTURA_FK on FACTURA (
+   CLI_CEDULA_RUC__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: VENDEDOR_ESTA_FACTURA_FK                              */
+/*==============================================================*/
+create index VENDEDOR_ESTA_FACTURA_FK on FACTURA (
+   VEN_CEDULA__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: FORMA_PAGO                                            */
+/*==============================================================*/
+create table FORMA_PAGO (
+   FRP_CODIGO           VARCHAR2(5)           not null,
+   FRP_DESCRIPCION      VARCHAR2(60),
+   constraint PK_FORMA_PAGO primary key (FRP_CODIGO)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table FORMA_PAGO is
+'Tabla que contiene infomración de la forma de pago.
+'
+/
+
+comment on column FORMA_PAGO.FRP_CODIGO is
+'Clave primaria de la tabla'
+/
+
+comment on column FORMA_PAGO.FRP_DESCRIPCION is
+'Es la descripción de la forma de pago.
+'
+/
+
+/*==============================================================*/
+/* Table: KARDEX                                                */
+/*==============================================================*/
+create table KARDEX (
+   TRN_CODIGO__         VARCHAR2(5)           not null,
+   PRD_CODIGO__         VARCHAR2(5)           not null,
+   BOD_CODIGO__         VARCHAR2(5)           not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table KARDEX is
+'Tabla INTERSECCIÓN que contiene los movimientos de los productos en la bodega.'
+/
+
+comment on column KARDEX.TRN_CODIGO__ is
+'El código de la transacción.
+'
+/
+
+comment on column KARDEX.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+comment on column KARDEX.BOD_CODIGO__ is
+'Es el código de la bodega.
+'
+/
+
+/*==============================================================*/
+/* Index: TRANSAC_ESTA_KARDEX_FK                                */
+/*==============================================================*/
+create index TRANSAC_ESTA_KARDEX_FK on KARDEX (
+   TRN_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_ESTA_KARDEX_FK                               */
+/*==============================================================*/
+create index PRODUCTO_ESTA_KARDEX_FK on KARDEX (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: BODEGA_ESTA_KARDEX_FK                                 */
+/*==============================================================*/
+create index BODEGA_ESTA_KARDEX_FK on KARDEX (
+   BOD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: ORDEN_COMPRA                                          */
+/*==============================================================*/
+create table ORDEN_COMPRA (
+   ORD_NUMERO__         NUMBER(8)             not null,
+   BOD_CODIGO__         VARCHAR2(5)           not null,
+   PRV_CODIGO__         VARCHAR2(13)          not null,
+   ORD_FECHA__          DATE,
+   ORD_FECHA_LIM__      DATE,
+   ORD_ELABORO          VARCHAR2(43),
+   ORD_TOTAL            NUMBER(5,2),         
+   constraint CKC_ORD_TOTAL_ORDEN_CO check (ORD_TOTAL is null or ORD_TOTAL >= 0),
+   constraint PK_ORDEN_COMPRA primary key (ORD_NUMERO__)
+)
+   tablespace DATOS_2024_1;
+
+/
+
+comment on table ORDEN_COMPRA is
+'Tabla que contiene información de la orden de compra.
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_NUMERO__ is
+'Es el número de orden de compra.
+'
+/
+
+comment on column ORDEN_COMPRA.BOD_CODIGO__ is
+'Es el código de la bodega.
+'
+/
+
+comment on column ORDEN_COMPRA.PRV_CODIGO__ is
+'Es el código del proveedor.
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_FECHA__ is
+'Es la fecha de la orden de compra.
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_FECHA_LIM__ is
+'Es la fecha límite en la que se paga la orden de compra.
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_ELABORO is
+'Es la persona quien elaboró la orden de pago.
+'
+/
+
+comment on column ORDEN_COMPRA.ORD_TOTAL is
+'Es el total de la orden de compra.
+'
+/
+
+/*==============================================================*/
+/* Index: BODEGA_GENERA_ORD_COM_FK                              */
+/*==============================================================*/
+create index BODEGA_GENERA_ORD_COM_FK on ORDEN_COMPRA (
+   BOD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: PROV_ESTA_ORDEN_COMPRA_FK                             */
+/*==============================================================*/
+create index PROV_ESTA_ORDEN_COMPRA_FK on ORDEN_COMPRA (
+   PRV_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: PAGO_FACTURA                                          */
+/*==============================================================*/
+create table PAGO_FACTURA (
+   FRP_CODIGO           VARCHAR2(5)           not null,
+   FAC_NUMERO__         NUMBER(20)            not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table PAGO_FACTURA is
+'Tabla INTERSECCIÓN que contiene las formas de pago de una factura.'
+/
+
+comment on column PAGO_FACTURA.FRP_CODIGO is
+'Clave primaria de la tabla'
+/
+
+comment on column PAGO_FACTURA.FAC_NUMERO__ is
+'Es el número de la factura.
+'
+/
+
+/*==============================================================*/
+/* Index: FORM_PAGO_ESTA_PAGO_FAC_FK                            */
+/*==============================================================*/
+create index FORM_PAGO_ESTA_PAGO_FAC_FK on PAGO_FACTURA (
+   FRP_CODIGO ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: FACTURA_TIENE_PAGO_FAC_FK                             */
+/*==============================================================*/
+create index FACTURA_TIENE_PAGO_FAC_FK on PAGO_FACTURA (
+   FAC_NUMERO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: PRODUCTO                                              */
+/*==============================================================*/
+create table PRODUCTO (
+   PRD_CODIGO__         VARCHAR2(5)           not null,
+   CAT_CODIGO__         VARCHAR2(5)           not null,
+   PRD_DESCRIPCION      VARCHAR2(60),
+   PRD_PRECIO           NUMBER(5),
+   PRD_PRECIO_ANT       NUMBER(5),
+   PRD_EXISTENCIA       NUMBER(10),
+   PRD_CODIGO_BARRA     VARCHAR2(8),
+   constraint PK_PRODUCTO primary key (PRD_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table PRODUCTO is
+'Tabla que contiene infomración del producto de una empresa.
+'
+/
+
+comment on column PRODUCTO.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+comment on column PRODUCTO.CAT_CODIGO__ is
+'Es el códgio de la categoría del producto.
+'
+/
+
+comment on column PRODUCTO.PRD_DESCRIPCION is
+'Es la descripción del producto.
+'
+/
+
+comment on column PRODUCTO.PRD_PRECIO is
+'Es el precio actual del producto.
+'
+/
+
+comment on column PRODUCTO.PRD_PRECIO_ANT is
+'Es el precio anterior del producto.
+'
+/
+
+comment on column PRODUCTO.PRD_EXISTENCIA is
+'Es el stock del producto.
+'
+/
+
+comment on column PRODUCTO.PRD_CODIGO_BARRA is
+'Es el código del producto.'
+/
+
+/*==============================================================*/
+/* Index: CATEGORIA_ESTA_PRODUCTO_FK                            */
+/*==============================================================*/
+create index CATEGORIA_ESTA_PRODUCTO_FK on PRODUCTO (
+   CAT_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: PRODUCTO_BODEGA                                       */
+/*==============================================================*/
+create table PRODUCTO_BODEGA (
+   PRD_CODIGO__         VARCHAR2(5)           not null,
+   BOD_CODIGO__         VARCHAR2(5)           not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table PRODUCTO_BODEGA is
+'Tabla INTERSECCIÓN que contiene los productos de la bodega.'
+/
+
+comment on column PRODUCTO_BODEGA.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+comment on column PRODUCTO_BODEGA.BOD_CODIGO__ is
+'Es el código de la bodega.
+'
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_ESTA_PROD_BOD_FK                             */
+/*==============================================================*/
+create index PRODUCTO_ESTA_PROD_BOD_FK on PRODUCTO_BODEGA (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: BODEGA_ESTA_PROD_BODEGA_FK                            */
+/*==============================================================*/
+create index BODEGA_ESTA_PROD_BODEGA_FK on PRODUCTO_BODEGA (
+   BOD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: PRODUCTO_PROVEEDOR                                    */
+/*==============================================================*/
+create table PRODUCTO_PROVEEDOR (
+   PRV_CODIGO__         VARCHAR2(13)          not null,
+   PRD_CODIGO__         VARCHAR2(5)           not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table PRODUCTO_PROVEEDOR is
+'Tabla INTERSECCIÓN que contiene los productos que entrega el proveedor.'
+/
+
+comment on column PRODUCTO_PROVEEDOR.PRV_CODIGO__ is
+'Es el código del proveedor.
+'
+/
+
+comment on column PRODUCTO_PROVEEDOR.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+/*==============================================================*/
+/* Index: PROVEE_TIENE_PROD_PROV_FK                             */
+/*==============================================================*/
+create index PROVEE_TIENE_PROD_PROV_FK on PRODUCTO_PROVEEDOR (
+   PRV_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: PRODUCTO_TIENE_PROD_PROV_FK                           */
+/*==============================================================*/
+create index PRODUCTO_TIENE_PROD_PROV_FK on PRODUCTO_PROVEEDOR (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: PROVEEDOR                                             */
+/*==============================================================*/
+create table PROVEEDOR (
+   PRV_CODIGO__         VARCHAR2(13)          not null,
+   PRV_DESCRIPCION      VARCHAR2(60),
+   PRV_TELEFONO         VARCHAR2(13),
+   PRV_CONTACTO         VARCHAR2(60),
+   PRV_DIRECCION        VARCHAR2(60),
+   PRV_CORREO           VARCHAR2(60),
+   constraint PK_PROVEEDOR primary key (PRV_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table PROVEEDOR is
+'Tabla que contiene información del proveedor.
+'
+/
+
+comment on column PROVEEDOR.PRV_CODIGO__ is
+'Es el código del proveedor.
+'
+/
+
+comment on column PROVEEDOR.PRV_DESCRIPCION is
+'Es el la descripción del proveedor.
+'
+/
+
+comment on column PROVEEDOR.PRV_TELEFONO is
+'Es el teléfono de contacto del proveedor.
+'
+/
+
+comment on column PROVEEDOR.PRV_CONTACTO is
+'Es el contacto del proveedor.
+'
+/
+
+comment on column PROVEEDOR.PRV_DIRECCION is
+'Es la dirección del proveedor.
+'
+/
+
+comment on column PROVEEDOR.PRV_CORREO is
+'Es el correo del proveedor.
+'
+/
+
+/*==============================================================*/
+/* Table: PROVINCIA                                             */
+/*==============================================================*/
+create table PROVINCIA (
+   POV_CODIGO__         VARCHAR2(2)           not null,
+   POV_NOMBRE           VARCHAR2(43),
+   constraint PK_PROVINCIA primary key (POV_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table PROVINCIA is
+'Tabla que contiene información de la provincia.
+'
+/
+
+comment on column PROVINCIA.POV_CODIGO__ is
+'Es el códgio de la provincia.
+'
+/
+
+comment on column PROVINCIA.POV_NOMBRE is
+'Es el nombre de la provincia.
+'
+/
+
+/*==============================================================*/
+/* Table: SUCURSAL                                              */
+/*==============================================================*/
+create table SUCURSAL (
+   SUC_CODIGO__         VARCHAR2(5)           not null,
+   CIU_CODIGO__         VARCHAR2(5)           not null,
+   constraint PK_SUCURSAL primary key (SUC_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table SUCURSAL is
+'Tabla que contiene información sobre las surcursales de una empresa.
+'
+/
+
+comment on column SUCURSAL.SUC_CODIGO__ is
+'Es el código de la sucursal.
+'
+/
+
+comment on column SUCURSAL.CIU_CODIGO__ is
+'Es el códgio de la ciudad.
+'
+/
+
+/*==============================================================*/
+/* Index: CIUDAD_TIENE_SUCURSAL_FK                              */
+/*==============================================================*/
+create index CIUDAD_TIENE_SUCURSAL_FK on SUCURSAL (
+   CIU_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: TRANSACCION                                           */
+/*==============================================================*/
+create table TRANSACCION (
+   TRN_CODIGO__         VARCHAR2(5)           not null,
+   TRN_DESCRIPCION      VARCHAR2(60),
+   constraint PK_TRANSACCION primary key (TRN_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table TRANSACCION is
+'Tabla que contiene información de la transacción.
+'
+/
+
+comment on column TRANSACCION.TRN_CODIGO__ is
+'El código de la transacción.
+'
+/
+
+comment on column TRANSACCION.TRN_DESCRIPCION is
+'Es la descripción de la transacción.
+'
+/
+
+/*==============================================================*/
+/* Table: UNDAD_MEDIDA                                          */
+/*==============================================================*/
+create table UNDAD_MEDIDA (
+   UNI_CODIGO__         VARCHAR2(5)           not null,
+   UNI_DESCRIPCION      VARCHAR2(60),
+   constraint PK_UNDAD_MEDIDA primary key (UNI_CODIGO__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table UNDAD_MEDIDA is
+'Tabla que conntiene infromación de la unidad de medida de un precio.
+'
+/
+
+comment on column UNDAD_MEDIDA.UNI_CODIGO__ is
+'Es el código de la unidad de medida del producto.
+'
+/
+
+comment on column UNDAD_MEDIDA.UNI_DESCRIPCION is
+'Es la descripción de la unidad de medida del producto.
+'
+/
+
+/*==============================================================*/
+/* Table: UNIDAD_ALTERNATIVA                                    */
+/*==============================================================*/
+create table UNIDAD_ALTERNATIVA (
+   PRD_CODIGO__         VARCHAR2(5)           not null,
+   UNI_CODIGO__         VARCHAR2(5)           not null
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table UNIDAD_ALTERNATIVA is
+'Tabla INTERSECCIÓN que contiene las unidades de medida alternativas de un producto.'
+/
+
+comment on column UNIDAD_ALTERNATIVA.PRD_CODIGO__ is
+'Es el código del producto.
+'
+/
+
+comment on column UNIDAD_ALTERNATIVA.UNI_CODIGO__ is
+'Es el código de la unidad de medida del producto.
+'
+/
+
+/*==============================================================*/
+/* Index: PROD_ESTA_UNID_ALTER_FK                               */
+/*==============================================================*/
+create index PROD_ESTA_UNID_ALTER_FK on UNIDAD_ALTERNATIVA (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Index: UNI_MED_ESTA_UNI_ALT_FK                               */
+/*==============================================================*/
+create index UNI_MED_ESTA_UNI_ALT_FK on UNIDAD_ALTERNATIVA (
+   UNI_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+/*==============================================================*/
+/* Table: VENDEDOR                                              */
+/*==============================================================*/
+create table VENDEDOR (
+   VEN_CEDULA__         VARCHAR2(13)          not null
+      constraint CKC_VEN_CEDULA___VENDEDOR check (VEN_CEDULA__ = upper(VEN_CEDULA__)),
+   SUC_CODIGO__         VARCHAR2(5)           not null,
+   VEN_NOMBRE           VARCHAR2(43),
+   VEN_APELLIDO         VARCHAR2(43),
+   VEN_CORREO           VARCHAR2(50),
+   VEN_TELEFONO         VARCHAR2(13),
+   VEN_P_COMISION       NUMBER(2,2),
+   VEN_CUENTA_BANCO     VARCHAR2(20),
+   constraint PK_VENDEDOR primary key (VEN_CEDULA__)
+)
+   tablespace DATOS_2024_1
+/
+
+comment on table VENDEDOR is
+'Tabla que contiene información del vendedor.
+'
+/
+
+comment on column VENDEDOR.VEN_CEDULA__ is
+'Es la cédula del vendedor.'
+/
+
+comment on column VENDEDOR.SUC_CODIGO__ is
+'Es el código de la sucursal.
+'
+/
+
+comment on column VENDEDOR.VEN_NOMBRE is
+'Es el nombre del vendedor.
+'
+/
+
+comment on column VENDEDOR.VEN_APELLIDO is
+'Es el apellido del vendedor.
+'
+/
+
+comment on column VENDEDOR.VEN_CORREO is
+'Es el correo del vendedor.
+'
+/
+
+comment on column VENDEDOR.VEN_TELEFONO is
+'Es el teléfono del vendedor.
+'
+/
+
+comment on column VENDEDOR.VEN_P_COMISION is
+'Es la comisión del vendedor
+'
+/
+
+comment on column VENDEDOR.VEN_CUENTA_BANCO is
+'Es el número de cuenta del vendedor.
+'
+/
+
+/*==============================================================*/
+/* Index: SUCURSAL_TIENE_VENDEDOR_FK                            */
+/*==============================================================*/
+create index SUCURSAL_TIENE_VENDEDOR_FK on VENDEDOR (
+   SUC_CODIGO__ ASC
+)
+tablespace INDICES_2024_1
+/
+
+
+create trigger TDB_BODEGA before delete
+on BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "PRODUCTO_BODEGA"
+    cursor cfk1_producto_bodega(var_bod_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "ORDEN_COMPRA"
+    cursor cfk2_orden_compra(var_bod_codigo__ varchar) is
+       select 1
+       from   ORDEN_COMPRA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "KARDEX"
+    cursor cfk3_kardex(var_bod_codigo__ varchar) is
+       select 1
+       from   KARDEX
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "BODEGA" if children still exist in "PRODUCTO_BODEGA"
+    open  cfk1_producto_bodega(:old.BOD_CODIGO__);
+    fetch cfk1_producto_bodega into dummy;
+    found := cfk1_producto_bodega%FOUND;
+    close cfk1_producto_bodega;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PRODUCTO_BODEGA". Cannot delete parent "BODEGA".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "BODEGA" if children still exist in "ORDEN_COMPRA"
+    open  cfk2_orden_compra(:old.BOD_CODIGO__);
+    fetch cfk2_orden_compra into dummy;
+    found := cfk2_orden_compra%FOUND;
+    close cfk2_orden_compra;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "ORDEN_COMPRA". Cannot delete parent "BODEGA".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "BODEGA" if children still exist in "KARDEX"
+    open  cfk3_kardex(:old.BOD_CODIGO__);
+    fetch cfk3_kardex into dummy;
+    found := cfk3_kardex%FOUND;
+    close cfk3_kardex;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "KARDEX". Cannot delete parent "BODEGA".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_BODEGA before insert
+on BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "SUCURSAL"
+    cursor cpk1_bodega(var_suc_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+
+begin
+    --  Parent "SUCURSAL" must exist when inserting a child in "BODEGA"
+    if :new.SUC_CODIGO__ is not null then
+       open  cpk1_bodega(:new.SUC_CODIGO__);
+       fetch cpk1_bodega into dummy;
+       found := cpk1_bodega%FOUND;
+       close cpk1_bodega;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "SUCURSAL". Cannot create child in "BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_BODEGA before update
+of BOD_CODIGO__,
+   SUC_CODIGO__
+on BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "SUCURSAL"
+    cursor cpk1_bodega(var_suc_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "PRODUCTO_BODEGA"
+    cursor cfk1_producto_bodega(var_bod_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "ORDEN_COMPRA"
+    cursor cfk2_orden_compra(var_bod_codigo__ varchar) is
+       select 1
+       from   ORDEN_COMPRA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "KARDEX"
+    cursor cfk3_kardex(var_bod_codigo__ varchar) is
+       select 1
+       from   KARDEX
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "SUCURSAL" must exist when updating a child in "BODEGA"
+    if (:new.SUC_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_bodega(:new.SUC_CODIGO__);
+       fetch cpk1_bodega into dummy;
+       found := cpk1_bodega%FOUND;
+       close cpk1_bodega;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "SUCURSAL". Cannot update child in "BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "BODEGA" if children still exist in "PRODUCTO_BODEGA"
+    if (updating('BOD_CODIGO__') and :old.BOD_CODIGO__ != :new.BOD_CODIGO__) then
+       open  cfk1_producto_bodega(:old.BOD_CODIGO__);
+       fetch cfk1_producto_bodega into dummy;
+       found := cfk1_producto_bodega%FOUND;
+       close cfk1_producto_bodega;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PRODUCTO_BODEGA". Cannot modify parent code in "BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "BODEGA" if children still exist in "ORDEN_COMPRA"
+    if (updating('BOD_CODIGO__') and :old.BOD_CODIGO__ != :new.BOD_CODIGO__) then
+       open  cfk2_orden_compra(:old.BOD_CODIGO__);
+       fetch cfk2_orden_compra into dummy;
+       found := cfk2_orden_compra%FOUND;
+       close cfk2_orden_compra;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "ORDEN_COMPRA". Cannot modify parent code in "BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "BODEGA" if children still exist in "KARDEX"
+    if (updating('BOD_CODIGO__') and :old.BOD_CODIGO__ != :new.BOD_CODIGO__) then
+       open  cfk3_kardex(:old.BOD_CODIGO__);
+       fetch cfk3_kardex into dummy;
+       found := cfk3_kardex%FOUND;
+       close cfk3_kardex;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "KARDEX". Cannot modify parent code in "BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_CATEGORIA before delete
+on CATEGORIA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "PRODUCTO"
+    cursor cfk1_producto(var_cat_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  CAT_CODIGO__ = var_cat_codigo__
+        and   var_cat_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "CATEGORIA" if children still exist in "PRODUCTO"
+    open  cfk1_producto(:old.CAT_CODIGO__);
+    fetch cfk1_producto into dummy;
+    found := cfk1_producto%FOUND;
+    close cfk1_producto;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PRODUCTO". Cannot delete parent "CATEGORIA".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_CATEGORIA before update
+of CAT_CODIGO__
+on CATEGORIA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "PRODUCTO"
+    cursor cfk1_producto(var_cat_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  CAT_CODIGO__ = var_cat_codigo__
+        and   var_cat_codigo__ is not null;
+
+begin
+    --  Cannot modify parent code in "CATEGORIA" if children still exist in "PRODUCTO"
+    if (updating('CAT_CODIGO__') and :old.CAT_CODIGO__ != :new.CAT_CODIGO__) then
+       open  cfk1_producto(:old.CAT_CODIGO__);
+       fetch cfk1_producto into dummy;
+       found := cfk1_producto%FOUND;
+       close cfk1_producto;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PRODUCTO". Cannot modify parent code in "CATEGORIA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_CIUDAD before delete
+on CIUDAD for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "SUCURSAL"
+    cursor cfk1_sucursal(var_ciu_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "CLIENTE"
+    cursor cfk2_cliente(var_ciu_codigo__ varchar) is
+       select 1
+       from   CLIENTE
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "CIUDAD" if children still exist in "SUCURSAL"
+    open  cfk1_sucursal(:old.CIU_CODIGO__);
+    fetch cfk1_sucursal into dummy;
+    found := cfk1_sucursal%FOUND;
+    close cfk1_sucursal;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "SUCURSAL". Cannot delete parent "CIUDAD".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "CIUDAD" if children still exist in "CLIENTE"
+    open  cfk2_cliente(:old.CIU_CODIGO__);
+    fetch cfk2_cliente into dummy;
+    found := cfk2_cliente%FOUND;
+    close cfk2_cliente;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "CLIENTE". Cannot delete parent "CIUDAD".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_CIUDAD before insert
+on CIUDAD for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "PROVINCIA"
+    cursor cpk1_ciudad(var_pov_codigo__ varchar) is
+       select 1
+       from   PROVINCIA
+       where  POV_CODIGO__ = var_pov_codigo__
+        and   var_pov_codigo__ is not null;
+
+begin
+    --  Parent "PROVINCIA" must exist when inserting a child in "CIUDAD"
+    if :new.POV_CODIGO__ is not null then
+       open  cpk1_ciudad(:new.POV_CODIGO__);
+       fetch cpk1_ciudad into dummy;
+       found := cpk1_ciudad%FOUND;
+       close cpk1_ciudad;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PROVINCIA". Cannot create child in "CIUDAD".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_CIUDAD before update
+of CIU_CODIGO__,
+   POV_CODIGO__
+on CIUDAD for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PROVINCIA"
+    cursor cpk1_ciudad(var_pov_codigo__ varchar) is
+       select 1
+       from   PROVINCIA
+       where  POV_CODIGO__ = var_pov_codigo__
+        and   var_pov_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "SUCURSAL"
+    cursor cfk1_sucursal(var_ciu_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "CLIENTE"
+    cursor cfk2_cliente(var_ciu_codigo__ varchar) is
+       select 1
+       from   CLIENTE
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "PROVINCIA" must exist when updating a child in "CIUDAD"
+    if (:new.POV_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_ciudad(:new.POV_CODIGO__);
+       fetch cpk1_ciudad into dummy;
+       found := cpk1_ciudad%FOUND;
+       close cpk1_ciudad;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PROVINCIA". Cannot update child in "CIUDAD".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "CIUDAD" if children still exist in "SUCURSAL"
+    if (updating('CIU_CODIGO__') and :old.CIU_CODIGO__ != :new.CIU_CODIGO__) then
+       open  cfk1_sucursal(:old.CIU_CODIGO__);
+       fetch cfk1_sucursal into dummy;
+       found := cfk1_sucursal%FOUND;
+       close cfk1_sucursal;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "SUCURSAL". Cannot modify parent code in "CIUDAD".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "CIUDAD" if children still exist in "CLIENTE"
+    if (updating('CIU_CODIGO__') and :old.CIU_CODIGO__ != :new.CIU_CODIGO__) then
+       open  cfk2_cliente(:old.CIU_CODIGO__);
+       fetch cfk2_cliente into dummy;
+       found := cfk2_cliente%FOUND;
+       close cfk2_cliente;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "CLIENTE". Cannot modify parent code in "CIUDAD".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_CLIENTE before delete
+on CLIENTE for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "FACTURA"
+    cursor cfk1_factura(var_cli_cedula_ruc__ varchar) is
+       select 1
+       from   FACTURA
+       where  CLI_CEDULA_RUC__ = var_cli_cedula_ruc__
+        and   var_cli_cedula_ruc__ is not null;
+
+begin
+    --  Cannot delete parent "CLIENTE" if children still exist in "FACTURA"
+    open  cfk1_factura(:old.CLI_CEDULA_RUC__);
+    fetch cfk1_factura into dummy;
+    found := cfk1_factura%FOUND;
+    close cfk1_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "FACTURA". Cannot delete parent "CLIENTE".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_CLIENTE before insert
+on CLIENTE for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "CIUDAD"
+    cursor cpk1_cliente(var_ciu_codigo__ varchar) is
+       select 1
+       from   CIUDAD
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+
+begin
+    --  Parent "CIUDAD" must exist when inserting a child in "CLIENTE"
+    if :new.CIU_CODIGO__ is not null then
+       open  cpk1_cliente(:new.CIU_CODIGO__);
+       fetch cpk1_cliente into dummy;
+       found := cpk1_cliente%FOUND;
+       close cpk1_cliente;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "CIUDAD". Cannot create child in "CLIENTE".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_CLIENTE before update
+of CLI_CEDULA_RUC__,
+   CIU_CODIGO__
+on CLIENTE for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "CIUDAD"
+    cursor cpk1_cliente(var_ciu_codigo__ varchar) is
+       select 1
+       from   CIUDAD
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "FACTURA"
+    cursor cfk1_factura(var_cli_cedula_ruc__ varchar) is
+       select 1
+       from   FACTURA
+       where  CLI_CEDULA_RUC__ = var_cli_cedula_ruc__
+        and   var_cli_cedula_ruc__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "CIUDAD" must exist when updating a child in "CLIENTE"
+    if (:new.CIU_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_cliente(:new.CIU_CODIGO__);
+       fetch cpk1_cliente into dummy;
+       found := cpk1_cliente%FOUND;
+       close cpk1_cliente;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "CIUDAD". Cannot update child in "CLIENTE".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "CLIENTE" if children still exist in "FACTURA"
+    if (updating('CLI_CEDULA_RUC__') and :old.CLI_CEDULA_RUC__ != :new.CLI_CEDULA_RUC__) then
+       open  cfk1_factura(:old.CLI_CEDULA_RUC__);
+       fetch cfk1_factura into dummy;
+       found := cfk1_factura%FOUND;
+       close cfk1_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "FACTURA". Cannot modify parent code in "CLIENTE".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_DETALLE_FACTURA before insert
+on DETALLE_FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "FACTURA"
+    cursor cpk1_detalle_factura(var_fac_numero__ number) is
+       select 1
+       from   FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_detalle_factura(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    --  Parent "FACTURA" must exist when inserting a child in "DETALLE_FACTURA"
+    if :new.FAC_NUMERO__ is not null then
+       open  cpk1_detalle_factura(:new.FAC_NUMERO__);
+       fetch cpk1_detalle_factura into dummy;
+       found := cpk1_detalle_factura%FOUND;
+       close cpk1_detalle_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "FACTURA". Cannot create child in "DETALLE_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when inserting a child in "DETALLE_FACTURA"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk2_detalle_factura(:new.PRD_CODIGO__);
+       fetch cpk2_detalle_factura into dummy;
+       found := cpk2_detalle_factura%FOUND;
+       close cpk2_detalle_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "DETALLE_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_DETALLE_FACTURA before update
+of FAC_NUMERO__,
+   PRD_CODIGO__
+on DETALLE_FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "FACTURA"
+    cursor cpk1_detalle_factura(var_fac_numero__ number) is
+       select 1
+       from   FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_detalle_factura(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "FACTURA" must exist when updating a child in "DETALLE_FACTURA"
+    if (:new.FAC_NUMERO__ is not null) and (seq = 0) then
+       open  cpk1_detalle_factura(:new.FAC_NUMERO__);
+       fetch cpk1_detalle_factura into dummy;
+       found := cpk1_detalle_factura%FOUND;
+       close cpk1_detalle_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "FACTURA". Cannot update child in "DETALLE_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when updating a child in "DETALLE_FACTURA"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_detalle_factura(:new.PRD_CODIGO__);
+       fetch cpk2_detalle_factura into dummy;
+       found := cpk2_detalle_factura%FOUND;
+       close cpk2_detalle_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "DETALLE_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_DETALLE_ORD_COMP before insert
+on DETALLE_ORD_COMP for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "ORDEN_COMPRA"
+    cursor cpk1_detalle_ord_comp(var_ord_numero__ number) is
+       select 1
+       from   ORDEN_COMPRA
+       where  ORD_NUMERO__ = var_ord_numero__
+        and   var_ord_numero__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_detalle_ord_comp(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    --  Parent "ORDEN_COMPRA" must exist when inserting a child in "DETALLE_ORD_COMP"
+    if :new.ORD_NUMERO__ is not null then
+       open  cpk1_detalle_ord_comp(:new.ORD_NUMERO__);
+       fetch cpk1_detalle_ord_comp into dummy;
+       found := cpk1_detalle_ord_comp%FOUND;
+       close cpk1_detalle_ord_comp;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "ORDEN_COMPRA". Cannot create child in "DETALLE_ORD_COMP".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when inserting a child in "DETALLE_ORD_COMP"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk2_detalle_ord_comp(:new.PRD_CODIGO__);
+       fetch cpk2_detalle_ord_comp into dummy;
+       found := cpk2_detalle_ord_comp%FOUND;
+       close cpk2_detalle_ord_comp;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "DETALLE_ORD_COMP".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_DETALLE_ORD_COMP before update
+of ORD_NUMERO__,
+   PRD_CODIGO__
+on DETALLE_ORD_COMP for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "ORDEN_COMPRA"
+    cursor cpk1_detalle_ord_comp(var_ord_numero__ number) is
+       select 1
+       from   ORDEN_COMPRA
+       where  ORD_NUMERO__ = var_ord_numero__
+        and   var_ord_numero__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_detalle_ord_comp(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "ORDEN_COMPRA" must exist when updating a child in "DETALLE_ORD_COMP"
+    if (:new.ORD_NUMERO__ is not null) and (seq = 0) then
+       open  cpk1_detalle_ord_comp(:new.ORD_NUMERO__);
+       fetch cpk1_detalle_ord_comp into dummy;
+       found := cpk1_detalle_ord_comp%FOUND;
+       close cpk1_detalle_ord_comp;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "ORDEN_COMPRA". Cannot update child in "DETALLE_ORD_COMP".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when updating a child in "DETALLE_ORD_COMP"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_detalle_ord_comp(:new.PRD_CODIGO__);
+       fetch cpk2_detalle_ord_comp into dummy;
+       found := cpk2_detalle_ord_comp%FOUND;
+       close cpk2_detalle_ord_comp;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "DETALLE_ORD_COMP".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_FACTURA before delete
+on FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "DETALLE_FACTURA"
+    cursor cfk1_detalle_factura(var_fac_numero__ number) is
+       select 1
+       from   DETALLE_FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "PAGO_FACTURA"
+    cursor cfk2_pago_factura(var_fac_numero__ number) is
+       select 1
+       from   PAGO_FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+
+begin
+    --  Cannot delete parent "FACTURA" if children still exist in "DETALLE_FACTURA"
+    open  cfk1_detalle_factura(:old.FAC_NUMERO__);
+    fetch cfk1_detalle_factura into dummy;
+    found := cfk1_detalle_factura%FOUND;
+    close cfk1_detalle_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "DETALLE_FACTURA". Cannot delete parent "FACTURA".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "FACTURA" if children still exist in "PAGO_FACTURA"
+    open  cfk2_pago_factura(:old.FAC_NUMERO__);
+    fetch cfk2_pago_factura into dummy;
+    found := cfk2_pago_factura%FOUND;
+    close cfk2_pago_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PAGO_FACTURA". Cannot delete parent "FACTURA".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_FACTURA before insert
+on FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "SUCURSAL"
+    cursor cpk1_factura(var_suc_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "TRANSACCION"
+    cursor cpk2_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   TRANSACCION
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "CLIENTE"
+    cursor cpk3_factura(var_cli_cedula_ruc__ varchar) is
+       select 1
+       from   CLIENTE
+       where  CLI_CEDULA_RUC__ = var_cli_cedula_ruc__
+        and   var_cli_cedula_ruc__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "VENDEDOR"
+    cursor cpk4_factura(var_ven_cedula__ varchar) is
+       select 1
+       from   VENDEDOR
+       where  VEN_CEDULA__ = var_ven_cedula__
+        and   var_ven_cedula__ is not null;
+
+begin
+    --  Parent "SUCURSAL" must exist when inserting a child in "FACTURA"
+    if :new.SUC_CODIGO__ is not null then
+       open  cpk1_factura(:new.SUC_CODIGO__);
+       fetch cpk1_factura into dummy;
+       found := cpk1_factura%FOUND;
+       close cpk1_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "SUCURSAL". Cannot create child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "TRANSACCION" must exist when inserting a child in "FACTURA"
+    if :new.TRN_CODIGO__ is not null then
+       open  cpk2_factura(:new.TRN_CODIGO__);
+       fetch cpk2_factura into dummy;
+       found := cpk2_factura%FOUND;
+       close cpk2_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "TRANSACCION". Cannot create child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "CLIENTE" must exist when inserting a child in "FACTURA"
+    if :new.CLI_CEDULA_RUC__ is not null then
+       open  cpk3_factura(:new.CLI_CEDULA_RUC__);
+       fetch cpk3_factura into dummy;
+       found := cpk3_factura%FOUND;
+       close cpk3_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "CLIENTE". Cannot create child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "VENDEDOR" must exist when inserting a child in "FACTURA"
+    if :new.VEN_CEDULA__ is not null then
+       open  cpk4_factura(:new.VEN_CEDULA__);
+       fetch cpk4_factura into dummy;
+       found := cpk4_factura%FOUND;
+       close cpk4_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "VENDEDOR". Cannot create child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_FACTURA before update
+of FAC_NUMERO__,
+   SUC_CODIGO__,
+   TRN_CODIGO__,
+   CLI_CEDULA_RUC__,
+   VEN_CEDULA__
+on FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "SUCURSAL"
+    cursor cpk1_factura(var_suc_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "TRANSACCION"
+    cursor cpk2_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   TRANSACCION
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "CLIENTE"
+    cursor cpk3_factura(var_cli_cedula_ruc__ varchar) is
+       select 1
+       from   CLIENTE
+       where  CLI_CEDULA_RUC__ = var_cli_cedula_ruc__
+        and   var_cli_cedula_ruc__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "VENDEDOR"
+    cursor cpk4_factura(var_ven_cedula__ varchar) is
+       select 1
+       from   VENDEDOR
+       where  VEN_CEDULA__ = var_ven_cedula__
+        and   var_ven_cedula__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "DETALLE_FACTURA"
+    cursor cfk1_detalle_factura(var_fac_numero__ number) is
+       select 1
+       from   DETALLE_FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "PAGO_FACTURA"
+    cursor cfk2_pago_factura(var_fac_numero__ number) is
+       select 1
+       from   PAGO_FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "SUCURSAL" must exist when updating a child in "FACTURA"
+    if (:new.SUC_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_factura(:new.SUC_CODIGO__);
+       fetch cpk1_factura into dummy;
+       found := cpk1_factura%FOUND;
+       close cpk1_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "SUCURSAL". Cannot update child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "TRANSACCION" must exist when updating a child in "FACTURA"
+    if (:new.TRN_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_factura(:new.TRN_CODIGO__);
+       fetch cpk2_factura into dummy;
+       found := cpk2_factura%FOUND;
+       close cpk2_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "TRANSACCION". Cannot update child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "CLIENTE" must exist when updating a child in "FACTURA"
+    if (:new.CLI_CEDULA_RUC__ is not null) and (seq = 0) then
+       open  cpk3_factura(:new.CLI_CEDULA_RUC__);
+       fetch cpk3_factura into dummy;
+       found := cpk3_factura%FOUND;
+       close cpk3_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "CLIENTE". Cannot update child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "VENDEDOR" must exist when updating a child in "FACTURA"
+    if (:new.VEN_CEDULA__ is not null) and (seq = 0) then
+       open  cpk4_factura(:new.VEN_CEDULA__);
+       fetch cpk4_factura into dummy;
+       found := cpk4_factura%FOUND;
+       close cpk4_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "VENDEDOR". Cannot update child in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "FACTURA" if children still exist in "DETALLE_FACTURA"
+    if (updating('FAC_NUMERO__') and :old.FAC_NUMERO__ != :new.FAC_NUMERO__) then
+       open  cfk1_detalle_factura(:old.FAC_NUMERO__);
+       fetch cfk1_detalle_factura into dummy;
+       found := cfk1_detalle_factura%FOUND;
+       close cfk1_detalle_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "DETALLE_FACTURA". Cannot modify parent code in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "FACTURA" if children still exist in "PAGO_FACTURA"
+    if (updating('FAC_NUMERO__') and :old.FAC_NUMERO__ != :new.FAC_NUMERO__) then
+       open  cfk2_pago_factura(:old.FAC_NUMERO__);
+       fetch cfk2_pago_factura into dummy;
+       found := cfk2_pago_factura%FOUND;
+       close cfk2_pago_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PAGO_FACTURA". Cannot modify parent code in "FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_FORMA_PAGO before delete
+on FORMA_PAGO for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "PAGO_FACTURA"
+    cursor cfk1_pago_factura(var_frp_codigo varchar) is
+       select 1
+       from   PAGO_FACTURA
+       where  FRP_CODIGO = var_frp_codigo
+        and   var_frp_codigo is not null;
+
+begin
+    --  Cannot delete parent "FORMA_PAGO" if children still exist in "PAGO_FACTURA"
+    open  cfk1_pago_factura(:old.FRP_CODIGO);
+    fetch cfk1_pago_factura into dummy;
+    found := cfk1_pago_factura%FOUND;
+    close cfk1_pago_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PAGO_FACTURA". Cannot delete parent "FORMA_PAGO".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_FORMA_PAGO before update
+of FRP_CODIGO
+on FORMA_PAGO for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "PAGO_FACTURA"
+    cursor cfk1_pago_factura(var_frp_codigo varchar) is
+       select 1
+       from   PAGO_FACTURA
+       where  FRP_CODIGO = var_frp_codigo
+        and   var_frp_codigo is not null;
+
+begin
+    --  Cannot modify parent code in "FORMA_PAGO" if children still exist in "PAGO_FACTURA"
+    if (updating('FRP_CODIGO') and :old.FRP_CODIGO != :new.FRP_CODIGO) then
+       open  cfk1_pago_factura(:old.FRP_CODIGO);
+       fetch cfk1_pago_factura into dummy;
+       found := cfk1_pago_factura%FOUND;
+       close cfk1_pago_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PAGO_FACTURA". Cannot modify parent code in "FORMA_PAGO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_KARDEX before insert
+on KARDEX for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "TRANSACCION"
+    cursor cpk1_kardex(var_trn_codigo__ varchar) is
+       select 1
+       from   TRANSACCION
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_kardex(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "BODEGA"
+    cursor cpk3_kardex(var_bod_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+
+begin
+    --  Parent "TRANSACCION" must exist when inserting a child in "KARDEX"
+    if :new.TRN_CODIGO__ is not null then
+       open  cpk1_kardex(:new.TRN_CODIGO__);
+       fetch cpk1_kardex into dummy;
+       found := cpk1_kardex%FOUND;
+       close cpk1_kardex;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "TRANSACCION". Cannot create child in "KARDEX".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when inserting a child in "KARDEX"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk2_kardex(:new.PRD_CODIGO__);
+       fetch cpk2_kardex into dummy;
+       found := cpk2_kardex%FOUND;
+       close cpk2_kardex;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "KARDEX".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "BODEGA" must exist when inserting a child in "KARDEX"
+    if :new.BOD_CODIGO__ is not null then
+       open  cpk3_kardex(:new.BOD_CODIGO__);
+       fetch cpk3_kardex into dummy;
+       found := cpk3_kardex%FOUND;
+       close cpk3_kardex;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot create child in "KARDEX".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_KARDEX before update
+of TRN_CODIGO__,
+   PRD_CODIGO__,
+   BOD_CODIGO__
+on KARDEX for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "TRANSACCION"
+    cursor cpk1_kardex(var_trn_codigo__ varchar) is
+       select 1
+       from   TRANSACCION
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_kardex(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "BODEGA"
+    cursor cpk3_kardex(var_bod_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "TRANSACCION" must exist when updating a child in "KARDEX"
+    if (:new.TRN_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_kardex(:new.TRN_CODIGO__);
+       fetch cpk1_kardex into dummy;
+       found := cpk1_kardex%FOUND;
+       close cpk1_kardex;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "TRANSACCION". Cannot update child in "KARDEX".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when updating a child in "KARDEX"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_kardex(:new.PRD_CODIGO__);
+       fetch cpk2_kardex into dummy;
+       found := cpk2_kardex%FOUND;
+       close cpk2_kardex;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "KARDEX".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "BODEGA" must exist when updating a child in "KARDEX"
+    if (:new.BOD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk3_kardex(:new.BOD_CODIGO__);
+       fetch cpk3_kardex into dummy;
+       found := cpk3_kardex%FOUND;
+       close cpk3_kardex;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot update child in "KARDEX".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_ORDEN_COMPRA before delete
+on ORDEN_COMPRA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "DETALLE_ORD_COMP"
+    cursor cfk1_detalle_ord_comp(var_ord_numero__ number) is
+       select 1
+       from   DETALLE_ORD_COMP
+       where  ORD_NUMERO__ = var_ord_numero__
+        and   var_ord_numero__ is not null;
+
+begin
+    --  Cannot delete parent "ORDEN_COMPRA" if children still exist in "DETALLE_ORD_COMP"
+    open  cfk1_detalle_ord_comp(:old.ORD_NUMERO__);
+    fetch cfk1_detalle_ord_comp into dummy;
+    found := cfk1_detalle_ord_comp%FOUND;
+    close cfk1_detalle_ord_comp;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "DETALLE_ORD_COMP". Cannot delete parent "ORDEN_COMPRA".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_ORDEN_COMPRA before insert
+on ORDEN_COMPRA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "BODEGA"
+    cursor cpk1_orden_compra(var_bod_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PROVEEDOR"
+    cursor cpk2_orden_compra(var_prv_codigo__ varchar) is
+       select 1
+       from   PROVEEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+
+begin
+    --  Parent "BODEGA" must exist when inserting a child in "ORDEN_COMPRA"
+    if :new.BOD_CODIGO__ is not null then
+       open  cpk1_orden_compra(:new.BOD_CODIGO__);
+       fetch cpk1_orden_compra into dummy;
+       found := cpk1_orden_compra%FOUND;
+       close cpk1_orden_compra;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot create child in "ORDEN_COMPRA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PROVEEDOR" must exist when inserting a child in "ORDEN_COMPRA"
+    if :new.PRV_CODIGO__ is not null then
+       open  cpk2_orden_compra(:new.PRV_CODIGO__);
+       fetch cpk2_orden_compra into dummy;
+       found := cpk2_orden_compra%FOUND;
+       close cpk2_orden_compra;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PROVEEDOR". Cannot create child in "ORDEN_COMPRA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_ORDEN_COMPRA before update
+of ORD_NUMERO__,
+   BOD_CODIGO__,
+   PRV_CODIGO__
+on ORDEN_COMPRA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "BODEGA"
+    cursor cpk1_orden_compra(var_bod_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PROVEEDOR"
+    cursor cpk2_orden_compra(var_prv_codigo__ varchar) is
+       select 1
+       from   PROVEEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "DETALLE_ORD_COMP"
+    cursor cfk1_detalle_ord_comp(var_ord_numero__ number) is
+       select 1
+       from   DETALLE_ORD_COMP
+       where  ORD_NUMERO__ = var_ord_numero__
+        and   var_ord_numero__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "BODEGA" must exist when updating a child in "ORDEN_COMPRA"
+    if (:new.BOD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_orden_compra(:new.BOD_CODIGO__);
+       fetch cpk1_orden_compra into dummy;
+       found := cpk1_orden_compra%FOUND;
+       close cpk1_orden_compra;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot update child in "ORDEN_COMPRA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PROVEEDOR" must exist when updating a child in "ORDEN_COMPRA"
+    if (:new.PRV_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_orden_compra(:new.PRV_CODIGO__);
+       fetch cpk2_orden_compra into dummy;
+       found := cpk2_orden_compra%FOUND;
+       close cpk2_orden_compra;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PROVEEDOR". Cannot update child in "ORDEN_COMPRA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "ORDEN_COMPRA" if children still exist in "DETALLE_ORD_COMP"
+    if (updating('ORD_NUMERO__') and :old.ORD_NUMERO__ != :new.ORD_NUMERO__) then
+       open  cfk1_detalle_ord_comp(:old.ORD_NUMERO__);
+       fetch cfk1_detalle_ord_comp into dummy;
+       found := cfk1_detalle_ord_comp%FOUND;
+       close cfk1_detalle_ord_comp;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "DETALLE_ORD_COMP". Cannot modify parent code in "ORDEN_COMPRA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_PAGO_FACTURA before insert
+on PAGO_FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "FORMA_PAGO"
+    cursor cpk1_pago_factura(var_frp_codigo varchar) is
+       select 1
+       from   FORMA_PAGO
+       where  FRP_CODIGO = var_frp_codigo
+        and   var_frp_codigo is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "FACTURA"
+    cursor cpk2_pago_factura(var_fac_numero__ number) is
+       select 1
+       from   FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+
+begin
+    --  Parent "FORMA_PAGO" must exist when inserting a child in "PAGO_FACTURA"
+    if :new.FRP_CODIGO is not null then
+       open  cpk1_pago_factura(:new.FRP_CODIGO);
+       fetch cpk1_pago_factura into dummy;
+       found := cpk1_pago_factura%FOUND;
+       close cpk1_pago_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "FORMA_PAGO". Cannot create child in "PAGO_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "FACTURA" must exist when inserting a child in "PAGO_FACTURA"
+    if :new.FAC_NUMERO__ is not null then
+       open  cpk2_pago_factura(:new.FAC_NUMERO__);
+       fetch cpk2_pago_factura into dummy;
+       found := cpk2_pago_factura%FOUND;
+       close cpk2_pago_factura;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "FACTURA". Cannot create child in "PAGO_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_PAGO_FACTURA before update
+of FRP_CODIGO,
+   FAC_NUMERO__
+on PAGO_FACTURA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "FORMA_PAGO"
+    cursor cpk1_pago_factura(var_frp_codigo varchar) is
+       select 1
+       from   FORMA_PAGO
+       where  FRP_CODIGO = var_frp_codigo
+        and   var_frp_codigo is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "FACTURA"
+    cursor cpk2_pago_factura(var_fac_numero__ number) is
+       select 1
+       from   FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "FORMA_PAGO" must exist when updating a child in "PAGO_FACTURA"
+    if (:new.FRP_CODIGO is not null) and (seq = 0) then
+       open  cpk1_pago_factura(:new.FRP_CODIGO);
+       fetch cpk1_pago_factura into dummy;
+       found := cpk1_pago_factura%FOUND;
+       close cpk1_pago_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "FORMA_PAGO". Cannot update child in "PAGO_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "FACTURA" must exist when updating a child in "PAGO_FACTURA"
+    if (:new.FAC_NUMERO__ is not null) and (seq = 0) then
+       open  cpk2_pago_factura(:new.FAC_NUMERO__);
+       fetch cpk2_pago_factura into dummy;
+       found := cpk2_pago_factura%FOUND;
+       close cpk2_pago_factura;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "FACTURA". Cannot update child in "PAGO_FACTURA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_PRODUCTO before delete
+on PRODUCTO for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "PRODUCTO_BODEGA"
+    cursor cfk1_producto_bodega(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_BODEGA
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "PRODUCTO_PROVEEDOR"
+    cursor cfk2_producto_proveedor(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_PROVEEDOR
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "DETALLE_ORD_COMP"
+    cursor cfk3_detalle_ord_comp(var_prd_codigo__ varchar) is
+       select 1
+       from   DETALLE_ORD_COMP
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "KARDEX"
+    cursor cfk4_kardex(var_prd_codigo__ varchar) is
+       select 1
+       from   KARDEX
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "DETALLE_FACTURA"
+    cursor cfk5_detalle_factura(var_prd_codigo__ varchar) is
+       select 1
+       from   DETALLE_FACTURA
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "UNIDAD_ALTERNATIVA"
+    cursor cfk6_unidad_alternativa(var_prd_codigo__ varchar) is
+       select 1
+       from   UNIDAD_ALTERNATIVA
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "PRODUCTO" if children still exist in "PRODUCTO_BODEGA"
+    open  cfk1_producto_bodega(:old.PRD_CODIGO__);
+    fetch cfk1_producto_bodega into dummy;
+    found := cfk1_producto_bodega%FOUND;
+    close cfk1_producto_bodega;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PRODUCTO_BODEGA". Cannot delete parent "PRODUCTO".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "PRODUCTO" if children still exist in "PRODUCTO_PROVEEDOR"
+    open  cfk2_producto_proveedor(:old.PRD_CODIGO__);
+    fetch cfk2_producto_proveedor into dummy;
+    found := cfk2_producto_proveedor%FOUND;
+    close cfk2_producto_proveedor;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PRODUCTO_PROVEEDOR". Cannot delete parent "PRODUCTO".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "PRODUCTO" if children still exist in "DETALLE_ORD_COMP"
+    open  cfk3_detalle_ord_comp(:old.PRD_CODIGO__);
+    fetch cfk3_detalle_ord_comp into dummy;
+    found := cfk3_detalle_ord_comp%FOUND;
+    close cfk3_detalle_ord_comp;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "DETALLE_ORD_COMP". Cannot delete parent "PRODUCTO".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "PRODUCTO" if children still exist in "KARDEX"
+    open  cfk4_kardex(:old.PRD_CODIGO__);
+    fetch cfk4_kardex into dummy;
+    found := cfk4_kardex%FOUND;
+    close cfk4_kardex;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "KARDEX". Cannot delete parent "PRODUCTO".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "PRODUCTO" if children still exist in "DETALLE_FACTURA"
+    open  cfk5_detalle_factura(:old.PRD_CODIGO__);
+    fetch cfk5_detalle_factura into dummy;
+    found := cfk5_detalle_factura%FOUND;
+    close cfk5_detalle_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "DETALLE_FACTURA". Cannot delete parent "PRODUCTO".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "PRODUCTO" if children still exist in "UNIDAD_ALTERNATIVA"
+    open  cfk6_unidad_alternativa(:old.PRD_CODIGO__);
+    fetch cfk6_unidad_alternativa into dummy;
+    found := cfk6_unidad_alternativa%FOUND;
+    close cfk6_unidad_alternativa;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "UNIDAD_ALTERNATIVA". Cannot delete parent "PRODUCTO".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_PRODUCTO before insert
+on PRODUCTO for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "CATEGORIA"
+    cursor cpk1_producto(var_cat_codigo__ varchar) is
+       select 1
+       from   CATEGORIA
+       where  CAT_CODIGO__ = var_cat_codigo__
+        and   var_cat_codigo__ is not null;
+
+begin
+    --  Parent "CATEGORIA" must exist when inserting a child in "PRODUCTO"
+    if :new.CAT_CODIGO__ is not null then
+       open  cpk1_producto(:new.CAT_CODIGO__);
+       fetch cpk1_producto into dummy;
+       found := cpk1_producto%FOUND;
+       close cpk1_producto;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "CATEGORIA". Cannot create child in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_PRODUCTO before update
+of PRD_CODIGO__,
+   CAT_CODIGO__
+on PRODUCTO for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "CATEGORIA"
+    cursor cpk1_producto(var_cat_codigo__ varchar) is
+       select 1
+       from   CATEGORIA
+       where  CAT_CODIGO__ = var_cat_codigo__
+        and   var_cat_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "PRODUCTO_BODEGA"
+    cursor cfk1_producto_bodega(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_BODEGA
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "PRODUCTO_PROVEEDOR"
+    cursor cfk2_producto_proveedor(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_PROVEEDOR
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "DETALLE_ORD_COMP"
+    cursor cfk3_detalle_ord_comp(var_prd_codigo__ varchar) is
+       select 1
+       from   DETALLE_ORD_COMP
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "KARDEX"
+    cursor cfk4_kardex(var_prd_codigo__ varchar) is
+       select 1
+       from   KARDEX
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "DETALLE_FACTURA"
+    cursor cfk5_detalle_factura(var_prd_codigo__ varchar) is
+       select 1
+       from   DETALLE_FACTURA
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "UNIDAD_ALTERNATIVA"
+    cursor cfk6_unidad_alternativa(var_prd_codigo__ varchar) is
+       select 1
+       from   UNIDAD_ALTERNATIVA
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "CATEGORIA" must exist when updating a child in "PRODUCTO"
+    if (:new.CAT_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_producto(:new.CAT_CODIGO__);
+       fetch cpk1_producto into dummy;
+       found := cpk1_producto%FOUND;
+       close cpk1_producto;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "CATEGORIA". Cannot update child in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PRODUCTO" if children still exist in "PRODUCTO_BODEGA"
+    if (updating('PRD_CODIGO__') and :old.PRD_CODIGO__ != :new.PRD_CODIGO__) then
+       open  cfk1_producto_bodega(:old.PRD_CODIGO__);
+       fetch cfk1_producto_bodega into dummy;
+       found := cfk1_producto_bodega%FOUND;
+       close cfk1_producto_bodega;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PRODUCTO_BODEGA". Cannot modify parent code in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PRODUCTO" if children still exist in "PRODUCTO_PROVEEDOR"
+    if (updating('PRD_CODIGO__') and :old.PRD_CODIGO__ != :new.PRD_CODIGO__) then
+       open  cfk2_producto_proveedor(:old.PRD_CODIGO__);
+       fetch cfk2_producto_proveedor into dummy;
+       found := cfk2_producto_proveedor%FOUND;
+       close cfk2_producto_proveedor;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PRODUCTO_PROVEEDOR". Cannot modify parent code in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PRODUCTO" if children still exist in "DETALLE_ORD_COMP"
+    if (updating('PRD_CODIGO__') and :old.PRD_CODIGO__ != :new.PRD_CODIGO__) then
+       open  cfk3_detalle_ord_comp(:old.PRD_CODIGO__);
+       fetch cfk3_detalle_ord_comp into dummy;
+       found := cfk3_detalle_ord_comp%FOUND;
+       close cfk3_detalle_ord_comp;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "DETALLE_ORD_COMP". Cannot modify parent code in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PRODUCTO" if children still exist in "KARDEX"
+    if (updating('PRD_CODIGO__') and :old.PRD_CODIGO__ != :new.PRD_CODIGO__) then
+       open  cfk4_kardex(:old.PRD_CODIGO__);
+       fetch cfk4_kardex into dummy;
+       found := cfk4_kardex%FOUND;
+       close cfk4_kardex;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "KARDEX". Cannot modify parent code in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PRODUCTO" if children still exist in "DETALLE_FACTURA"
+    if (updating('PRD_CODIGO__') and :old.PRD_CODIGO__ != :new.PRD_CODIGO__) then
+       open  cfk5_detalle_factura(:old.PRD_CODIGO__);
+       fetch cfk5_detalle_factura into dummy;
+       found := cfk5_detalle_factura%FOUND;
+       close cfk5_detalle_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "DETALLE_FACTURA". Cannot modify parent code in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PRODUCTO" if children still exist in "UNIDAD_ALTERNATIVA"
+    if (updating('PRD_CODIGO__') and :old.PRD_CODIGO__ != :new.PRD_CODIGO__) then
+       open  cfk6_unidad_alternativa(:old.PRD_CODIGO__);
+       fetch cfk6_unidad_alternativa into dummy;
+       found := cfk6_unidad_alternativa%FOUND;
+       close cfk6_unidad_alternativa;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "UNIDAD_ALTERNATIVA". Cannot modify parent code in "PRODUCTO".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_PRODUCTO_BODEGA before insert
+on PRODUCTO_BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk1_producto_bodega(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "BODEGA"
+    cursor cpk2_producto_bodega(var_bod_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+
+begin
+    --  Parent "PRODUCTO" must exist when inserting a child in "PRODUCTO_BODEGA"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk1_producto_bodega(:new.PRD_CODIGO__);
+       fetch cpk1_producto_bodega into dummy;
+       found := cpk1_producto_bodega%FOUND;
+       close cpk1_producto_bodega;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "BODEGA" must exist when inserting a child in "PRODUCTO_BODEGA"
+    if :new.BOD_CODIGO__ is not null then
+       open  cpk2_producto_bodega(:new.BOD_CODIGO__);
+       fetch cpk2_producto_bodega into dummy;
+       found := cpk2_producto_bodega%FOUND;
+       close cpk2_producto_bodega;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot create child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_PRODUCTO_BODEGA before update
+of PRD_CODIGO__,
+   BOD_CODIGO__
+on PRODUCTO_BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk1_producto_bodega(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "BODEGA"
+    cursor cpk2_producto_bodega(var_bod_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO__ = var_bod_codigo__
+        and   var_bod_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "PRODUCTO" must exist when updating a child in "PRODUCTO_BODEGA"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_producto_bodega(:new.PRD_CODIGO__);
+       fetch cpk1_producto_bodega into dummy;
+       found := cpk1_producto_bodega%FOUND;
+       close cpk1_producto_bodega;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "BODEGA" must exist when updating a child in "PRODUCTO_BODEGA"
+    if (:new.BOD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_producto_bodega(:new.BOD_CODIGO__);
+       fetch cpk2_producto_bodega into dummy;
+       found := cpk2_producto_bodega%FOUND;
+       close cpk2_producto_bodega;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot update child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_PRODUCTO_PROVEEDOR before insert
+on PRODUCTO_PROVEEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "PROVEEDOR"
+    cursor cpk1_producto_proveedor(var_prv_codigo__ varchar) is
+       select 1
+       from   PROVEEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_producto_proveedor(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    --  Parent "PROVEEDOR" must exist when inserting a child in "PRODUCTO_PROVEEDOR"
+    if :new.PRV_CODIGO__ is not null then
+       open  cpk1_producto_proveedor(:new.PRV_CODIGO__);
+       fetch cpk1_producto_proveedor into dummy;
+       found := cpk1_producto_proveedor%FOUND;
+       close cpk1_producto_proveedor;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PROVEEDOR". Cannot create child in "PRODUCTO_PROVEEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when inserting a child in "PRODUCTO_PROVEEDOR"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk2_producto_proveedor(:new.PRD_CODIGO__);
+       fetch cpk2_producto_proveedor into dummy;
+       found := cpk2_producto_proveedor%FOUND;
+       close cpk2_producto_proveedor;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "PRODUCTO_PROVEEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_PRODUCTO_PROVEEDOR before update
+of PRV_CODIGO__,
+   PRD_CODIGO__
+on PRODUCTO_PROVEEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PROVEEDOR"
+    cursor cpk1_producto_proveedor(var_prv_codigo__ varchar) is
+       select 1
+       from   PROVEEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_producto_proveedor(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "PROVEEDOR" must exist when updating a child in "PRODUCTO_PROVEEDOR"
+    if (:new.PRV_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_producto_proveedor(:new.PRV_CODIGO__);
+       fetch cpk1_producto_proveedor into dummy;
+       found := cpk1_producto_proveedor%FOUND;
+       close cpk1_producto_proveedor;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PROVEEDOR". Cannot update child in "PRODUCTO_PROVEEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when updating a child in "PRODUCTO_PROVEEDOR"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_producto_proveedor(:new.PRD_CODIGO__);
+       fetch cpk2_producto_proveedor into dummy;
+       found := cpk2_producto_proveedor%FOUND;
+       close cpk2_producto_proveedor;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "PRODUCTO_PROVEEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_PROVEEDOR before delete
+on PROVEEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "ORDEN_COMPRA"
+    cursor cfk1_orden_compra(var_prv_codigo__ varchar) is
+       select 1
+       from   ORDEN_COMPRA
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "PRODUCTO_PROVEEDOR"
+    cursor cfk2_producto_proveedor(var_prv_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_PROVEEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "PROVEEDOR" if children still exist in "ORDEN_COMPRA"
+    open  cfk1_orden_compra(:old.PRV_CODIGO__);
+    fetch cfk1_orden_compra into dummy;
+    found := cfk1_orden_compra%FOUND;
+    close cfk1_orden_compra;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "ORDEN_COMPRA". Cannot delete parent "PROVEEDOR".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "PROVEEDOR" if children still exist in "PRODUCTO_PROVEEDOR"
+    open  cfk2_producto_proveedor(:old.PRV_CODIGO__);
+    fetch cfk2_producto_proveedor into dummy;
+    found := cfk2_producto_proveedor%FOUND;
+    close cfk2_producto_proveedor;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "PRODUCTO_PROVEEDOR". Cannot delete parent "PROVEEDOR".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_PROVEEDOR before update
+of PRV_CODIGO__
+on PROVEEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "ORDEN_COMPRA"
+    cursor cfk1_orden_compra(var_prv_codigo__ varchar) is
+       select 1
+       from   ORDEN_COMPRA
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "PRODUCTO_PROVEEDOR"
+    cursor cfk2_producto_proveedor(var_prv_codigo__ varchar) is
+       select 1
+       from   PRODUCTO_PROVEEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+
+begin
+    --  Cannot modify parent code in "PROVEEDOR" if children still exist in "ORDEN_COMPRA"
+    if (updating('PRV_CODIGO__') and :old.PRV_CODIGO__ != :new.PRV_CODIGO__) then
+       open  cfk1_orden_compra(:old.PRV_CODIGO__);
+       fetch cfk1_orden_compra into dummy;
+       found := cfk1_orden_compra%FOUND;
+       close cfk1_orden_compra;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "ORDEN_COMPRA". Cannot modify parent code in "PROVEEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "PROVEEDOR" if children still exist in "PRODUCTO_PROVEEDOR"
+    if (updating('PRV_CODIGO__') and :old.PRV_CODIGO__ != :new.PRV_CODIGO__) then
+       open  cfk2_producto_proveedor(:old.PRV_CODIGO__);
+       fetch cfk2_producto_proveedor into dummy;
+       found := cfk2_producto_proveedor%FOUND;
+       close cfk2_producto_proveedor;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "PRODUCTO_PROVEEDOR". Cannot modify parent code in "PROVEEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_PROVINCIA before delete
+on PROVINCIA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "CIUDAD"
+    cursor cfk1_ciudad(var_pov_codigo__ varchar) is
+       select 1
+       from   CIUDAD
+       where  POV_CODIGO__ = var_pov_codigo__
+        and   var_pov_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "PROVINCIA" if children still exist in "CIUDAD"
+    open  cfk1_ciudad(:old.POV_CODIGO__);
+    fetch cfk1_ciudad into dummy;
+    found := cfk1_ciudad%FOUND;
+    close cfk1_ciudad;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "CIUDAD". Cannot delete parent "PROVINCIA".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_PROVINCIA before update
+of POV_CODIGO__
+on PROVINCIA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "CIUDAD"
+    cursor cfk1_ciudad(var_pov_codigo__ varchar) is
+       select 1
+       from   CIUDAD
+       where  POV_CODIGO__ = var_pov_codigo__
+        and   var_pov_codigo__ is not null;
+
+begin
+    --  Cannot modify parent code in "PROVINCIA" if children still exist in "CIUDAD"
+    if (updating('POV_CODIGO__') and :old.POV_CODIGO__ != :new.POV_CODIGO__) then
+       open  cfk1_ciudad(:old.POV_CODIGO__);
+       fetch cfk1_ciudad into dummy;
+       found := cfk1_ciudad%FOUND;
+       close cfk1_ciudad;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "CIUDAD". Cannot modify parent code in "PROVINCIA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_SUCURSAL before delete
+on SUCURSAL for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "BODEGA"
+    cursor cfk1_bodega(var_suc_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "FACTURA"
+    cursor cfk2_factura(var_suc_codigo__ varchar) is
+       select 1
+       from   FACTURA
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "VENDEDOR"
+    cursor cfk3_vendedor(var_suc_codigo__ varchar) is
+       select 1
+       from   VENDEDOR
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "SUCURSAL" if children still exist in "BODEGA"
+    open  cfk1_bodega(:old.SUC_CODIGO__);
+    fetch cfk1_bodega into dummy;
+    found := cfk1_bodega%FOUND;
+    close cfk1_bodega;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "BODEGA". Cannot delete parent "SUCURSAL".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "SUCURSAL" if children still exist in "FACTURA"
+    open  cfk2_factura(:old.SUC_CODIGO__);
+    fetch cfk2_factura into dummy;
+    found := cfk2_factura%FOUND;
+    close cfk2_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "FACTURA". Cannot delete parent "SUCURSAL".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "SUCURSAL" if children still exist in "VENDEDOR"
+    open  cfk3_vendedor(:old.SUC_CODIGO__);
+    fetch cfk3_vendedor into dummy;
+    found := cfk3_vendedor%FOUND;
+    close cfk3_vendedor;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "VENDEDOR". Cannot delete parent "SUCURSAL".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_SUCURSAL before insert
+on SUCURSAL for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "CIUDAD"
+    cursor cpk1_sucursal(var_ciu_codigo__ varchar) is
+       select 1
+       from   CIUDAD
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+
+begin
+    --  Parent "CIUDAD" must exist when inserting a child in "SUCURSAL"
+    if :new.CIU_CODIGO__ is not null then
+       open  cpk1_sucursal(:new.CIU_CODIGO__);
+       fetch cpk1_sucursal into dummy;
+       found := cpk1_sucursal%FOUND;
+       close cpk1_sucursal;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "CIUDAD". Cannot create child in "SUCURSAL".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_SUCURSAL before update
+of SUC_CODIGO__,
+   CIU_CODIGO__
+on SUCURSAL for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "CIUDAD"
+    cursor cpk1_sucursal(var_ciu_codigo__ varchar) is
+       select 1
+       from   CIUDAD
+       where  CIU_CODIGO__ = var_ciu_codigo__
+        and   var_ciu_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "BODEGA"
+    cursor cfk1_bodega(var_suc_codigo__ varchar) is
+       select 1
+       from   BODEGA
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "FACTURA"
+    cursor cfk2_factura(var_suc_codigo__ varchar) is
+       select 1
+       from   FACTURA
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "VENDEDOR"
+    cursor cfk3_vendedor(var_suc_codigo__ varchar) is
+       select 1
+       from   VENDEDOR
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "CIUDAD" must exist when updating a child in "SUCURSAL"
+    if (:new.CIU_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_sucursal(:new.CIU_CODIGO__);
+       fetch cpk1_sucursal into dummy;
+       found := cpk1_sucursal%FOUND;
+       close cpk1_sucursal;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "CIUDAD". Cannot update child in "SUCURSAL".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "SUCURSAL" if children still exist in "BODEGA"
+    if (updating('SUC_CODIGO__') and :old.SUC_CODIGO__ != :new.SUC_CODIGO__) then
+       open  cfk1_bodega(:old.SUC_CODIGO__);
+       fetch cfk1_bodega into dummy;
+       found := cfk1_bodega%FOUND;
+       close cfk1_bodega;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "BODEGA". Cannot modify parent code in "SUCURSAL".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "SUCURSAL" if children still exist in "FACTURA"
+    if (updating('SUC_CODIGO__') and :old.SUC_CODIGO__ != :new.SUC_CODIGO__) then
+       open  cfk2_factura(:old.SUC_CODIGO__);
+       fetch cfk2_factura into dummy;
+       found := cfk2_factura%FOUND;
+       close cfk2_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "FACTURA". Cannot modify parent code in "SUCURSAL".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "SUCURSAL" if children still exist in "VENDEDOR"
+    if (updating('SUC_CODIGO__') and :old.SUC_CODIGO__ != :new.SUC_CODIGO__) then
+       open  cfk3_vendedor(:old.SUC_CODIGO__);
+       fetch cfk3_vendedor into dummy;
+       found := cfk3_vendedor%FOUND;
+       close cfk3_vendedor;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "VENDEDOR". Cannot modify parent code in "SUCURSAL".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_TRANSACCION before delete
+on TRANSACCION for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "FACTURA"
+    cursor cfk1_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   FACTURA
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+    --  Declaration of DeleteParentRestrict constraint for "KARDEX"
+    cursor cfk2_kardex(var_trn_codigo__ varchar) is
+       select 1
+       from   KARDEX
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "TRANSACCION" if children still exist in "FACTURA"
+    open  cfk1_factura(:old.TRN_CODIGO__);
+    fetch cfk1_factura into dummy;
+    found := cfk1_factura%FOUND;
+    close cfk1_factura;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "FACTURA". Cannot delete parent "TRANSACCION".';
+       raise integrity_error;
+    end if;
+
+    --  Cannot delete parent "TRANSACCION" if children still exist in "KARDEX"
+    open  cfk2_kardex(:old.TRN_CODIGO__);
+    fetch cfk2_kardex into dummy;
+    found := cfk2_kardex%FOUND;
+    close cfk2_kardex;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "KARDEX". Cannot delete parent "TRANSACCION".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_TRANSACCION before update
+of TRN_CODIGO__
+on TRANSACCION for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "FACTURA"
+    cursor cfk1_factura(var_trn_codigo__ varchar) is
+       select 1
+       from   FACTURA
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+    --  Declaration of UpdateParentRestrict constraint for "KARDEX"
+    cursor cfk2_kardex(var_trn_codigo__ varchar) is
+       select 1
+       from   KARDEX
+       where  TRN_CODIGO__ = var_trn_codigo__
+        and   var_trn_codigo__ is not null;
+
+begin
+    --  Cannot modify parent code in "TRANSACCION" if children still exist in "FACTURA"
+    if (updating('TRN_CODIGO__') and :old.TRN_CODIGO__ != :new.TRN_CODIGO__) then
+       open  cfk1_factura(:old.TRN_CODIGO__);
+       fetch cfk1_factura into dummy;
+       found := cfk1_factura%FOUND;
+       close cfk1_factura;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "FACTURA". Cannot modify parent code in "TRANSACCION".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Cannot modify parent code in "TRANSACCION" if children still exist in "KARDEX"
+    if (updating('TRN_CODIGO__') and :old.TRN_CODIGO__ != :new.TRN_CODIGO__) then
+       open  cfk2_kardex(:old.TRN_CODIGO__);
+       fetch cfk2_kardex into dummy;
+       found := cfk2_kardex%FOUND;
+       close cfk2_kardex;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "KARDEX". Cannot modify parent code in "TRANSACCION".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TDB_UNDAD_MEDIDA before delete
+on UNDAD_MEDIDA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of DeleteParentRestrict constraint for "UNIDAD_ALTERNATIVA"
+    cursor cfk1_unidad_alternativa(var_uni_codigo__ varchar) is
+       select 1
+       from   UNIDAD_ALTERNATIVA
+       where  UNI_CODIGO__ = var_uni_codigo__
+        and   var_uni_codigo__ is not null;
+
+begin
+    --  Cannot delete parent "UNDAD_MEDIDA" if children still exist in "UNIDAD_ALTERNATIVA"
+    open  cfk1_unidad_alternativa(:old.UNI_CODIGO__);
+    fetch cfk1_unidad_alternativa into dummy;
+    found := cfk1_unidad_alternativa%FOUND;
+    close cfk1_unidad_alternativa;
+    if found then
+       errno  := -20006;
+       errmsg := 'Children still exist in "UNIDAD_ALTERNATIVA". Cannot delete parent "UNDAD_MEDIDA".';
+       raise integrity_error;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_UNDAD_MEDIDA before update
+of UNI_CODIGO__
+on UNDAD_MEDIDA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of UpdateParentRestrict constraint for "UNIDAD_ALTERNATIVA"
+    cursor cfk1_unidad_alternativa(var_uni_codigo__ varchar) is
+       select 1
+       from   UNIDAD_ALTERNATIVA
+       where  UNI_CODIGO__ = var_uni_codigo__
+        and   var_uni_codigo__ is not null;
+
+begin
+    --  Cannot modify parent code in "UNDAD_MEDIDA" if children still exist in "UNIDAD_ALTERNATIVA"
+    if (updating('UNI_CODIGO__') and :old.UNI_CODIGO__ != :new.UNI_CODIGO__) then
+       open  cfk1_unidad_alternativa(:old.UNI_CODIGO__);
+       fetch cfk1_unidad_alternativa into dummy;
+       found := cfk1_unidad_alternativa%FOUND;
+       close cfk1_unidad_alternativa;
+       if found then
+          errno  := -20005;
+          errmsg := 'Children still exist in "UNIDAD_ALTERNATIVA". Cannot modify parent code in "UNDAD_MEDIDA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_UNIDAD_ALTERNATIVA before insert
+on UNIDAD_ALTERNATIVA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk1_unidad_alternativa(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "UNDAD_MEDIDA"
+    cursor cpk2_unidad_alternativa(var_uni_codigo__ varchar) is
+       select 1
+       from   UNDAD_MEDIDA
+       where  UNI_CODIGO__ = var_uni_codigo__
+        and   var_uni_codigo__ is not null;
+
+begin
+    --  Parent "PRODUCTO" must exist when inserting a child in "UNIDAD_ALTERNATIVA"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk1_unidad_alternativa(:new.PRD_CODIGO__);
+       fetch cpk1_unidad_alternativa into dummy;
+       found := cpk1_unidad_alternativa%FOUND;
+       close cpk1_unidad_alternativa;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "UNIDAD_ALTERNATIVA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "UNDAD_MEDIDA" must exist when inserting a child in "UNIDAD_ALTERNATIVA"
+    if :new.UNI_CODIGO__ is not null then
+       open  cpk2_unidad_alternativa(:new.UNI_CODIGO__);
+       fetch cpk2_unidad_alternativa into dummy;
+       found := cpk2_unidad_alternativa%FOUND;
+       close cpk2_unidad_alternativa;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "UNDAD_MEDIDA". Cannot create child in "UNIDAD_ALTERNATIVA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_UNIDAD_ALTERNATIVA before update
+of PRD_CODIGO__,
+   UNI_CODIGO__
+on UNIDAD_ALTERNATIVA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk1_unidad_alternativa(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "UNDAD_MEDIDA"
+    cursor cpk2_unidad_alternativa(var_uni_codigo__ varchar) is
+       select 1
+       from   UNDAD_MEDIDA
+       where  UNI_CODIGO__ = var_uni_codigo__
+        and   var_uni_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "PRODUCTO" must exist when updating a child in "UNIDAD_ALTERNATIVA"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_unidad_alternativa(:new.PRD_CODIGO__);
+       fetch cpk1_unidad_alternativa into dummy;
+       found := cpk1_unidad_alternativa%FOUND;
+       close cpk1_unidad_alternativa;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "UNIDAD_ALTERNATIVA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "UNDAD_MEDIDA" must exist when updating a child in "UNIDAD_ALTERNATIVA"
+    if (:new.UNI_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_unidad_alternativa(:new.UNI_CODIGO__);
+       fetch cpk2_unidad_alternativa into dummy;
+       found := cpk2_unidad_alternativa%FOUND;
+       close cpk2_unidad_alternativa;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "UNDAD_MEDIDA". Cannot update child in "UNIDAD_ALTERNATIVA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TIB_VENDEDOR before insert
+on VENDEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "SUCURSAL"
+    cursor cpk1_vendedor(var_suc_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+
+begin
+    --  Parent "SUCURSAL" must exist when inserting a child in "VENDEDOR"
+    if :new.SUC_CODIGO__ is not null then
+       open  cpk1_vendedor(:new.SUC_CODIGO__);
+       fetch cpk1_vendedor into dummy;
+       found := cpk1_vendedor%FOUND;
+       close cpk1_vendedor;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "SUCURSAL". Cannot create child in "VENDEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create trigger TUB_VENDEDOR before update
+of VEN_CEDULA__,
+   SUC_CODIGO__
+on VENDEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "SUCURSAL"
+    cursor cpk1_vendedor(var_suc_codigo__ varchar) is
+       select 1
+       from   SUCURSAL
+       where  SUC_CODIGO__ = var_suc_codigo__
+        and   var_suc_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "SUCURSAL" must exist when updating a child in "VENDEDOR"
+    if (:new.SUC_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_vendedor(:new.SUC_CODIGO__);
+       fetch cpk1_vendedor into dummy;
+       found := cpk1_vendedor%FOUND;
+       close cpk1_vendedor;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "SUCURSAL". Cannot update child in "VENDEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
