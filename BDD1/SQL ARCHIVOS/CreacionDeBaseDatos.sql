@@ -16,13 +16,13 @@ create or replace package IntegrityPackage AS
 -- Integrity package definition
 create or replace package body IntegrityPackage AS
  NestLevel number;
-/
+
 -- Procedure to initialize the trigger nest level
  procedure InitNestLevel is
  begin
  NestLevel := 0;
  end;
-/
+
 
 -- Function to return the trigger nest level
  function GetNestLevel return number is
@@ -41,7 +41,7 @@ create or replace package body IntegrityPackage AS
  end if;
  NestLevel := NestLevel + 1;
  end;
-/
+
 -- Procedure to decrease the trigger nest level
  procedure PreviousNestLevel is
  begin
@@ -166,22 +166,10 @@ drop trigger TDB_PROOVEDOR
 drop trigger TUB_PROOVEDOR
 /
 
-drop trigger COMPOUNDUPDATETRIGGER_PROVINCI
-/
-
 drop trigger TDB_PROVINCIA
 /
 
 drop trigger TUB_PROVINCIA
-/
-
-drop trigger COMPOUNDDELETETRIGGER_SUCURSAL
-/
-
-drop trigger COMPOUNDINSERTTRIGGER_SUCURSAL
-/
-
-drop trigger COMPOUNDUPDATETRIGGER_SUCURSAL
 /
 
 drop trigger TDB_SUCURSAL
@@ -372,6 +360,7 @@ drop index SUCURSAL_VENDEDOR_FK
 
 drop table VENDEDOR cascade constraints
 /
+
 
 /*==============================================================*/
 /* Table: BODEGA                                                */
@@ -601,7 +590,7 @@ create table DETALLE_ORDEN_COMPRA (
    ORD_NUMERO__         VARCHAR2(20)          not null
       constraint CKC_ORD_NUMERO___DETALLE_ check (ORD_NUMERO__ = upper(ORD_NUMERO__)),
    PRD_CODIGO__         VARCHAR2(20)          not null
-      constraint CKC_PRD_CODIGO___DETALLE_ check (PRD_CODIGO__ = upper(PRD_CODIGO__))
+      constraint CKC_PRD_CODIGO___DETALLE_OC check (PRD_CODIGO__ = upper(PRD_CODIGO__))
 )
    tablespace DATOS_2024_01
 /
@@ -771,7 +760,7 @@ create table FORMA_PAGO (
 /*==============================================================*/
 create table FORMA_PAGO_ELEGIDA (
    FRP_CODIGO__         VARCHAR2(20)          not null
-      constraint CKC_FRP_CODIGO___FORMA_PA check (FRP_CODIGO__ = upper(FRP_CODIGO__)),
+      constraint CKC_FRP_CODIGO___FORMA_PA_E check (FRP_CODIGO__ = upper(FRP_CODIGO__)),
    FAC_NUMERO__         VARCHAR2(20)          not null
       constraint CKC_FAC_NUMERO___FORMA_PA check (FAC_NUMERO__ = upper(FAC_NUMERO__))
 )
@@ -967,7 +956,7 @@ create table PRODUCTO_BODEGA (
    BOD_CODIGO           VARCHAR2(20)          not null
       constraint CKC_BOD_CODIGO_PRODUCTO check (BOD_CODIGO = upper(BOD_CODIGO)),
    PRD_CODIGO__         VARCHAR2(20)          not null
-      constraint CKC_PRD_CODIGO___PRODUCTO check (PRD_CODIGO__ = upper(PRD_CODIGO__))
+      constraint CKC_PRD_CODIGO___PRODUCTO_BODEGA check (PRD_CODIGO__ = upper(PRD_CODIGO__))
 )
    tablespace DATOS_2024_01
 /
@@ -1001,7 +990,7 @@ create table PRODUCTO_PROOVEDOR (
    PRV_CODIGO__         VARCHAR2(13)          not null
       constraint CKC_PRV_CODIGO___PRODUCTO check (PRV_CODIGO__ = upper(PRV_CODIGO__)),
    PRD_CODIGO__         VARCHAR2(20)          not null
-      constraint CKC_PRD_CODIGO___PRODUCTO check (PRD_CODIGO__ = upper(PRD_CODIGO__))
+      constraint CKC_PRD_CODIGO___PRODUCTO_PROOVEDOR check (PRD_CODIGO__ = upper(PRD_CODIGO__))
 )
    tablespace DATOS_2024_01
 /
@@ -3650,34 +3639,6 @@ end;
 /
 
 
-create or replace trigger COMPOUNDUPDATETRIGGER_PROVINCI
-for update on PROVINCIA compound trigger
-// Declaration
-// Body
-  before statement is
-  begin
-     NULL;
-  end before statement;
-
-  before each row is
-  begin
-     NULL;
-  end before each row;
-
-  after each row is
-  begin
-     NULL;
-  end after each row;
-
-  after statement is
-  begin
-     NULL;
-  end after statement;
-
-END
-/
-
-
 create trigger TDB_PROVINCIA before delete
 on PROVINCIA for each row
 declare
@@ -3750,90 +3711,6 @@ exception
     when integrity_error then
        raise_application_error(errno, errmsg);
 end;
-/
-
-
-create or replace trigger COMPOUNDDELETETRIGGER_SUCURSAL
-for delete on SUCURSAL compound trigger
-// Declaration
-// Body
-  before statement is
-  begin
-     NULL;
-  end before statement;
-
-  before each row is
-  begin
-     NULL;
-  end before each row;
-
-  after each row is
-  begin
-     NULL;
-  end after each row;
-
-  after statement is
-  begin
-     NULL;
-  end after statement;
-
-END
-/
-
-
-create or replace trigger COMPOUNDINSERTTRIGGER_SUCURSAL
-for insert on SUCURSAL compound trigger
-// Declaration
-// Body
-  before statement is
-  begin
-     NULL;
-  end before statement;
-
-  before each row is
-  begin
-     NULL;
-  end before each row;
-
-  after each row is
-  begin
-     NULL;
-  end after each row;
-
-  after statement is
-  begin
-     NULL;
-  end after statement;
-
-END
-/
-
-
-create or replace trigger COMPOUNDUPDATETRIGGER_SUCURSAL
-for update on SUCURSAL compound trigger
-// Declaration
-// Body
-  before statement is
-  begin
-     NULL;
-  end before statement;
-
-  before each row is
-  begin
-     NULL;
-  end before each row;
-
-  after each row is
-  begin
-     NULL;
-  end after each row;
-
-  after statement is
-  begin
-     NULL;
-  end after statement;
-
-END
 /
 
 
