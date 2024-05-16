@@ -1,0 +1,805 @@
+
+
+Error que empieza en la línea: 121 del comando :
+drop trigger TIB_FORMA_PAGO_ELEGIDA
+Informe de error -
+ORA-04080: el disparador 'TIB_FORMA_PAGO_ELEGIDA' no existe
+04080. 00000 -  "trigger '%s' does not exist"
+*Cause:    The TRIGGER name is invalid.
+*Action:   Check the trigger name.
+
+Error que empieza en la línea: 124 del comando :
+drop trigger TUB_FORMA_PAGO_ELEGIDA
+Informe de error -
+ORA-04080: el disparador 'TUB_FORMA_PAGO_ELEGIDA' no existe
+04080. 00000 -  "trigger '%s' does not exist"
+*Cause:    The TRIGGER name is invalid.
+*Action:   Check the trigger name.
+
+
+
+Error que empieza en la línea: 151 del comando :
+drop trigger TIB_PRODUCTO_BODEGA
+Informe de error -
+ORA-04080: el disparador 'TIB_PRODUCTO_BODEGA' no existe
+04080. 00000 -  "trigger '%s' does not exist"
+*Cause:    The TRIGGER name is invalid.
+*Action:   Check the trigger name.
+
+Error que empieza en la línea: 154 del comando :
+drop trigger TUB_PRODUCTO_BODEGA
+Informe de error -
+ORA-04080: el disparador 'TUB_PRODUCTO_BODEGA' no existe
+04080. 00000 -  "trigger '%s' does not exist"
+*Cause:    The TRIGGER name is invalid.
+*Action:   Check the trigger name.
+
+Error que empieza en la línea: 157 del comando :
+drop trigger TIB_PRODUCTO_PROOVEDOR
+Informe de error -
+ORA-04080: el disparador 'TIB_PRODUCTO_PROOVEDOR' no existe
+04080. 00000 -  "trigger '%s' does not exist"
+*Cause:    The TRIGGER name is invalid.
+*Action:   Check the trigger name.
+
+Error que empieza en la línea: 160 del comando :
+drop trigger TUB_PRODUCTO_PROOVEDOR
+Informe de error -
+ORA-04080: el disparador 'TUB_PRODUCTO_PROOVEDOR' no existe
+04080. 00000 -  "trigger '%s' does not exist"
+*Cause:    The TRIGGER name is invalid.
+*Action:   Check the trigger name.
+
+
+
+Error que empieza en la línea: 289 del comando :
+drop index RELATIONSHIP_35_FK
+Informe de error -
+ORA-01418: el índice especificado no existe
+01418. 00000 -  "specified index does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 292 del comando :
+drop index FP_FPE_FK
+Informe de error -
+ORA-01418: el índice especificado no existe
+01418. 00000 -  "specified index does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 295 del comando :
+drop table FORMA_PAGO_ELEGIDA cascade constraints
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+
+
+Error que empieza en la línea: 325 del comando :
+drop index PRODUCTO_PB_FK
+Informe de error -
+ORA-01418: el índice especificado no existe
+01418. 00000 -  "specified index does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 328 del comando :
+drop index BODEGA_PB_FK
+Informe de error -
+ORA-01418: el índice especificado no existe
+01418. 00000 -  "specified index does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 331 del comando :
+drop table PRODUCTO_BODEGA cascade constraints
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 334 del comando :
+drop index PRODUCTO_PP_FK
+Informe de error -
+ORA-01418: el índice especificado no existe
+01418. 00000 -  "specified index does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 337 del comando :
+drop index PROOVEDOR_PP_FK
+Informe de error -
+ORA-01418: el índice especificado no existe
+01418. 00000 -  "specified index does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 340 del comando :
+drop table PRODUCTO_PROOVEDOR cascade constraints
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+
+
+Error que empieza en la línea: 349 del comando :
+drop index CIUDES_SUCURSAL_FK
+Informe de error -
+ORA-00054: recurso ocupado y obtenido con NOWAIT especificado o timeout vencido
+00054. 00000 -  "resource busy and acquire with NOWAIT specified or timeout expired"
+*Cause:    Interested resource is busy.
+*Action:   Retry if necessary or increase timeout.
+
+Error que empieza en la línea: 352 del comando :
+drop table SUCURSAL cascade constraints
+Informe de error -
+ORA-00054: recurso ocupado y obtenido con NOWAIT especificado o timeout vencido
+00054. 00000 -  "resource busy and acquire with NOWAIT specified or timeout expired"
+*Cause:    Interested resource is busy.
+*Action:   Retry if necessary or increase timeout.
+
+
+
+Error que empieza en la línea: 772 del comando :
+create table FORMA_PAGO_ELEGIDA (
+   FRP_CODIGO__         VARCHAR2(20)          not null
+      constraint CKC_FRP_CODIGO___FORMA_PA check (FRP_CODIGO__ = upper(FRP_CODIGO__)),
+   FAC_NUMERO__         VARCHAR2(20)          not null
+      constraint CKC_FAC_NUMERO___FORMA_PA check (FAC_NUMERO__ = upper(FAC_NUMERO__))
+)
+   tablespace DATOS_2024_01
+Informe de error -
+ORA-02264: nombre ya utilizado por una restricción existente
+02264. 00000 -  "name already used by an existing constraint"
+*Cause:    The specified constraint name has to be unique.
+*Action:   Specify a unique constraint name for the constraint.
+
+Error que empieza en la línea: 781 del comando :
+comment on table FORMA_PAGO_ELEGIDA is
+'Interseccion entre forma de pago y factura.
+Para mi indicaria que forma de pago se escogio o se escogieron para cada factura
+'
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 790 del comando :
+create index FP_FPE_FK on FORMA_PAGO_ELEGIDA (
+   FRP_CODIGO__ ASC
+)
+tablespace INDICE_2024_01
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 799 del comando :
+create index RELATIONSHIP_35_FK on FORMA_PAGO_ELEGIDA (
+   FAC_NUMERO__ ASC
+)
+tablespace INDICE_2024_01
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+
+Error que empieza en la línea: 966 del comando :
+create table PRODUCTO_BODEGA (
+   BOD_CODIGO           VARCHAR2(20)          not null
+      constraint CKC_BOD_CODIGO_PRODUCTO check (BOD_CODIGO = upper(BOD_CODIGO)),
+   PRD_CODIGO__         VARCHAR2(20)          not null
+      constraint CKC_PRD_CODIGO___PRODUCTO check (PRD_CODIGO__ = upper(PRD_CODIGO__))
+)
+   tablespace DATOS_2024_01
+Informe de error -
+ORA-02264: nombre ya utilizado por una restricción existente
+02264. 00000 -  "name already used by an existing constraint"
+*Cause:    The specified constraint name has to be unique.
+*Action:   Specify a unique constraint name for the constraint.
+
+Error que empieza en la línea: 975 del comando :
+comment on table PRODUCTO_BODEGA is
+'Tabla interseccion que contiene los productos de la bodega'
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 982 del comando :
+create index BODEGA_PB_FK on PRODUCTO_BODEGA (
+   BOD_CODIGO ASC
+)
+tablespace DATOS_2024_01
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 991 del comando :
+create index PRODUCTO_PB_FK on PRODUCTO_BODEGA (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICE_2024_01
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 1.000 del comando :
+create table PRODUCTO_PROOVEDOR (
+   PRV_CODIGO__         VARCHAR2(13)          not null
+      constraint CKC_PRV_CODIGO___PRODUCTO check (PRV_CODIGO__ = upper(PRV_CODIGO__)),
+   PRD_CODIGO__         VARCHAR2(20)          not null
+      constraint CKC_PRD_CODIGO___PRODUCTO check (PRD_CODIGO__ = upper(PRD_CODIGO__))
+)
+   tablespace DATOS_2024_01
+Informe de error -
+ORA-02264: nombre ya utilizado por una restricción existente
+02264. 00000 -  "name already used by an existing constraint"
+*Cause:    The specified constraint name has to be unique.
+*Action:   Specify a unique constraint name for the constraint.
+
+Error que empieza en la línea: 1.009 del comando :
+comment on table PRODUCTO_PROOVEDOR is
+'Tabla interseccion entre productos y proovedor, para saber que productos entrega cada proovedor
+'
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 1.017 del comando :
+create index PROOVEDOR_PP_FK on PRODUCTO_PROOVEDOR (
+   PRV_CODIGO__ ASC
+)
+tablespace INDICE_2024_01
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 1.026 del comando :
+create index PRODUCTO_PP_FK on PRODUCTO_PROOVEDOR (
+   PRD_CODIGO__ ASC
+)
+tablespace INDICE_2024_01
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+
+
+
+Error que empieza en la línea: 1.098 del comando :
+create table SUCURSAL (
+   SUC_CODIGO           VARCHAR2(20)          not null
+      constraint CKC_SUC_CODIGO_SUCURSAL check (SUC_CODIGO = upper(SUC_CODIGO)),
+   CIU_CODIGO__         VARCHAR2(20)          not null
+      constraint CKC_CIU_CODIGO___SUCURSAL check (CIU_CODIGO__ = upper(CIU_CODIGO__)),
+   SUC_NOMBRE           VARCHAR2(20),
+   SUC_DIRECCION        VARCHAR2(50),
+   SUC_TELEFONO         VARCHAR2(13),
+   SUC_RESPONSABLE      VARCHAR2(20),
+   constraint PK_SUCURSAL primary key (SUC_CODIGO)
+)
+   tablespace DATOS_2024_01
+Informe de error -
+ORA-00955: este nombre ya lo está utilizando otro objeto existente
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+
+
+
+
+Error que empieza en la línea: 1.140 del comando :
+create index CIUDES_SUCURSAL_FK on SUCURSAL (
+   CIU_CODIGO__ ASC
+)
+tablespace INDICE_2024_01
+Informe de error -
+ORA-00054: recurso ocupado y obtenido con NOWAIT especificado o timeout vencido
+00054. 00000 -  "resource busy and acquire with NOWAIT specified or timeout expired"
+*Cause:    Interested resource is busy.
+*Action:   Retry if necessary or increase timeout.
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+9/8       PL/SQL: SQL Statement ignored
+10/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+16/8      PL/SQL: SQL Statement ignored
+17/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+15/8      PL/SQL: SQL Statement ignored
+16/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+40/8      PL/SQL: SQL Statement ignored
+41/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+Trigger TDB_FORMA_PAGO compilado
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+9/8       PL/SQL: SQL Statement ignored
+10/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+Trigger TUB_FORMA_PAGO compilado
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+9/8       PL/SQL: SQL Statement ignored
+10/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+Error que empieza en la línea: 2.542 del comando :
+create trigger TIB_FORMA_PAGO_ELEGIDA before insert
+on FORMA_PAGO_ELEGIDA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "FORMA_PAGO"
+    cursor cpk1_forma_pago_elegida(var_frp_codigo__ varchar) is
+       select 1
+       from   FORMA_PAGO
+       where  FRP_CODIGO__ = var_frp_codigo__
+        and   var_frp_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "FACTURA"
+    cursor cpk2_forma_pago_elegida(var_fac_numero__ varchar) is
+       select 1
+       from   FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+
+begin
+    --  Parent "FORMA_PAGO" must exist when inserting a child in "FORMA_PAGO_ELEGIDA"
+    if :new.FRP_CODIGO__ is not null then
+       open  cpk1_forma_pago_elegida(:new.FRP_CODIGO__);
+       fetch cpk1_forma_pago_elegida into dummy;
+       found := cpk1_forma_pago_elegida%FOUND;
+       close cpk1_forma_pago_elegida;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "FORMA_PAGO". Cannot create child in "FORMA_PAGO_ELEGIDA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "FACTURA" must exist when inserting a child in "FORMA_PAGO_ELEGIDA"
+    if :new.FAC_NUMERO__ is not null then
+       open  cpk2_forma_pago_elegida(:new.FAC_NUMERO__);
+       fetch cpk2_forma_pago_elegida into dummy;
+       found := cpk2_forma_pago_elegida%FOUND;
+       close cpk2_forma_pago_elegida;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "FACTURA". Cannot create child in "FORMA_PAGO_ELEGIDA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 2.599 del comando :
+create trigger TUB_FORMA_PAGO_ELEGIDA before update
+of FRP_CODIGO__,
+   FAC_NUMERO__
+on FORMA_PAGO_ELEGIDA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "FORMA_PAGO"
+    cursor cpk1_forma_pago_elegida(var_frp_codigo__ varchar) is
+       select 1
+       from   FORMA_PAGO
+       where  FRP_CODIGO__ = var_frp_codigo__
+        and   var_frp_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "FACTURA"
+    cursor cpk2_forma_pago_elegida(var_fac_numero__ varchar) is
+       select 1
+       from   FACTURA
+       where  FAC_NUMERO__ = var_fac_numero__
+        and   var_fac_numero__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "FORMA_PAGO" must exist when updating a child in "FORMA_PAGO_ELEGIDA"
+    if (:new.FRP_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_forma_pago_elegida(:new.FRP_CODIGO__);
+       fetch cpk1_forma_pago_elegida into dummy;
+       found := cpk1_forma_pago_elegida%FOUND;
+       close cpk1_forma_pago_elegida;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "FORMA_PAGO". Cannot update child in "FORMA_PAGO_ELEGIDA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "FACTURA" must exist when updating a child in "FORMA_PAGO_ELEGIDA"
+    if (:new.FAC_NUMERO__ is not null) and (seq = 0) then
+       open  cpk2_forma_pago_elegida(:new.FAC_NUMERO__);
+       fetch cpk2_forma_pago_elegida into dummy;
+       found := cpk2_forma_pago_elegida%FOUND;
+       close cpk2_forma_pago_elegida;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "FACTURA". Cannot update child in "FORMA_PAGO_ELEGIDA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+9/8       PL/SQL: SQL Statement ignored
+10/15     PL/SQL: ORA-00942: la tabla o vista no existe
+15/8      PL/SQL: SQL Statement ignored
+16/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+Trigger TIB_PRODUCTO compilado
+
+
+Trigger TUB_PRODUCTO compilado
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+16/8      PL/SQL: SQL Statement ignored
+17/15     PL/SQL: ORA-00942: la tabla o vista no existe
+22/8      PL/SQL: SQL Statement ignored
+23/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+Error que empieza en la línea: 3.306 del comando :
+create trigger TIB_PRODUCTO_BODEGA before insert
+on PRODUCTO_BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "BODEGA"
+    cursor cpk1_producto_bodega(var_bod_codigo varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO = var_bod_codigo
+        and   var_bod_codigo is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_producto_bodega(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    --  Parent "BODEGA" must exist when inserting a child in "PRODUCTO_BODEGA"
+    if :new.BOD_CODIGO is not null then
+       open  cpk1_producto_bodega(:new.BOD_CODIGO);
+       fetch cpk1_producto_bodega into dummy;
+       found := cpk1_producto_bodega%FOUND;
+       close cpk1_producto_bodega;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot create child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when inserting a child in "PRODUCTO_BODEGA"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk2_producto_bodega(:new.PRD_CODIGO__);
+       fetch cpk2_producto_bodega into dummy;
+       found := cpk2_producto_bodega%FOUND;
+       close cpk2_producto_bodega;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 3.363 del comando :
+create trigger TUB_PRODUCTO_BODEGA before update
+of BOD_CODIGO,
+   PRD_CODIGO__
+on PRODUCTO_BODEGA for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "BODEGA"
+    cursor cpk1_producto_bodega(var_bod_codigo varchar) is
+       select 1
+       from   BODEGA
+       where  BOD_CODIGO = var_bod_codigo
+        and   var_bod_codigo is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_producto_bodega(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "BODEGA" must exist when updating a child in "PRODUCTO_BODEGA"
+    if (:new.BOD_CODIGO is not null) and (seq = 0) then
+       open  cpk1_producto_bodega(:new.BOD_CODIGO);
+       fetch cpk1_producto_bodega into dummy;
+       found := cpk1_producto_bodega%FOUND;
+       close cpk1_producto_bodega;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "BODEGA". Cannot update child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when updating a child in "PRODUCTO_BODEGA"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_producto_bodega(:new.PRD_CODIGO__);
+       fetch cpk2_producto_bodega into dummy;
+       found := cpk2_producto_bodega%FOUND;
+       close cpk2_producto_bodega;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "PRODUCTO_BODEGA".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 3.424 del comando :
+create trigger TIB_PRODUCTO_PROOVEDOR before insert
+on PRODUCTO_PROOVEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    --  Declaration of InsertChildParentExist constraint for the parent "PROOVEDOR"
+    cursor cpk1_producto_proovedor(var_prv_codigo__ varchar) is
+       select 1
+       from   PROOVEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of InsertChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_producto_proovedor(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    --  Parent "PROOVEDOR" must exist when inserting a child in "PRODUCTO_PROOVEDOR"
+    if :new.PRV_CODIGO__ is not null then
+       open  cpk1_producto_proovedor(:new.PRV_CODIGO__);
+       fetch cpk1_producto_proovedor into dummy;
+       found := cpk1_producto_proovedor%FOUND;
+       close cpk1_producto_proovedor;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PROOVEDOR". Cannot create child in "PRODUCTO_PROOVEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when inserting a child in "PRODUCTO_PROOVEDOR"
+    if :new.PRD_CODIGO__ is not null then
+       open  cpk2_producto_proovedor(:new.PRD_CODIGO__);
+       fetch cpk2_producto_proovedor into dummy;
+       found := cpk2_producto_proovedor%FOUND;
+       close cpk2_producto_proovedor;
+       if not found then
+          errno  := -20002;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot create child in "PRODUCTO_PROOVEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error que empieza en la línea: 3.481 del comando :
+create trigger TUB_PRODUCTO_PROOVEDOR before update
+of PRV_CODIGO__,
+   PRD_CODIGO__
+on PRODUCTO_PROOVEDOR for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+    seq NUMBER;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PROOVEDOR"
+    cursor cpk1_producto_proovedor(var_prv_codigo__ varchar) is
+       select 1
+       from   PROOVEDOR
+       where  PRV_CODIGO__ = var_prv_codigo__
+        and   var_prv_codigo__ is not null;
+    --  Declaration of UpdateChildParentExist constraint for the parent "PRODUCTO"
+    cursor cpk2_producto_proovedor(var_prd_codigo__ varchar) is
+       select 1
+       from   PRODUCTO
+       where  PRD_CODIGO__ = var_prd_codigo__
+        and   var_prd_codigo__ is not null;
+
+begin
+    seq := IntegrityPackage.GetNestLevel;
+    --  Parent "PROOVEDOR" must exist when updating a child in "PRODUCTO_PROOVEDOR"
+    if (:new.PRV_CODIGO__ is not null) and (seq = 0) then
+       open  cpk1_producto_proovedor(:new.PRV_CODIGO__);
+       fetch cpk1_producto_proovedor into dummy;
+       found := cpk1_producto_proovedor%FOUND;
+       close cpk1_producto_proovedor;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PROOVEDOR". Cannot update child in "PRODUCTO_PROOVEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+    --  Parent "PRODUCTO" must exist when updating a child in "PRODUCTO_PROOVEDOR"
+    if (:new.PRD_CODIGO__ is not null) and (seq = 0) then
+       open  cpk2_producto_proovedor(:new.PRD_CODIGO__);
+       fetch cpk2_producto_proovedor into dummy;
+       found := cpk2_producto_proovedor%FOUND;
+       close cpk2_producto_proovedor;
+       if not found then
+          errno  := -20003;
+          errmsg := 'Parent does not exist in "PRODUCTO". Cannot update child in "PRODUCTO_PROOVEDOR".';
+          raise integrity_error;
+       end if;
+    end if;
+
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+Informe de error -
+ORA-00942: la tabla o vista no existe
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+15/8      PL/SQL: SQL Statement ignored
+16/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+15/8      PL/SQL: SQL Statement ignored
+16/15     PL/SQL: ORA-00942: la tabla o vista no existe
+Errores: comprobar log de compilador
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+2/1       PLS-00103: Se ha encontrado el símbolo "/" cuando se esperaba uno de los siguientes:     function pragma procedure subtype type <an identifier>    <a double-quoted delimited-identifier> current cursor delete    exists prior before after instead 
+Errores: comprobar log de compilador
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+2/1       PLS-00103: Se ha encontrado el símbolo "/" cuando se esperaba uno de los siguientes:     function pragma procedure subtype type <an identifier>    <a double-quoted delimited-identifier> current cursor delete    exists prior before after instead 
+Errores: comprobar log de compilador
+
+
+
+LINE/COL  ERROR
+--------- -------------------------------------------------------------
+2/1       PLS-00103: Se ha encontrado el símbolo "/" cuando se esperaba uno de los siguientes:     function pragma procedure subtype type <an identifier>    <a double-quoted delimited-identifier> current cursor delete    exists prior before after instead 
+Errores: comprobar log de compilador
