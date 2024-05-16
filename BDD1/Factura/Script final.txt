@@ -3,7 +3,7 @@ create or replace package PDTypes
 as
     TYPE ref_cursor IS REF CURSOR;
 end;
-
+/
 -- Integrity package declaration
 create or replace package IntegrityPackage AS
  procedure InitNestLevel;
@@ -16,13 +16,13 @@ create or replace package IntegrityPackage AS
 -- Integrity package definition
 create or replace package body IntegrityPackage AS
  NestLevel number;
-
+/
 -- Procedure to initialize the trigger nest level
  procedure InitNestLevel is
  begin
  NestLevel := 0;
  end;
-
+/
 
 -- Function to return the trigger nest level
  function GetNestLevel return number is
@@ -41,7 +41,7 @@ create or replace package body IntegrityPackage AS
  end if;
  NestLevel := NestLevel + 1;
  end;
-
+/
 -- Procedure to decrease the trigger nest level
  procedure PreviousNestLevel is
  begin
