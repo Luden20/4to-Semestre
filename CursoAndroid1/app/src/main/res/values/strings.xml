@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">=App de frases chidas de fallou</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Intro de fallout 4</string>
+    <string name="second_fragment_label">Intro de fallout new vegas</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="war1">
+    War. War never changes.\n
+    In the year 1945, my great-great grandfather, serving in the army, wondered when he’d get to go home to his wife and the son he’d never seen. He got his wish when the US ended World War II by dropping atomic bombs on Hiroshima and Nagasaki.\n
+    The World awaited Armageddon; instead, something miraculous happened. We began to use atomic energy not as a weapon, but as a nearly limitless source of power.\n
+    People enjoyed luxuries once thought the realm of science fiction. Domestic robots, fusion-powered cars, portable computers. But then, in the 21st century, people awoke from the American dream.\n
+    Years of consumption lead to shortages of every major resource. The entire world unraveled. Peace became a distant memory. It is now the year 2077. We stand on the brink of total war, and I am afraid. For myself, for my wife, for my infant son – because if my time in the army taught me one thing: it’s that war, war never changes.
+    </string>
+
+    <string name="west">
+    Truth is the game was rigged from the start
+    </string>
+</resources>
