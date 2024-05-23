@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    android:visibility="visible"
+    tools:context=".FirstFragment"
+    tools:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,10 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/war1"
+            android:text="1"
             android:textAlignment="center"
             android:textColor="@android:color/holo_green_light"
-            android:textSize="12sp"
+            android:textSize="60sp"
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +45,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_begin="663dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="Button1"
+            app:layout_constraintBottom_toTopOf="@+id/count_button"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintTop_toTopOf="@+id/button2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:text="Button2"
+            app:layout_constraintBottom_toTopOf="@+id/button_first"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintTop_toTopOf="@+id/button3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button3"
+            tools:layout_editor_absoluteX="275dp"
+            tools:layout_editor_absoluteY="63dp" />
+
+        <Button
+            android:id="@+id/count_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="36dp"
+            android:text="Button4"
+            app:layout_constraintBottom_toTopOf="@+id/textview_first"
+            app:layout_constraintEnd_toEndOf="@+id/button_first"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/button_first"
+            app:layout_constraintTop_toBottomOf="@+id/button_first"
+            app:layout_constraintVertical_bias="0.294" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
