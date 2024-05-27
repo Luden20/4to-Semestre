@@ -81,8 +81,35 @@ DESC CLIENTE;
     --Condiciones especificas
     AND C.CIU_CODIGO='C-78'
     AND FAC_FECHA BETWEEN '01/04/2023' AND '10/08/2023';
+    
+    
+    --Version con join
+    SELECT  F.FAC_NUMERO AS NUMERO_FACTURA,F.FAC_FECHA AS FECHA,S.SUC_NOMBRE AS SUCURSAL_DE_COMPRA,
+    C.CLI_CEDULA_RUC AS CEDULA,C.CLI_NOMBRE AS NOMBRE_CLIENTE,C.CLI_APELLIDO AS APELLIDO_CLIENTE ,CIU.CIU_NOMBRE AS CIUDAD_CLIENTE
+    FROM FACTURA F
+    --CRUCE DE TABLAS CON INNER JOIN
+    INNER JOIN  SUCURSAL S
+    ON F.SUC_CODIGO=S.SUC_CODIGO  
+    INNER JOIN  CLIENTE C
+    ON F.CLI_CEDULA_RUC=C.CLI_CEDULA_RUC   
+    INNER JOIN  CIUDAD CIU
+    ON C.CIU_CODIGO=CIU.CIU_CODIGO
+    --CONDICIONES
+    WHERE  C.CIU_CODIGO='C-78'
+    AND FAC_FECHA BETWEEN '01/04/2023' AND '10/08/2023';
+    
+    --View
+    CREATE VIEW v_facturas_clietes_de_guayaqil AS
+    SELECT F.FAC_NUMERO AS NUMERO_FACTURA,F.FAC_FECHA AS FECHA,S.SUC_NOMBRE AS SUCURSAL_DE_COMPRA,
+    C.CLI_CEDULA_RUC AS CEDULA,C.CLI_NOMBRE AS NOMBRE_CLIENTE,C.CLI_APELLIDO AS APELLIDO_CLIENTE ,CIU.CIU_NOMBRE AS CIUDAD_CLIENTE
+    FROM FACTURA F, SUCURSAL S,CLIENTE C,CIUDAD CIU
+    where F.SUC_CODIGO=S.SUC_CODIGO
+    AND F.CLI_CEDULA_RUC=C.CLI_CEDULA_RUC
+    AND C.CIU_CODIGO=CIU.CIU_CODIGO
+    AND C.CIU_CODIGO='C-78'
+    AND FAC_FECHA BETWEEN '01/04/2023' AND '10/08/2023';
 ------------------------------------------------------------------------------------------------------------------------------
---Se desea conocer todas las facturas de los clientes de guayaquil con productos de la categoria licores
+--2.Se desea conocer todas las facturas de los clientes de guayaquil con productos de la categoria licores
     SELECT  FAC.FAC_NUMERO as Numero_Factura,CAT.CAT_DESCRIPCION AS Categoria,P.PRD_DESCRIPCION AS Producto ,CIU.CIU_NOMBRE AS Ciudad_Cliente,
     C.CLI_CEDULA_RUC AS CEDULA,C.CLI_NOMBRE AS NOMBRE_CLIENTE,C.CLI_APELLIDO AS APELLIDO_CLIENTE
     FROM CATEGORIA CAT,CLIENTE C,FACTURA FAC,DETALLE_FACTURA DF,
@@ -99,6 +126,46 @@ DESC CLIENTE;
     AND P.CAT_CODIGO=CAT.CAT_CODIGO
     --Me quedo solo con lo perteneciente ala categoria licores 03
     AND P.CAT_CODIGO='03';
+    
+    --Version con join
+    SELECT  FAC.FAC_NUMERO as Numero_Factura,CAT.CAT_DESCRIPCION AS Categoria,P.PRD_DESCRIPCION AS Producto ,CIU.CIU_NOMBRE AS Ciudad_Cliente,
+    C.CLI_CEDULA_RUC AS CEDULA,C.CLI_NOMBRE AS NOMBRE_CLIENTE,C.CLI_APELLIDO AS APELLIDO_CLIENTE
+    FROM FACTURA FAC 
+    --Cruce de tablas
+    INNER JOIN CLIENTE C
+    ON FAC.CLI_CEDULA_RUC=C.CLI_CEDULA_RUC
+    INNER JOIN CIUDAD CIU
+    ON C.CIU_CODIGO=CIU.CIU_CODIGO
+    INNER JOIN DETALLE_FACTURA DF
+    ON FAC.FAC_NUMERO=DF.FAC_NUMERO
+    INNER JOIN PRODUCTO P
+    ON P.PRD_CODIGO=DF.PRD_CODIGO
+    INNER JOIN CATEGORIA CAT
+    ON P.CAT_CODIGO=CAT.CAT_CODIGO
+    --Condiciones
+    WHERE C.CIU_CODIGO='C-78'
+    AND P.CAT_CODIGO='03';
+    
+    --VIEW
+    CREATE VIEW v_clientes_guayaquil_alcohol AS
+    SELECT  FAC.FAC_NUMERO as Numero_Factura,CAT.CAT_DESCRIPCION AS Categoria,P.PRD_DESCRIPCION AS Producto ,CIU.CIU_NOMBRE AS Ciudad_Cliente,
+    C.CLI_CEDULA_RUC AS CEDULA,C.CLI_NOMBRE AS NOMBRE_CLIENTE,C.CLI_APELLIDO AS APELLIDO_CLIENTE
+    FROM CATEGORIA CAT,CLIENTE C,FACTURA FAC,DETALLE_FACTURA DF,
+    PRODUCTO P, CIUDAD CIU
+    WHERE FAC.FAC_NUMERO=DF.FAC_NUMERO
+    --Uno factura y cliente por la ceddula
+    AND FAC.CLI_CEDULA_RUC=C.CLI_CEDULA_RUC
+    --Uno la ciudad con cliente por el codigo de ciudad y ademas filtro para solo tener guayaquil
+    AND C.CIU_CODIGO=CIU.CIU_CODIGO
+    AND C.CIU_CODIGO='C-78'
+    --Uno Producto con detalle factura en funcion del codigo del producto
+    AND P.PRD_CODIGO=DF.PRD_CODIGO
+    --Uno Producto con categoria en funcion del codigo de la categoria
+    AND P.CAT_CODIGO=CAT.CAT_CODIGO
+    --Me quedo solo con lo perteneciente ala categoria licores 03
+    AND P.CAT_CODIGO='03';
+    
+    
 ------------------------------------------------------------------------------------------------------------------------------
 --3,Se desea conocer todas las facturas realizadas en la sucursal quito sur
 --Selecciono el numero de factura y sucursal
@@ -108,8 +175,23 @@ DESC CLIENTE;
     WHERE F.SUC_CODIGO=S.SUC_CODIGO
     --Sucursal exacta
     AND S.SUC_NOMBRE='QUITO SUR';
+    
+    
+    --Version con join
+    SELECT F.FAC_NUMERO as NUMERO_DE_FACTURA,S.SUC_NOMBRE AS SUCURSAL
+    FROM FACTURA F
+    INNER JOIN SUCURSAL S
+    ON F.SUC_CODIGO=S.SUC_CODIGO
+    WHERE S.SUC_NOMBRE='QUITO SUR';
+    
+    --VIEW
+    CREATE VIEW v_num_facturas_Quito_Sur AS
+    SELECT F.FAC_NUMERO as NUMERO_DE_FACTURA,S.SUC_NOMBRE AS SUCURSAL
+    FROM FACTURA F,SUCURSAL S
+    WHERE F.SUC_CODIGO=S.SUC_CODIGO
+    AND S.SUC_NOMBRE='QUITO SUR';
 --------------------------------------------------------------------------------------------------
---Se desea conocer todos los clientes que han realizado facturas y han pagado con tarjeta de debito
+--4.Se desea conocer todos los clientes que han realizado facturas y han pagado con tarjeta de debito
     --Selecciono los atributos que considero relevantes
     SELECT  C.CLI_NOMBRE AS CLIENTE, F.FAC_NUMERO AS FACTURA,FP.FRP_DESCRIPCION AS FORMA_PAGO,FPF_CANTIDAD AS MONTO_TOTAL
     FROM FACTURA F,CLIENTE C, FORM_PAG_FACTURA FPF,FORMA_PAGO FP
@@ -121,8 +203,31 @@ DESC CLIENTE;
     AND FPF.FRP_CODIGO=FP.FRP_CODIGO
     --Selecciono solo los registros donde se uso tarjeta de debito
     AND FP.FRP_DESCRIPCION ='TARJETA DEBITO';
-Commit;
 
-SELECT * FROM FORM_PAG_FACTURA WHERE FRP_CODIGO='03';
+    --Version con join
+    SELECT C.CLI_NOMBRE AS CLIENTE, F.FAC_NUMERO AS FACTURA,FP.FRP_DESCRIPCION AS FORMA_PAGO,FPF_CANTIDAD AS MONTO_TOTAL
+    FROM FACTURA F
+    --Cruce de tablas
+    INNER JOIN FORM_PAG_FACTURA FPF
+    ON F.FAC_NUMERO=FPF.FAC_NUMERO
+    INNER JOIN CLIENTE C
+    ON F.CLI_CEDULA_RUC =C.CLI_CEDULA_RUC
+    INNER JOIN FORMA_PAGO FP
+    ON FPF.FRP_CODIGO=FP.FRP_CODIGO
+    --Condiciones
+    WHERE FP.FRP_DESCRIPCION ='TARJETA DEBITO';
 
-
+    --View
+    CREATE VIEW v_clientes_tarjeta_debito AS    
+    SELECT  C.CLI_NOMBRE AS CLIENTE, F.FAC_NUMERO AS FACTURA,FP.FRP_DESCRIPCION AS FORMA_PAGO,FPF_CANTIDAD AS MONTO_TOTAL
+    FROM FACTURA F,CLIENTE C, FORM_PAG_FACTURA FPF,FORMA_PAGO FP
+    --Cruzo factura y forma de pago de factura en base al numero de factura
+    WHERE F.FAC_NUMERO=FPF.FAC_NUMERO
+    --Cruzo cliente con factura en base a la cedula del cliente
+    AND F.CLI_CEDULA_RUC =C.CLI_CEDULA_RUC
+    --Cruzo forma de pago de factura con forma de pago en base al codigo identificador
+    AND FPF.FRP_CODIGO=FP.FRP_CODIGO
+    --Selecciono solo los registros donde se uso tarjeta de debito
+    AND FP.FRP_DESCRIPCION ='TARJETA DEBITO';
+    
+    COMMIT;
