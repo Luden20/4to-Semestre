@@ -68,4 +68,14 @@ INSERT INTO cliente VALUES('2222222222','C-128','LUIS', 'CARDENAS', 'ejarellano@
 commit;
 
 
+CREATE USER usprueba
+IDENTIFIED BY usprueba
+DEFAULT TABLESPACE DATOS_2024_01;
+select * from bodega;
+
+ALTER USER achafla IDENTIFIED BY achafla;
+
+
+
+
 
