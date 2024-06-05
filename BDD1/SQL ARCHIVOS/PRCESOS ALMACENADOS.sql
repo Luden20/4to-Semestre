@@ -74,7 +74,67 @@ END;
 delete  from factura_his;
 EXEC gen_his_factura();
 select * from factura_his;
---PROCESO ALMACENADO QUE CAMBIA EL PRECIO DE UNA CATEGORIA EL PRECIO EN BASE A UN PORCENTAJE
+desc categoria;
+desc producto;
+SELECT * FROM PRODUCTO WHERE CAT_CODIGO ='01';
+SET SERVEROUTPUT ON;
+--TRIGER PARA PRACTICAR
+CREATE OR REPLACE TRIGGER cambio_precio
+    BEFORE 
+    UPDATE 
+    OF prd_precio
+    ON producto
+    FOR EACH ROW
+    DECLARE
+    BEGIN
+    :NEW.prd_precio_anterior:=:OLD.prd_precio;
+    END cambio_precio;
+    /
+--1.PROCESO ALMACENADO QUE CAMBIA EL PRECIO DE UNA CATEGORIA EL PRECIO EN BASE A UN PORCENTAJE
+CREATE OR REPLACE PROCEDURE actualizar_precio (v_categoria IN categoria.cat_codigo%TYPE DEFAULT '01',v_porcentaje IN NUMBER DEFAULT 100)
+    AS
+    BEGIN
+        UPDATE producto SET prd_precio = prd_precio * (v_porcentaje/100)
+        WHERE cat_codigo = v_categoria;
+    END;
+/
 --YA EN PROCESO EN ALMACENADO DONDE ENTRA LA CEDULA  Y EL DIGITO VERIFICADOR, EL DIGITO VERIFICADOR VA POR SEPARADO
+CREATE OR REPLACE PROCEDURE verificacion_cedula (v_cedula IN VARCHAR2,v_verificador IN VARCHAR2)
+    AS
+        aux  NUMBER;
+        suma NUMBER;
+        sextodig NUMBER;
+        finaln NUMBER;
+    BEGIN
+        aux := 0;
+        suma := 0;
+        sextodig:=TO_NUMBER(SUBSTR(v_cedula,3,1));
+        finaln:=TO_NUMBER(v_verificador);
+        IF sextodig < 6 THEN
+            FOR i IN 1..9 LOOP
+                aux := TO_NUMBER(SUBSTR(v_cedula, i, 1));         
+                IF MOD(i, 2) = 0 THEN
+                    suma := suma + aux;
+                ELSE 
+                    aux := aux * 2;
+                    IF aux > 9 THEN
+                        aux := aux - 9;
+                    END IF;
+                    suma := suma + aux;
+                END IF;  
+            END LOOP;      
+            suma := (ROUND(suma / 10, 0) * 10) - suma;
+            IF suma = finaln THEN
+                DBMS_OUTPUT.PUT_LINE('Si vale su cedula');
+            ELSE
+                DBMS_OUTPUT.PUT_LINE('No vale su cedula');
+            END IF;
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('No vale su cedula');
+        END IF;
+    END;
+/
+    
+EXEC verificacion_cedula('172678856','3');
 COMMIT;
 SELECT * FROM FACTURA;
