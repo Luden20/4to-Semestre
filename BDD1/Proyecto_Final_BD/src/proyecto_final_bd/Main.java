@@ -16,11 +16,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       ConexionOracle con= new ConexionOracle();
-       String consulta = "SELECT * FROM bodega";
-       ResultSet rs = con.ejecutarQuery(consulta);
-       ConexionOracle.printResultSet(rs);
-       con.desconectar();
+        Tabla a=new Tabla();
+        a.setVisible(true);
     }
     
 }
